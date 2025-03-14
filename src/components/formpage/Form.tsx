@@ -65,9 +65,9 @@ export default function MultiStepForm() {
             </motion.svg>
 
             <form className="h-full flex justify-center items-center">
-                <section className=" w-full h-full border-radius:3 p-6  relative">
+                <section className=" w-full h-full border-radius:3 p-6 relative">
                     {step === 1 && (
-                        <article className="">
+                        <article className="w-1/3">
                             <label htmlFor="name" className="text-white">Name:</label>
                             <input type="text" id="name" name="name"
                                    className="opacity-100 block w-full border p-2 mt-1"/>
@@ -79,7 +79,7 @@ export default function MultiStepForm() {
                     )}
 
                     {step === 2 && (
-                        <article>
+                        <article className="w-1/3">
                             <label htmlFor="school-email" className="text-white">School Email:</label>
                             <input type="email" id="school-email" name="school-email"
                                    className="block w-full border p-2 mt-1"/>
@@ -100,7 +100,7 @@ export default function MultiStepForm() {
                     )}
 
                     {step === 3 && (
-                        <article>
+                        <article className="w-1/3">
                             <label htmlFor="study-background" className="text-white">Study Background:</label>
                             <input type="text" id="study-background" name="study-background"
                                    className="block w-full border p-2 mt-1"/>
@@ -123,7 +123,7 @@ export default function MultiStepForm() {
                     {step === 4 && <FourthStep setStep={setStep} />}
 
                     {step === 5 && (
-                        <article>
+                        <article className="w-1/3">
                             <label htmlFor="comment" className="text-white">Comments:</label>
                             <textarea id="comment" name="comment" className="block w-full border p-2 mt-1"></textarea>
 
