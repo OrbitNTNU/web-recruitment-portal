@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import FourthStep from "@/components/formpage/FourthStep";
+import { useFormStore } from "@/stores/useFormStore";
 
 
 
 export default function MultiStepForm() {
-    const [step, setStep] = useState(1);
+    const { step, nextStep, prevStep } = useFormStore();
     const [sectionWidth, setSectionWidth]= useState(33);
-
-
-    const nextStep = () => setStep((prev) => Math.min(prev + 1, 5));
-    const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
-
-
 
     useEffect(() => {
         const updateWidth = () => {
@@ -35,10 +30,6 @@ export default function MultiStepForm() {
         { x: `${sectionWidth * 2}vw` },
     ];
     const colors = ["#FF0000", "#FF7F00", "#FFFF00", "#c0f638", "#21dc5b"];
-
-
-
-
 
     return (
         <main
@@ -120,7 +111,7 @@ export default function MultiStepForm() {
                         </article>
                     )}
 
-                    {step === 4 && <FourthStep setStep={setStep} />}
+                    {step === 4 && <FourthStep />}
 
                     {step === 5 && (
                         <article className="w-1/3">
