@@ -3,8 +3,10 @@ import { motion } from "framer-motion";
 import type { Team } from "@/types/teams";
 import type { FourthStepProps } from "@/interfaces/fourthStep";
 import {generateGradientColors} from "src/utilities/gradientColors"
+import { useFormStore } from "@/stores/useFormStore";
 
-export default function FourthStep({ setStep }: FourthStepProps) {
+export default function FourthStep() {
+  const { nextStep, prevStep } = useFormStore();
   const [selectedTeam, setSelectedTeam] = useState<Team>("web-team");
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -99,14 +101,14 @@ export default function FourthStep({ setStep }: FourthStepProps) {
         <button
           type="button"
           className="px-4 py-2 text-white bg-gray-500 rounded"
-          onClick={() => setStep(3)}
+          onClick={() => prevStep()}
         >
           Back
         </button>
         <button
           type="button"
           className="px-4 py-2 text-white bg-blue-500 rounded"
-          onClick={() => setStep(5)}
+          onClick={() => nextStep()}
         >
           Next
         </button>
