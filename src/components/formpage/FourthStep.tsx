@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import type { Team } from "@/types/teams";
-import type { FourthStepProps } from "@/interfaces/fourthStep";
 import {generateGradientColors} from "src/utilities/gradientColors"
 import { useFormStore } from "@/stores/useFormStore";
 
@@ -73,7 +72,6 @@ export default function FourthStep() {
 
   return (
     <article className="h-full flex flex-row gap-4 justify-center items-center text-white">
-      <label className="text-lg font-bold">Select a Team:</label>
       <div
         ref={listRef}
         className="flex flex-col w-2/4 h-full p-4 overflow-hidden whitespace-nowrap space-y-4"
@@ -82,22 +80,30 @@ export default function FourthStep() {
         {infiniteTeams.map((team, index) => {
           const colorIndex = index % gradientColors.length;
 
+          const distance = Math.abs(index - centerIndex);
+          const maxDistance = numTeams / 16;
+          const opacity = Math.max(1 - distance / maxDistance, 0.1);
+
           return (
             <motion.div
               key={index}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="text-center text-3xl font-bold cursor-pointer p-4 w-full transition-all duration-300 rounded-md"
-              style={{ color: gradientColors[colorIndex] }}
+              className="text-center text-7xl font-bold cursor-pointer p-4 w-full transition-all duration-300 rounded-md"
+              style={{
+                color: gradientColors[colorIndex],
+                opacity
+              }}
               onClick={() => handleTeamClick(team)}
             >
               {team.replace(/-/g, " ")}
             </motion.div>
           );
         })}
+
       </div>
       <input type="hidden" name="selectedTeam" value={selectedTeam} />
-      <div className="mt-4 flex gap-4">
+      <div className="mt-4 flex ml-40 gap-4">
         <button
           type="button"
           className="px-4 py-2 text-white bg-gray-500 rounded"
