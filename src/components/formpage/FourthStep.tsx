@@ -1,11 +1,11 @@
 import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import type { Team } from "@/types/teams";
-import {generateGradientColors} from "src/utilities/gradientColors"
-import { useFormStore } from "@/stores/useFormStore";
+import { generateGradientColors } from "src/utilities/gradientColors";
+import { useStepStore } from "@/stores/useStepStore";
 
 export default function FourthStep() {
-  const { nextStep, prevStep } = useFormStore();
+  const { nextStep, prevStep } = useStepStore();
   const [selectedTeam, setSelectedTeam] = useState<Team>("web-team");
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -44,13 +44,20 @@ export default function FourthStep() {
     }
   }, [selectedTeam]);
 
-  const gradientColors = generateGradientColors(infiniteTeams.length, centerIndex);
+  const gradientColors = generateGradientColors(
+    infiniteTeams.length,
+    centerIndex,
+  );
 
   useEffect(() => {
     if (listRef.current) {
-      const centerItem = listRef.current.children[centerIndex] as HTMLDivElement;
+      const centerItem = listRef.current.children[
+        centerIndex
+      ] as HTMLDivElement;
       listRef.current.scrollTop =
-        centerItem.offsetTop - listRef.current.clientHeight / 2 + centerItem.clientHeight / 2;
+        centerItem.offsetTop -
+        listRef.current.clientHeight / 2 +
+        centerItem.clientHeight / 2;
     }
   }, [centerIndex]);
 
@@ -71,10 +78,10 @@ export default function FourthStep() {
   }, [centerIndex]);
 
   return (
-    <article className="h-full flex flex-row gap-4 justify-center items-center text-white">
+    <article className="flex h-full flex-row items-center justify-center gap-4 text-white">
       <div
         ref={listRef}
-        className="flex flex-col w-2/4 h-full p-4 overflow-hidden whitespace-nowrap space-y-4"
+        className="flex h-full w-2/4 flex-col space-y-4 overflow-hidden whitespace-nowrap p-4"
         style={{ scrollBehavior: "smooth" }}
       >
         {infiniteTeams.map((team, index) => {
@@ -89,10 +96,10 @@ export default function FourthStep() {
               key={index}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="text-center text-7xl font-bold cursor-pointer p-4 w-full transition-all duration-300 rounded-md"
+              className="w-full cursor-pointer rounded-md p-4 text-center text-7xl font-bold transition-all duration-300"
               style={{
                 color: gradientColors[colorIndex],
-                opacity
+                opacity,
               }}
               onClick={() => handleTeamClick(team)}
             >
@@ -100,24 +107,31 @@ export default function FourthStep() {
             </motion.div>
           );
         })}
-
       </div>
       <input type="hidden" name="selectedTeam" value={selectedTeam} />
-      <div className="mt-4 flex ml-40 gap-4">
-        <button
+      <div className="mt-6 flex space-x-4">
+        <motion.button
           type="button"
-          className="px-4 py-2 text-white bg-gray-500 rounded"
-          onClick={() => prevStep()}
+          onClick={prevStep}
+          whileHover={{
+            scale: 1.1,
+            y: -2,
+            boxShadow: "0px 0px 10px rgba(255, 255, 255, 0.8)",
+          }}
+          whileTap={{ scale: 0.9 }}
+          className="rounded-lg border border-gray-500 bg-gray-700 px-5 py-2 text-white shadow-md transition-all hover:bg-gray-600"
         >
           Back
-        </button>
-        <button
+        </motion.button>
+        <motion.button
           type="button"
-          className="px-4 py-2 text-white bg-blue-500 rounded"
-          onClick={() => nextStep()}
+          onClick={nextStep}
+          whileHover={{ scale: 1.2, y: -4, boxShadow: "0px 0px 20px #38bdf8" }}
+          whileTap={{ scale: 0.9 }}
+          className="rounded-lg border border-blue-400 bg-blue-500 px-6 py-2 text-white shadow-md transition-all hover:bg-blue-600"
         >
           Next
-        </button>
+        </motion.button>
       </div>
     </article>
   );
