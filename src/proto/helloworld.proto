@@ -4,6 +4,7 @@ package helloworld;
 
 service Greeter {
     rpc SayHello (HelloRequest) returns (HelloReply);
+    rpc SayGoodbye (GoodbyeRequest) returns (GoodbyeReply);
 }
 
 message HelloRequest {
@@ -12,4 +13,12 @@ message HelloRequest {
 
 message HelloReply {
     string message = 1;
+}
+message GoodbyeRequest {
+    string name = 1;
+    int32 replyFormat = 2;
+}
+
+message GoodbyeReply {
+    repeated string message = 1;
 }
