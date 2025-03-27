@@ -2,11 +2,7 @@ import * as grpc from '@grpc/grpc-js';
 import path from 'path';
 import type { GetServerSideProps } from 'next';
 import { loadProto } from "@/client/loadProto";
-
-type Props = {
-  helloMessage: string;
-  goodbyeMessage: string;
-};
+import type { Props } from "@/interfaces/clientProps";
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const PROTO_PATH = path.resolve(process.cwd(), 'src/proto/helloworld.proto');
@@ -54,11 +50,4 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
   };
 };
 
-export default function HelloPage({ helloMessage, goodbyeMessage }: Props) {
-  return (
-    <div>
-      <h1>{helloMessage}</h1>
-      <h2>{goodbyeMessage}</h2>
-    </div>
-  );
-}
+
