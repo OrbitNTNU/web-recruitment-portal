@@ -1,4 +1,7 @@
-export const generateGradientColors = (numTeams: number, centerIndex: number) => {
+export const generateGradientColors = (
+  numTeams: number,
+  centerIndex: number,
+) => {
   const colors = [];
 
   for (let i = 0; i < numTeams; i++) {
