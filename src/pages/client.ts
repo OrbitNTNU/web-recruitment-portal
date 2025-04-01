@@ -2,7 +2,8 @@ import * as grpc from '@grpc/grpc-js';
 import path from 'path';
 import type { GetServerSideProps } from 'next';
 import { loadProto } from "@/client/loadProto";
-import type { Props } from "@/interfaces/clientProps";
+import type { Props } from "@/interfaces/Application";
+import type { Application } from "@/interfaces/Application";
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const PROTO_PATH = path.resolve(process.cwd(), 'src/proto/helloworld.proto');
@@ -19,6 +20,10 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
           req: { name: string; replyFormat: number },
           cb: (err: grpc.ServiceError | null, res: { message: string }) => void
         ): void;
+        FetchAllApplicationsFromDatabase(
+          req: unknown,
+          cb: (err: grpc.ServiceError | null, res: { applications: Application[] }) => void // Use `Application[]` here
+        ): void;
       };
     };
   };
@@ -28,26 +33,18 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
     grpc.credentials.createInsecure()
   );
 
-  const helloMessage = await new Promise<string>((resolve, reject) => {
-    client.SayHello({ name: 'John' }, (err, res) => {
+  const fetchApplications = new Promise<Application[]>((resolve, reject) => {
+    client.FetchAllApplicationsFromDatabase({}, (err, res) => {
       if (err) return reject(err);
-      resolve(res.message);
+      resolve(res.applications);
     });
   });
 
-  const goodbyeMessage = await new Promise<string>((resolve, reject) => {
-    client.SayGoodbye({ name: 'John', replyFormat: 1 }, (err, res) => {
-      if (err) return reject(err);
-      resolve(res.message);
-    });
-  });
+  const applications = await fetchApplications;
 
   return {
     props: {
-      helloMessage,
-      goodbyeMessage,
+      applications,
     },
   };
 };
-
-
