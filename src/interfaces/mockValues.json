@@ -1,0 +1,454 @@
+{
+  "data": [
+    {
+      "fullName": "Jayan Thayanthanan",
+      "username": "jayt",
+      "emailAddress": "jaytan@gmail.com",
+      "phoneNumber": "+4740074363",
+      "fieldOfStudy": "Informatics",
+      "yearOfStudy": 2019,
+      "position": [
+        {
+          "preference": 1,
+          "name": "Webdeveloper"
+        },
+        {
+          "preference": 2,
+          "name": "Human Resources"
+        },
+        {
+          "preference": 3,
+          "name": "Systems Engineer"
+        }
+      ],
+      "previousExperience": "Went to school",
+      "personalInfo": "The one and only lanky boy in town :pray_emoji:",
+      "submissionDate": "2024-03-12"
+    },
+    {
+      "fullName": "Hanne Marie Hanne Marie",
+      "username": "HMHM",
+      "emailAddress": "hmHmHM@gmail.com",
+      "phoneNumber": "+4730932232",
+      "fieldOfStudy": "Informatics",
+      "yearOfStudy": 2022,
+      "position": [
+        {
+          "preference": 1,
+          "name": "Embedded Utvikler"
+        },
+        {
+          "preference": 2,
+          "name": "Orbit CEO"
+        },
+        {
+          "preference": 3,
+          "name": "Electronics Engineer"
+        }
+      ],
+      "previousExperience": "Was in the military",
+      "personalInfo": "Coding genius and all round cool cat : 3",
+      "submissionDate": "2024-03-19"
+    },
+    {
+      "fullName": "Jayan Thayanthanan",
+      "username": "jayt",
+      "emailAddress": "jaytan@gmail.com",
+      "phoneNumber": "+4740074363",
+      "fieldOfStudy": "Informatics",
+      "yearOfStudy": 2019,
+      "position": [
+        {
+          "preference": 1,
+          "name": "Webdeveloper"
+        },
+        {
+          "preference": 2,
+          "name": "Human Resources"
+        },
+        {
+          "preference": 3,
+          "name": "Systems Engineer"
+        }
+      ],
+      "previousExperience": "Went to school",
+      "personalInfo": "The one and only lanky boy in town :pray_emoji:",
+      "submissionDate": "2024-02-12"
+    },
+    {
+      "fullName": "Hanne Marie Hanne Marie",
+      "username": "HMHM",
+      "emailAddress": "hmHmHM@gmail.com",
+      "phoneNumber": "+4730932232",
+      "fieldOfStudy": "Informatics",
+      "yearOfStudy": 2022,
+      "position": [
+        {
+          "preference": 1,
+          "name": "Embedded Utvikler"
+        },
+        {
+          "preference": 2,
+          "name": "Orbit CEO"
+        },
+        {
+          "preference": 3,
+          "name": "Electronics Engineer"
+        }
+      ],
+      "previousExperience": "Was in the military",
+      "personalInfo": "Coding genius and all round cool cat : 3",
+      "submissionDate": "2024-03-22"
+    },
+    {
+      "fullName": "Jayan Thayanthanan",
+      "username": "jayt",
+      "emailAddress": "jaytan@gmail.com",
+      "phoneNumber": "+4740074363",
+      "fieldOfStudy": "Informatics",
+      "yearOfStudy": 2019,
+      "position": [
+        {
+          "preference": 1,
+          "name": "Webdeveloper"
+        },
+        {
+          "preference": 2,
+          "name": "Human Resources"
+        },
+        {
+          "preference": 3,
+          "name": "Systems Engineer"
+        }
+      ],
+      "previousExperience": "Went to school",
+      "personalInfo": "The one and only lanky boy in town :pray_emoji:",
+      "submissionDate": "2024-01-12"
+    },
+    {
+      "fullName": "Hanne Marie Hanne Marie",
+      "username": "HMHM",
+      "emailAddress": "hmHmHM@gmail.com",
+      "phoneNumber": "+4730932232",
+      "fieldOfStudy": "Informatics",
+      "yearOfStudy": 2022,
+      "position": [
+        {
+          "preference": 1,
+          "name": "Embedded Utvikler"
+        },
+        {
+          "preference": 2,
+          "name": "Orbit CEO"
+        },
+        {
+          "preference": 3,
+          "name": "Electronics Engineer"
+        }
+      ],
+      "previousExperience": "Was in the military",
+      "personalInfo": "Coding genius and all round cool cat : 3",
+      "submissionDate": "2024-01-10"
+    },
+    {
+      "fullName": "Jayan Thayanthanan",
+      "username": "jayt",
+      "emailAddress": "jaytan@gmail.com",
+      "phoneNumber": "+4740074363",
+      "fieldOfStudy": "Informatics",
+      "yearOfStudy": 2019,
+      "position": [
+        {
+          "preference": 1,
+          "name": "Webdeveloper"
+        },
+        {
+          "preference": 2,
+          "name": "Human Resources"
+        },
+        {
+          "preference": 3,
+          "name": "Systems Engineer"
+        }
+      ],
+      "previousExperience": "Went to school",
+      "personalInfo": "The one and only lanky boy in town :pray_emoji:",
+      "submissionDate": "2024-01-12"
+    },
+    {
+      "fullName": "Hanne Marie Hanne Marie",
+      "username": "HMHM",
+      "emailAddress": "hmHmHM@gmail.com",
+      "phoneNumber": "+4730932232",
+      "fieldOfStudy": "Informatics",
+      "yearOfStudy": 2022,
+      "position": [
+        {
+          "preference": 1,
+          "name": "Embedded Utvikler"
+        },
+        {
+          "preference": 2,
+          "name": "Orbit CEO"
+        },
+        {
+          "preference": 3,
+          "name": "Electronics Engineer"
+        }
+      ],
+      "previousExperience": "Was in the military",
+      "personalInfo": "Coding genius and all round cool cat : 3",
+      "submissionDate": "2024-01-10"
+    },
+    {
+      "fullName": "Jayan Thayanthanan",
+      "username": "jayt",
+      "emailAddress": "jaytan@gmail.com",
+      "phoneNumber": "+4740074363",
+      "fieldOfStudy": "Informatics",
+      "yearOfStudy": 2019,
+      "position": [
+        {
+          "preference": 1,
+          "name": "Webdeveloper"
+        },
+        {
+          "preference": 2,
+          "name": "Human Resources"
+        },
+        {
+          "preference": 3,
+          "name": "Systems Engineer"
+        }
+      ],
+      "previousExperience": "Went to school",
+      "personalInfo": "The one and only lanky boy in town :pray_emoji:",
+      "submissionDate": "2024-01-12"
+    },
+    {
+      "fullName": "Hanne Marie Hanne Marie",
+      "username": "HMHM",
+      "emailAddress": "hmHmHM@gmail.com",
+      "phoneNumber": "+4730932232",
+      "fieldOfStudy": "Informatics",
+      "yearOfStudy": 2022,
+      "position": [
+        {
+          "preference": 1,
+          "name": "Embedded Utvikler"
+        },
+        {
+          "preference": 2,
+          "name": "Orbit CEO"
+        },
+        {
+          "preference": 3,
+          "name": "Electronics Engineer"
+        }
+      ],
+      "previousExperience": "Was in the military",
+      "personalInfo": "Coding genius and all round cool cat : 3",
+      "submissionDate": "2023-09-12"
+    },
+    {
+      "fullName": "Jayan Thayanthanan",
+      "username": "jayt",
+      "emailAddress": "jaytan@gmail.com",
+      "phoneNumber": "+4740074363",
+      "fieldOfStudy": "Informatics",
+      "yearOfStudy": 2019,
+      "position": [
+        {
+          "preference": 1,
+          "name": "Webdeveloper"
+        },
+        {
+          "preference": 2,
+          "name": "Human Resources"
+        },
+        {
+          "preference": 3,
+          "name": "Systems Engineer"
+        }
+      ],
+      "previousExperience": "Went to school",
+      "personalInfo": "The one and only lanky boy in town :pray_emoji:",
+      "submissionDate": "2024-01-12"
+    },
+    {
+      "fullName": "Hanne Marie Hanne Marie",
+      "username": "HMHM",
+      "emailAddress": "hmHmHM@gmail.com",
+      "phoneNumber": "+4730932232",
+      "fieldOfStudy": "Informatics",
+      "yearOfStudy": 2022,
+      "position": [
+        {
+          "preference": 1,
+          "name": "Embedded Utvikler"
+        },
+        {
+          "preference": 2,
+          "name": "Orbit CEO"
+        },
+        {
+          "preference": 3,
+          "name": "Electronics Engineer"
+        }
+      ],
+      "previousExperience": "Was in the military",
+      "personalInfo": "Coding genius and all round cool cat : 3",
+      "submissionDate": "2024-01-12"
+    },
+    {
+      "fullName": "Jayan Thayanthanan",
+      "username": "jayt",
+      "emailAddress": "jaytan@gmail.com",
+      "phoneNumber": "+4740074363",
+      "fieldOfStudy": "Informatics",
+      "yearOfStudy": 2019,
+      "position": [
+        {
+          "preference": 1,
+          "name": "Webdeveloper"
+        },
+        {
+          "preference": 2,
+          "name": "Human Resources"
+        },
+        {
+          "preference": 3,
+          "name": "Systems Engineer"
+        }
+      ],
+      "previousExperience": "Went to school",
+      "personalInfo": "The one and only lanky boy in town :pray_emoji:",
+      "submissionDate": "2024-01-12"
+    },
+    {
+      "fullName": "Marie Hanne Marie Hanne",
+      "username": "HMHM",
+      "emailAddress": "hmHmHM@gmail.com",
+      "phoneNumber": "+4730932232",
+      "fieldOfStudy": "Informatics",
+      "yearOfStudy": 2022,
+      "position": [
+        {
+          "preference": 1,
+          "name": "Verizon Wireless Utvikler"
+        },
+        {
+          "preference": 2,
+          "name": "Orbit CEO"
+        },
+        {
+          "preference": 3,
+          "name": "Deafening Engineer"
+        }
+      ],
+      "previousExperience": "Was in NOT the military",
+      "personalInfo": "Something of a genius and all round cool cat : 3",
+      "submissionDate": "2024-01-12"
+    },
+    {
+      "fullName": "Jayan Thayanthanan",
+      "username": "jayt",
+      "emailAddress": "jaytan@gmail.com",
+      "phoneNumber": "+4740074363",
+      "fieldOfStudy": "Ormix Gormix",
+      "yearOfStudy": 2019,
+      "position": [
+        {
+          "preference": 1,
+          "name": "Integral Developer"
+        },
+        {
+          "preference": 2,
+          "name": "Human Resources"
+        },
+        {
+          "preference": 3,
+          "name": "Systems Engineer"
+        }
+      ],
+      "previousExperience": "Went to school",
+      "personalInfo": "The one and only lanky boy in town :pray_emoji:",
+      "submissionDate": "2024-01-12"
+    },
+    {
+      "fullName": "Hanne Marie Hanne Marie",
+      "username": "HMHM",
+      "emailAddress": "hmHmHM@gmail.com",
+      "phoneNumber": "+4730932232",
+      "fieldOfStudy": "Data Science",
+      "yearOfStudy": 2011,
+      "position": [
+        {
+          "preference": 1,
+          "name": "Hydroclorics Engineer"
+        },
+        {
+          "preference": 2,
+          "name": "Orbit CEO"
+        },
+        {
+          "preference": 3,
+          "name": "Defintion Engineer"
+        }
+      ],
+      "previousExperience": "Was in the military",
+      "personalInfo": "Coding genius and all round cool cat : 3",
+      "submissionDate": "2024-01-12"
+    },
+    {
+      "fullName": "Qt The Ayanthanan",
+      "username": "jayt",
+      "emailAddress": "jaytan@gmail.com",
+      "phoneNumber": "+4740074363",
+      "fieldOfStudy": "Informatics",
+      "yearOfStudy": 2000,
+      "position": [
+        {
+          "preference": 1,
+          "name": "Webdeveloper"
+        },
+        {
+          "preference": 2,
+          "name": "Human Resources"
+        },
+        {
+          "preference": 3,
+          "name": "Systems Engineer"
+        }
+      ],
+      "previousExperience": "Went to school",
+      "personalInfo": "The one and only lanky boy in town :pray_emoji:",
+      "submissionDate": "2024-01-12"
+    },
+    {
+      "fullName": "Hanne Wario Acrio",
+      "username": "HMHM",
+      "emailAddress": "hmHmHM@gmail.com",
+      "phoneNumber": "+4730932232",
+      "fieldOfStudy": "Informatics",
+      "yearOfStudy": 2023,
+      "position": [
+        {
+          "preference": 1,
+          "name": "Embedded Utvikler"
+        },
+        {
+          "preference": 2,
+          "name": "Orbit CEO"
+        },
+        {
+          "preference": 3,
+          "name": "Electronics Engineer"
+        }
+      ],
+      "previousExperience": "Was in the military",
+      "personalInfo": "Coding genius and all round cool cat : 3",
+      "submissionDate": "2024-01-12"
+    }
+  ]
+}
