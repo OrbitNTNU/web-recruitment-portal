@@ -3,7 +3,7 @@ import type {  Props } from "@/interfaces/Application";
 
 function HelloPage({ applications }: Props) {
   return (
-    <div>
+    <section>
       <h1>Applications</h1>
       {applications && applications.length > 0 ? (
         <ul>
@@ -25,7 +25,8 @@ function HelloPage({ applications }: Props) {
       ) : (
         <p>No applications found.</p>
       )}
-    </div>
+      <article></article>
+    </section>
   );
 }
 
