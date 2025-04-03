@@ -25,7 +25,7 @@ export default function ThirdStep() {
       initial={{ opacity: 0, scale: 0.8, y: -50 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="relative flex w-1/3 flex-col items-center justify-center rounded-2xl border border-blue-500/30 bg-gray-900 p-8 shadow-2xl"
+      className="relative flex w-1/3 flex-col items-center justify-center rounded-2xl"
     >
       <motion.label
         htmlFor="study-background"

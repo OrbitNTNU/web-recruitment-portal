@@ -3,14 +3,13 @@ import { motion } from "framer-motion";
 import type { Team } from "@/types/teams";
 import { generateGradientColors } from "src/utilities/gradientColors";
 import { useStepStore } from "@/stores/useStepStore";
+import { useFormStore } from "@/stores/useFormStore";
 
 export default function FourthStep() {
   const { nextStep, prevStep } = useStepStore();
   const [selectedTeam, setSelectedTeam] = useState<Team>("web-team");
   const listRef = useRef<HTMLDivElement>(null);
-
-  const teams: Team[] = [
-    "electronics",
+  const [teams, setTeams] = useState<Team[]>([ "electronics",
     "dev-ops",
     "web-team",
     "ai-research",
@@ -30,12 +29,16 @@ export default function FourthStep() {
     "bioinformatics",
     "embedded-systems",
     "quantum-computing",
-  ];
+  ])
+
+
 
   const infiniteTeams = [...teams, ...teams, ...teams];
   const numTeams = teams.length;
   const startOffset = numTeams;
   const [centerIndex, setCenterIndex] = useState(startOffset);
+  const {positions, setPositions} = useFormStore();
+  const [isCenterClicked, setIsCenterClicked] = useState(false);
 
   useEffect(() => {
     const selectedIndex = infiniteTeams.indexOf(selectedTeam, startOffset);
@@ -61,14 +64,6 @@ export default function FourthStep() {
     }
   }, [centerIndex]);
 
-  const handleTeamClick = (team: Team) => {
-    setSelectedTeam(team);
-    if (listRef.current) {
-      const selectedIndex = infiniteTeams.indexOf(team, startOffset);
-      setCenterIndex(selectedIndex);
-    }
-  };
-
   useEffect(() => {
     if (centerIndex < numTeams) {
       setCenterIndex(centerIndex + numTeams);
@@ -76,6 +71,72 @@ export default function FourthStep() {
       setCenterIndex(centerIndex - numTeams);
     }
   }, [centerIndex]);
+
+  useEffect(() => {
+    const handleWheelScroll = (event: WheelEvent) => {
+      if (listRef.current) {
+        listRef.current.scrollTop += event.deltaY * 4;
+        event.preventDefault();
+      }
+    };
+  
+    const currentList = listRef.current;
+    if (currentList) {
+      currentList.addEventListener("wheel", handleWheelScroll);
+    }
+  
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowUp") {
+        setCenterIndex((prev) => Math.max(prev - 1, 0));
+        setIsCenterClicked(true);
+      } else if (event.key === "ArrowDown") {
+        setCenterIndex((prev) => Math.min(prev + 1, infiniteTeams.length - 1));
+        setIsCenterClicked(true);
+      }
+    };
+  
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      if (currentList) {
+        currentList.removeEventListener("wheel", handleWheelScroll);
+      }
+      window.removeEventListener("keydown", handleKeyDown)
+    };
+  }, []);
+
+
+  useEffect(() => {
+    if (listRef.current) {
+      const centerItem = listRef.current.children[
+        centerIndex
+      ] as HTMLDivElement;
+      listRef.current.scrollTo({
+        top:
+          centerItem.offsetTop -
+          listRef.current.clientHeight / 2 +
+          centerItem.clientHeight / 2,
+        behavior: "smooth",
+      });
+    }
+  }, [centerIndex]);
+
+  const handleTeamClick = (team: Team) => {
+    const selectedIndex = infiniteTeams.indexOf(team, startOffset);
+  
+    if (selectedIndex !== centerIndex) {
+      setCenterIndex(selectedIndex);
+      setIsCenterClicked(false);
+    } else {
+      if (!isCenterClicked) {
+        setPositions(teams.filter((t) => t === team))
+        const updatedTeams = teams.filter((t) => t !== team);
+        setTeams(updatedTeams);
+        setIsCenterClicked(true); 
+      }
+    }
+  };
+  
 
   return (
     <article className="flex h-full flex-row items-center justify-center gap-4 text-white">
@@ -110,6 +171,13 @@ export default function FourthStep() {
       </div>
       <input type="hidden" name="selectedTeam" value={selectedTeam} />
       <div className="mt-6 flex space-x-4">
+        <motion.div>
+        <p>
+          {positions.map((position, index) => (
+            <span key={index} style={{ display: 'block' }}>{position}</span>
+          ))}
+        </p>
+        </motion.div>
         <motion.button
           type="button"
           onClick={prevStep}

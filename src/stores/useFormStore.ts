@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import type { Team } from "@/types/teams";
 
 interface FormValues {
   fullName: string;
@@ -9,6 +10,7 @@ interface FormValues {
   fieldOfStudy: string;
   yearOfStudy: number;
   positions: string[];
+  comments: string;
   setFullName: (fullName: string) => void;
   setUsername: (username: string) => void;
   setEmail: (email: string) => void;
@@ -16,7 +18,8 @@ interface FormValues {
   setEmailAddress: (emailAddress: string) => void;
   setFieldOfStudy: (fieldOfStudy: string) => void;
   setYearOfStudy: (yearOfStudy: number) => void;
-  setPositions: (position: string) => void; 
+  setPositions: (position: Team[]) => void; 
+  setComments: (comments: string) => void;
 }
 
 export const useFormStore = create<FormValues>((set) => ({
@@ -28,6 +31,7 @@ export const useFormStore = create<FormValues>((set) => ({
   fieldOfStudy: "",
   yearOfStudy: 1,
   positions: [], 
+  comments: "",
   setFullName: (fullName) => set({ fullName }),
   setUsername: (username) => set({ username }),
   setEmail: (email) => set({ email }),
@@ -35,6 +39,7 @@ export const useFormStore = create<FormValues>((set) => ({
   setEmailAddress: (emailAddress) => set({ emailAddress }),
   setFieldOfStudy: (fieldOfStudy) => set({ fieldOfStudy }),
   setYearOfStudy: (yearOfStudy) => set({ yearOfStudy }),
-  setPositions: (position) => 
-    set((state) => ({ positions: [...state.positions, position] })),
+  setPositions: (positions: Team[]) => 
+    set((state) => ({ positions: [...state.positions, ...positions] })),
+  setComments: (comments) => set({ comments }),
 }));
