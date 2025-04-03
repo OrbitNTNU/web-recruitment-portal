@@ -18,7 +18,7 @@ export default function ParticlesStars() {
           color: "transparent",
         },
         fullScreen: {
-          enable: false,
+          enable: true,
       
         },
         detectRetina: true,

@@ -1,4 +1,4 @@
-import { useFormStore } from "@/stores/useFormStore";
+import { useFormStore,  useSessionStorageSync } from "@/stores/useFormStore";
 import { useStepStore } from "@/stores/useStepStore";
 import { motion } from "framer-motion";
 import Email from "next-auth/providers/email";
@@ -6,6 +6,7 @@ import Email from "next-auth/providers/email";
 export default function SecondStep() {
   const { email, emailAddress, setEmail, setEmailAddress} = useFormStore();
   const { prevStep, nextStep } = useStepStore();
+  useSessionStorageSync();
 
   return (
     <div className="flex items-center justify-center min-h-screen">

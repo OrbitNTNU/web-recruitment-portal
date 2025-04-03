@@ -3,42 +3,20 @@ import { motion } from "framer-motion";
 import type { Team } from "@/types/teams";
 import { generateGradientColors } from "src/utilities/gradientColors";
 import { useStepStore } from "@/stores/useStepStore";
-import { useFormStore } from "@/stores/useFormStore";
+import { useFormStore,  useSessionStorageSync} from "@/stores/useFormStore";
 
 export default function FourthStep() {
   const { nextStep, prevStep } = useStepStore();
   const [selectedTeam, setSelectedTeam] = useState<Team>("web-team");
   const listRef = useRef<HTMLDivElement>(null);
-  const [teams, setTeams] = useState<Team[]>([ "electronics",
-    "dev-ops",
-    "web-team",
-    "ai-research",
-    "cloud-computing",
-    "cyber-security",
-    "data-science",
-    "game-development",
-    "iot",
-    "mobile-development",
-    "blockchain",
-    "networking",
-    "robotics",
-    "software-engineering",
-    "system-administration",
-    "ui-ux-design",
-    "database-management",
-    "bioinformatics",
-    "embedded-systems",
-    "quantum-computing",
-  ])
-
-
-
+  const {positions, setPositions, teams, setTeams} = useFormStore();
   const infiniteTeams = [...teams, ...teams, ...teams];
   const numTeams = teams.length;
   const startOffset = numTeams;
   const [centerIndex, setCenterIndex] = useState(startOffset);
-  const {positions, setPositions} = useFormStore();
   const [isCenterClicked, setIsCenterClicked] = useState(false);
+
+  useSessionStorageSync();
 
   useEffect(() => {
     const selectedIndex = infiniteTeams.indexOf(selectedTeam, startOffset);

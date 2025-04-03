@@ -1,5 +1,5 @@
 import { useStepStore } from "@/stores/useStepStore";
-import { useFormStore } from "@/stores/useFormStore";
+import { useFormStore,  useSessionStorageSync } from "@/stores/useFormStore";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -7,17 +7,7 @@ export default function ThirdStep() {
   const { nextStep, prevStep } = useStepStore();
   const { setFieldOfStudy, setYearOfStudy, fieldOfStudy, yearOfStudy} = useFormStore();
   const [selectedOption, setSelectedOption] = useState<string>("");
-
-  const handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setYearOfStudy(Number(event.target.value));
-    if (event.target.value !== "Other") {
-      setYearOfStudy(0);
-    }
-  };
-
-  function setCustomValue(value: string): void {
-    throw new Error("Function not implemented.");
-  }
+  useSessionStorageSync();
 
   return (
   <div className="flex items-center justify-center min-h-screen">
@@ -61,44 +51,14 @@ export default function ThirdStep() {
         whileFocus={{ scale: 1.05, boxShadow: "0px 0px 10px #38bdf8" }}
         className="block w-full rounded-lg border border-gray-600 bg-gray-800 p-2.5 text-sm text-white transition-all focus:border-blue-400 focus:ring-2 focus:ring-blue-400"
         value={yearOfStudy}
-        onChange={handleOptionChange}
+        onChange={(e) => setYearOfStudy(Number(e.target.value))}
       >
         <option>1</option>
         <option>2</option>
         <option>3</option>
         <option>4</option>
         <option>5</option>
-        <option>Other</option>
       </motion.select>
-
-      {selectedOption === "Other" && (
-        <motion.article
-          initial={{ opacity: 0, scale: 0.8, y: -50 }}
-          animate={{ opacity: 6, y: 20 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="w-25 shadow-2xlrelative flex flex-col items-center justify-center rounded-2xl bg-gray-900 p-8"
-        >
-          <motion.label
-            htmlFor="what-do"
-            initial={{ x: -100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="text-lg font-semibold text-white"
-          >
-            What do you do?
-          </motion.label>
-          <motion.input
-            type="number"
-            id="So what to you do?"
-            name="what-do"
-            value={yearOfStudy}
-            onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
-            whileFocus={{ scale: 1.05, boxShadow: "0px 0px 10px #38bdf8" }}
-            className="mt-2 block w-full rounded-lg border border-gray-600 bg-gray-800 p-2 text-white transition-all focus:border-blue-400 focus:ring-2 focus:ring-blue-400"
-            onChange={(e) => setYearOfStudy(Number(e.target.value))}
-          />
-        </motion.article>
-      )}
 
       <div className="mt-6 flex space-x-4">
         <motion.button
