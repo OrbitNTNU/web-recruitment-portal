@@ -9,7 +9,7 @@ function HelloPage({ applications }: Props) {
         <ul>
           {applications.map((application, index) => (
             <li key={index}>
-              <h2>{application.name}</h2>
+              <h3>{application.name}</h3>
               <p>Email: {application.personalEmail}</p>
               <p>NTNU Username: {application.ntnuUsername}</p>
               <p>Phone: {application.phoneNumber}</p>
