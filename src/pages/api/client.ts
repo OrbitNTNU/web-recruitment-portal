@@ -5,6 +5,7 @@ import { loadProto } from "@/client/loadProto";
 import type { Props } from "@/interfaces/Application";
 import type { Application } from "@/interfaces/Application";
 
+
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const PROTO_PATH = path.resolve(process.cwd(), 'src/proto/helloworld.proto');
 

@@ -1,4 +1,4 @@
-import { getServerSideProps } from "@/pages/client";
+import { getServerSideProps } from "@/pages/api/client";
 import type {  Props } from "@/interfaces/Application";
 
 function HelloPage({ applications }: Props) {
