@@ -6,6 +6,7 @@ service Greeter {
     rpc SayHello (HelloRequest) returns (HelloReply);
     rpc SayGoodbye (GoodbyeRequest) returns (GoodbyeReply);
     rpc FetchAllApplicationsFromDatabase (EmptyRequest) returns (ApplicationListReply);
+    rpc SubmitApplication (Application) returns (SubmitReply);
 }
 
 message EmptyRequest {}
@@ -25,6 +26,10 @@ message Application {
 
 message ApplicationListReply {
     repeated Application applications = 1;
+}
+
+message SubmitReply {
+    string message = 1;
 }
 
 message HelloRequest {

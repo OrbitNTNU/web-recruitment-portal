@@ -1,7 +1,6 @@
 import { useFormStore,  useSessionStorageSync } from "@/stores/useFormStore";
 import { useStepStore } from "@/stores/useStepStore";
 import { motion } from "framer-motion";
-import Email from "next-auth/providers/email";
 
 export default function SecondStep() {
   const { comments, setComments } = useFormStore();
