@@ -1,15 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import * as grpc from '@grpc/grpc-js';
 import path from 'path';
-import { loadProto } from "@/client/loadProto";
-import { type ApplicationRequestBody } from "@/interfaces/ApplicationRequestBody";
+import { loadProto } from '@/client/loadProto';
+import type { ApplicationRequestBody } from '@/interfaces/ApplicationRequestBody';
 
+const SUBMIT_PROTO_PATH = path.resolve(process.cwd(), 'src/proto/submitApplication.proto');
 
-const PROTO_PATH = path.resolve(process.cwd(), 'src/proto/helloworld.proto');
-const packageDefinition = loadProto(PROTO_PATH);
+const packageDefinition = loadProto(SUBMIT_PROTO_PATH);
 const proto = grpc.loadPackageDefinition(packageDefinition) as unknown as {
-  helloworld: {
-    Greeter: new (
+  application: {
+    ApplicationSubmissionService: new (
       address: string,
       credentials: grpc.ChannelCredentials
     ) => {
@@ -35,7 +35,7 @@ const proto = grpc.loadPackageDefinition(packageDefinition) as unknown as {
   };
 };
 
-const client = new proto.helloworld.Greeter(
+const client = new proto.application.ApplicationSubmissionService(
   'localhost:15001',
   grpc.credentials.createInsecure()
 );
@@ -44,6 +44,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).end('Method Not Allowed');
   }
+
   const body = req.body as ApplicationRequestBody;
 
   const {
@@ -66,7 +67,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       ntnuUsername,
       phoneNumber,
       fieldOfStudy,
-      yearOfStudy: Number(yearOfStudy),
+      yearOfStudy,
       experience,
       description,
       submissionDate,
