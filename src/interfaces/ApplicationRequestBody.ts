@@ -8,5 +8,5 @@ export interface ApplicationRequestBody {
   experience: string;
   description: string;
   submissionDate: string;
-  saveApplication: number;
+  saveApplication: boolean;
 }

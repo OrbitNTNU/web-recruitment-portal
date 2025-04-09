@@ -24,7 +24,7 @@ const proto = grpc.loadPackageDefinition(packageDefinition) as unknown as {
           experience: string;
           description: string;
           submissionDate: string;
-          saveApplication: number;
+          saveApplication: boolean;
         },
         callback: (
           error: grpc.ServiceError | null,

@@ -27,7 +27,7 @@ export default function MultiStepForm() {
       experience: comments,
       description: comments,
       submissionDate: new Date().toISOString(),
-      saveApplication: 1,
+      saveApplication: true,
     };
 
     try {
