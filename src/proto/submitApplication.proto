@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package application;
+
+message Application {
+  string name = 1;
+  string personalEmail = 2;
+  string ntnuUsername = 3;
+  string phoneNumber = 4;
+  string fieldOfStudy = 5;
+  int32 yearOfStudy = 6;
+  string experience = 7;
+  string description = 8;
+  string submissionDate = 9;
+  bool saveApplication = 10;
+}
+
+message SubmitReply {
+  string message = 1;
+}
+
+service ApplicationSubmissionService {
+  rpc SubmitApplication (Application) returns (SubmitReply);
+}
