@@ -5,14 +5,19 @@ import { loadProto } from "@/client/loadProto";
 import type { Props } from "@/interfaces/Application";
 import type { Application } from "@/interfaces/Application";
 
-
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  const PROTO_PATH = path.resolve(process.cwd(), 'src/proto/helloworld.proto');
+  const GREETER_PROTO_PATH = path.resolve(process.cwd(), 'src/proto/helloworld.proto');
+  const APP_QUERY_PROTO_PATH = path.resolve(process.cwd(), 'src/proto/applicationQuery.proto');
 
-  const packageDef = loadProto(PROTO_PATH);
-  const proto = grpc.loadPackageDefinition(packageDef) as unknown as {
+  const greeterDef = loadProto(GREETER_PROTO_PATH);
+  const appQueryDef = loadProto(APP_QUERY_PROTO_PATH);
+
+  const greeterProto = grpc.loadPackageDefinition(greeterDef) as unknown as {
     helloworld: {
-      Greeter: new (address: string, creds: grpc.ChannelCredentials) => {
+      Greeter: new (
+        address: string,
+        creds: grpc.ChannelCredentials
+      ) => {
         SayHello(
           req: { name: string },
           cb: (err: grpc.ServiceError | null, res: { message: string }) => void
@@ -21,21 +26,36 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
           req: { name: string; replyFormat: number },
           cb: (err: grpc.ServiceError | null, res: { message: string }) => void
         ): void;
-        FetchAllApplicationsFromDatabase(
-          req: unknown,
-          cb: (err: grpc.ServiceError | null, res: { applications: Application[] }) => void // Use `Application[]` here
-        ): void;
       };
     };
   };
 
-  const client = new proto.helloworld.Greeter(
+  const appProto = grpc.loadPackageDefinition(appQueryDef) as unknown as {
+    application: {
+      ApplicationQueryService: new (
+        address: string,
+        creds: grpc.ChannelCredentials
+      ) => {
+        FetchAllApplicationsFromDatabase: (
+          req: object,
+          cb: (err: grpc.ServiceError | null, res: { applications: Application[] }) => void
+        ) => void;
+      };
+    };
+  };
+
+  const greeterClient = new greeterProto.helloworld.Greeter(
+    'localhost:15001',
+    grpc.credentials.createInsecure()
+  );
+
+  const appQueryClient = new appProto.application.ApplicationQueryService(
     'localhost:15001',
     grpc.credentials.createInsecure()
   );
 
   const fetchApplications = new Promise<Application[]>((resolve, reject) => {
-    client.FetchAllApplicationsFromDatabase({}, (err, res) => {
+    appQueryClient.FetchAllApplicationsFromDatabase({}, (err, res) => {
       if (err) return reject(err);
       resolve(res.applications);
     });
