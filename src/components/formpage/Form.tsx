@@ -1,142 +1,75 @@
 import React from "react";
 import FourthStep from "@/components/formpage/FourthStep";
+import ThirdStep from "@/components/formpage/ThirdStep";
+import { useStepStore } from "@/stores/useStepStore";
 import { useFormStore } from "@/stores/useFormStore";
+import SecondStep from "./SecondStep";
+import FirstStep from "./FirstStep";
+import FifthStep from "./FifthStep";
+import ApplyStep from "./ApplyStep";
+import ParticlesBackground from "@/components/ParticlesBackground";
 
 export default function MultiStepForm() {
-  const { step, nextStep, prevStep } = useFormStore();
+  const { step } = useStepStore();
+  const {  fullName, username, email, phoneNumber, emailAddress,fieldOfStudy,yearOfStudy,positions, comments} = useFormStore();
+  console.log({  fullName, username, email, phoneNumber, emailAddress,fieldOfStudy,yearOfStudy,positions, comments})
+
+  const submitApplication = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = {
+      name: fullName,
+      personalEmail: emailAddress,
+      ntnuUsername: username,
+      phoneNumber: phoneNumber,
+      fieldOfStudy: fieldOfStudy,
+      yearOfStudy: yearOfStudy,
+      experience: comments,
+      description: comments,
+      submissionDate: new Date().toISOString(),
+      saveApplication: true,
+    };
+
+    try {
+      const res = await fetch('/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      type SubmitResponse = { message: string } | { error: string };
+      const data = (await res.json()) as SubmitResponse;
+      console.log(data);
+      if (!res.ok) {
+        const errMsg = 'error' in data ? data.error : 'Submission failed';
+        throw new Error(errMsg);
+      }
+
+      alert('Application submitted successfully!');
+    } catch (err) {
+      console.error('Submission error:', err);
+      alert('Failed to submit application.');
+    }
+  };
+
+
+
   return (
-    <main className="h-screen w-screen overflow-y-clip bg-black bg-cover bg-center">
-      <form className="flex h-full items-center justify-center">
-        <section className="border-radius:3 relative h-full w-full p-6">
-          {step === 1 && (
-            <article className="w-1/3">
-              <label htmlFor="name" className="text-white">
-                Name:
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                className="mt-1 block w-full border p-2 opacity-100"
-              />
-              <button
-                type="button"
-                onClick={nextStep}
-                className="mt-3 items-end rounded bg-blue-500 px-4 py-2 text-white"
-              >
-                Next
-              </button>
-            </article>
-          )}
-
-          {step === 2 && (
-            <article className="w-1/3">
-              <label htmlFor="school-email" className="text-white">
-                School Email:
-              </label>
-              <input
-                type="email"
-                id="school-email"
-                name="school-email"
-                className="mt-1 block w-full border p-2"
-              />
-
-              <label htmlFor="personal-email" className="text-white">
-                Personal Email:
-              </label>
-              <input
-                type="email"
-                id="personal-email"
-                name="personal-email"
-                className="mt-1 block w-full border p-2"
-              />
-
-              <button
-                type="button"
-                onClick={prevStep}
-                className="mt-3 rounded bg-gray-500 px-4 py-2 text-white"
-              >
-                Back
-              </button>
-              <button
-                type="button"
-                onClick={nextStep}
-                className="ml-2 mt-3 rounded bg-blue-500 px-4 py-2 text-white"
-              >
-                Next
-              </button>
-            </article>
-          )}
-
-          {step === 3 && (
-            <article className="w-1/3">
-              <label htmlFor="study-background" className="text-white">
-                Study Background:
-              </label>
-              <input
-                type="text"
-                id="study-background"
-                name="study-background"
-                className="mt-1 block w-full border p-2"
-              />
-
-              <label htmlFor="year-of-study" className="text-white">
-                Year of Study:
-              </label>
-              <input
-                type="number"
-                id="year-of-study"
-                name="year-of-study"
-                className="mt-1 block w-full border p-2"
-              />
-
-              <button
-                type="button"
-                onClick={prevStep}
-                className="mt-3 rounded bg-gray-500 px-4 py-2 text-white"
-              >
-                Back
-              </button>
-              <button
-                type="button"
-                onClick={nextStep}
-                className="ml-2 mt-3 rounded bg-blue-500 px-4 py-2 text-white"
-              >
-                Next
-              </button>
-            </article>
-          )}
-
+    <main className="h-screen w-screen overflow-y-clip bg-black bg-cover bg-center relative">
+      <form className="flex h-full items-center justify-center relative z-30" onSubmit={submitApplication}>
+        <section className="relative h-full w-full p-6">
+          {step === 1 && <FirstStep />}
+          {step === 2 && <SecondStep />}
+          {step === 3 && <ThirdStep />}
           {step === 4 && <FourthStep />}
-
-          {step === 5 && (
-            <article className="w-1/3">
-              <label htmlFor="comment" className="text-white">
-                Comments:
-              </label>
-              <textarea
-                id="comment"
-                name="comment"
-                className="mt-1 block w-full border p-2"
-              ></textarea>
-
-              <button
-                type="button"
-                onClick={prevStep}
-                className="mt-3 rounded bg-gray-500 px-4 py-2 text-white"
-              >
-                Back
-              </button>
-              <button
-                type="submit"
-                className="ml-2 mt-3 rounded bg-green-500 px-4 py-2 text-white"
-              >
-                Submit
-              </button>
-            </article>
-          )}
+          {step === 5 && <FifthStep />}
+          {step === 6 && <ApplyStep />}
         </section>
       </form>
+      <div className="absolute inset-0 z-10">
+        <ParticlesBackground />
+      </div>
+
     </main>
   );
 }

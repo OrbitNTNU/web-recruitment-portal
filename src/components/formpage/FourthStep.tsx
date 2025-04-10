@@ -2,40 +2,21 @@ import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import type { Team } from "@/types/teams";
 import { generateGradientColors } from "src/utilities/gradientColors";
-import { useFormStore } from "@/stores/useFormStore";
+import { useStepStore } from "@/stores/useStepStore";
+import { useFormStore,  useSessionStorageSync} from "@/stores/useFormStore";
 
 export default function FourthStep() {
-  const { nextStep, prevStep } = useFormStore();
+  const { nextStep, prevStep } = useStepStore();
   const [selectedTeam, setSelectedTeam] = useState<Team>("web-team");
   const listRef = useRef<HTMLDivElement>(null);
-
-  const teams: Team[] = [
-    "electronics",
-    "dev-ops",
-    "web-team",
-    "ai-research",
-    "cloud-computing",
-    "cyber-security",
-    "data-science",
-    "game-development",
-    "iot",
-    "mobile-development",
-    "blockchain",
-    "networking",
-    "robotics",
-    "software-engineering",
-    "system-administration",
-    "ui-ux-design",
-    "database-management",
-    "bioinformatics",
-    "embedded-systems",
-    "quantum-computing",
-  ];
-
+  const {positions, setPositions, teams, setTeams} = useFormStore();
   const infiniteTeams = [...teams, ...teams, ...teams];
   const numTeams = teams.length;
   const startOffset = numTeams;
   const [centerIndex, setCenterIndex] = useState(startOffset);
+  const [isCenterClicked, setIsCenterClicked] = useState(false);
+
+  useSessionStorageSync();
 
   useEffect(() => {
     const selectedIndex = infiniteTeams.indexOf(selectedTeam, startOffset);
@@ -61,14 +42,6 @@ export default function FourthStep() {
     }
   }, [centerIndex]);
 
-  const handleTeamClick = (team: Team) => {
-    setSelectedTeam(team);
-    if (listRef.current) {
-      const selectedIndex = infiniteTeams.indexOf(team, startOffset);
-      setCenterIndex(selectedIndex);
-    }
-  };
-
   useEffect(() => {
     if (centerIndex < numTeams) {
       setCenterIndex(centerIndex + numTeams);
@@ -76,6 +49,72 @@ export default function FourthStep() {
       setCenterIndex(centerIndex - numTeams);
     }
   }, [centerIndex]);
+
+  useEffect(() => {
+    const handleWheelScroll = (event: WheelEvent) => {
+      if (listRef.current) {
+        listRef.current.scrollTop += event.deltaY * 4;
+        event.preventDefault();
+      }
+    };
+  
+    const currentList = listRef.current;
+    if (currentList) {
+      currentList.addEventListener("wheel", handleWheelScroll);
+    }
+  
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowUp") {
+        setCenterIndex((prev) => Math.max(prev - 1, 0));
+        setIsCenterClicked(true);
+      } else if (event.key === "ArrowDown") {
+        setCenterIndex((prev) => Math.min(prev + 1, infiniteTeams.length - 1));
+        setIsCenterClicked(true);
+      }
+    };
+  
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      if (currentList) {
+        currentList.removeEventListener("wheel", handleWheelScroll);
+      }
+      window.removeEventListener("keydown", handleKeyDown)
+    };
+  }, []);
+
+
+  useEffect(() => {
+    if (listRef.current) {
+      const centerItem = listRef.current.children[
+        centerIndex
+      ] as HTMLDivElement;
+      listRef.current.scrollTo({
+        top:
+          centerItem.offsetTop -
+          listRef.current.clientHeight / 2 +
+          centerItem.clientHeight / 2,
+        behavior: "smooth",
+      });
+    }
+  }, [centerIndex]);
+
+  const handleTeamClick = (team: Team) => {
+    const selectedIndex = infiniteTeams.indexOf(team, startOffset);
+  
+    if (selectedIndex !== centerIndex) {
+      setCenterIndex(selectedIndex);
+      setIsCenterClicked(false);
+    } else {
+      if (!isCenterClicked) {
+        setPositions(teams.filter((t) => t === team))
+        const updatedTeams = teams.filter((t) => t !== team);
+        setTeams(updatedTeams);
+        setIsCenterClicked(true); 
+      }
+    }
+  };
+  
 
   return (
     <article className="flex h-full flex-row items-center justify-center gap-4 text-white">
@@ -109,21 +148,36 @@ export default function FourthStep() {
         })}
       </div>
       <input type="hidden" name="selectedTeam" value={selectedTeam} />
-      <div className="ml-40 mt-4 flex gap-4">
-        <button
+      <div className="mt-6 flex space-x-4">
+        <motion.div>
+        <p>
+          {positions.map((position, index) => (
+            <span key={index} style={{ display: 'block' }}>{position}</span>
+          ))}
+        </p>
+        </motion.div>
+        <motion.button
           type="button"
-          className="rounded bg-gray-500 px-4 py-2 text-white"
-          onClick={() => prevStep()}
+          onClick={prevStep}
+          whileHover={{
+            scale: 1.1,
+            y: -2,
+            boxShadow: "0px 0px 10px rgba(255, 255, 255, 0.8)",
+          }}
+          whileTap={{ scale: 0.9 }}
+          className="rounded-lg border border-gray-500 bg-gray-700 px-5 py-2 text-white shadow-md transition-all hover:bg-gray-600"
         >
           Back
-        </button>
-        <button
+        </motion.button>
+        <motion.button
           type="button"
-          className="rounded bg-blue-500 px-4 py-2 text-white"
-          onClick={() => nextStep()}
+          onClick={nextStep}
+          whileHover={{ scale: 1.2, y: -4, boxShadow: "0px 0px 20px #38bdf8" }}
+          whileTap={{ scale: 0.9 }}
+          className="rounded-lg border border-blue-400 bg-blue-500 px-6 py-2 text-white shadow-md transition-all hover:bg-blue-600"
         >
           Next
-        </button>
+        </motion.button>
       </div>
     </article>
   );
