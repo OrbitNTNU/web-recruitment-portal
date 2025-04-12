@@ -1,28 +1,23 @@
 
-import TableColumns from "@/components/applicantArchive/TableColumns";
-import ExpandableComponent from "@/components/applicantArchive/ExpandableComponent";
-import {ApplicationWithPositions} from "@/interfaces/Application";
 import {DataTable} from "@/components/ui/data-table";
+import {ColumnDef} from "@tanstack/react-table";
+import {ApplicationWithPositions} from "@/interfaces/application";
 
 interface TableComponentProps {
-    applicationValues: ApplicationWithPositions[]
+  applicationValues: ApplicationWithPositions[];
+  columns?: ColumnDef<ApplicationWithPositions>[];
 }
 
 
-export default function TableComponent({ applicationValues }: TableComponentProps) {
-
+export default function TableComponent({
+  applicationValues,
+  columns,
+}: TableComponentProps) {
   return (
     <DataTable
-      columns={TableColumns}
+      columns={columns!}
       data={applicationValues}
-      pagination
-      highlightOnHover
-      pointerOnHover
-      striped
-      expandableRows
-      expandOnRowClicked
-      expandableRowsComponent={ExpandableComponent}
-      expandableRowsHideExpander
     />
   );
 }
+
