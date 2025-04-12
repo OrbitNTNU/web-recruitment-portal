@@ -32,3 +32,7 @@ export interface ApplicationWithPositions {
   positions: Position[];
 
 }
+
+export interface Member{
+  name: string;
+}

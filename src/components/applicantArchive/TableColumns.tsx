@@ -1,7 +1,54 @@
 import type {TableColumn} from "react-data-table-component";
-import type {ApplicationWithPositions} from "@/interfaces/Application";
+import type {ApplicationWithPositions} from "@/interfaces/application";
+import type {Position} from "@/interfaces/position";
+import { ColumnDef } from "@tanstack/react-table";
 
-const columns: TableColumn<ApplicationWithPositions>[] = [
+
+export const columns: ColumnDef<ApplicationWithPositions>[] = [
+    {
+        header: "Full Name",
+        accessorKey: "name",
+        cell: (info) => info.getValue<string>(),
+        enableSorting: true,
+    },
+    {
+        header: "E-Mail",
+        accessorKey: "personalEmail",
+        cell: (info) => info.getValue<string>(),
+    },
+    {
+        header: "Field of Study",
+        accessorKey: "fieldOfStudy",
+        cell: (info) => info.getValue<string>(),
+        enableSorting: true,
+    },
+    {
+        header: "Year of Study",
+        accessorKey: "yearOfStudy",
+        cell: (info) => info.getValue<number>(),
+        enableSorting: true,
+    },
+    {
+        header: "Positions",
+        accessorKey: "position",
+        cell: (info) => {
+            const positions = info.getValue() as Position[];
+            const position = positions.find((position) => position.preference === 1);
+            return position ? `1: ${position.name}` : positions[0]!.name;
+        },
+        enableSorting: true,
+    },
+    {
+        header: "Submission Date",
+        accessorKey: "submissionDate",
+        cell: (info) => info.getValue<string>(),
+        enableSorting: true,
+    },
+
+];
+
+
+const TColumns: TableColumn<ApplicationWithPositions>[] = [
     {
         name: "Full Name",
         selector: (row: ApplicationWithPositions) => row.name,
@@ -29,5 +76,4 @@ const columns: TableColumn<ApplicationWithPositions>[] = [
         sortable: true,
     },
 ];
-
 export default columns;

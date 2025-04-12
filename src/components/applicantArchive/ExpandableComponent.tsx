@@ -1,25 +1,14 @@
-import {ExpandableRowsComponent} from "react-data-table-component/dist/DataTable/types";
-import {ApplicationWithPositions} from "@/interfaces/Application";
-import SelectMemberCombo from  "@/components/applicantArchive/SelectMemberCombo";
+import {ApplicationWithPositions, Member} from "@/interfaces/application";
+import SelectMemberCombo from "@/components/applicantArchive/SelectMemberCombo";
 
-interface Member {
-    name: string
+interface ExpandableComponentProps {
+    allMember: Member[];
+    data: ApplicationWithPositions;
 }
 
-/*Mockvalues the member, the idea is to gather the members only once when rendering the table, so you don't
-* fetch all the memberes for every ExtendableComponent*/
-const member1: Member = {name: "Wasabiy"};
-const member2: Member = {name: "Hanna"};
-const member3: Member = {name: "Bana Nana"};
-const allMembers:Member[] = [member1, member2,member3];
+export const ExpandableComponent = ({allMember, data}: ExpandableComponentProps) => (
 
-
-const ExpandableComponent: ExpandableRowsComponent<ApplicationWithPositions> = ({
-  data,
-}: {
-  data: ApplicationWithPositions;
-}) => (
-  <div className="grid-cols grid gap-1 p-4 text-sm " >
+  <div className="grid-cols grid gap-1 p-4 text-lg">
     <section className={"flex w-full flex-row gap-8"}>
       <p>
         <span className="font-bold">Full Name: </span> {data.name}
@@ -58,7 +47,6 @@ const ExpandableComponent: ExpandableRowsComponent<ApplicationWithPositions> = (
         {data.description}
       </p>
     </section>
-    <SelectMemberCombo members={allMembers}></SelectMemberCombo>
+    <SelectMemberCombo members={allMember}></SelectMemberCombo>
   </div>
 );
-export default ExpandableComponent;
