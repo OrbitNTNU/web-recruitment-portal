@@ -1,4 +1,3 @@
-"use client"
 
 import * as React from "react"
 
@@ -25,8 +24,6 @@ interface Member {
 interface SelectMemberComboProps {
     members: Member[]
 }
-
-
 
 
 export default function SelecetMemberCombo({members} : SelectMemberComboProps) {
