@@ -35,7 +35,7 @@ export default function SelecetMemberCombo({members} : SelectMemberComboProps) {
     }
     return (
       <div className="flex items-center space-x-4">
-        <p className="text-sm ">Interviewer</p>
+        <p className="text-md ">Interviewer</p>
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <Button variant="default" className="w-[150px] justify-start">
