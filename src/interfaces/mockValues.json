@@ -2,11 +2,11 @@
   "data": [
     {
       "fullName": "Jayan Thayanthanan",
-      "username": "jayt",
-      "emailAddress": "jaytan@gmail.com",
+      "ntnuUsername": "jayt",
+      "personalEmail": "jaytan@gmail.com",
       "phoneNumber": "+4740074363",
       "fieldOfStudy": "Informatics",
-      "yearOfStudy": 2019,
+      "yearOfStudy": 3,
       "position": [
         {
           "preference": 1,
@@ -21,17 +21,17 @@
           "name": "Systems Engineer"
         }
       ],
-      "previousExperience": "Went to school",
-      "personalInfo": "The one and only lanky boy in town :pray_emoji:",
+      "experience": "Went to school",
+      "description": "The one and only lanky boy in town :pray_emoji:",
       "submissionDate": "2024-03-12"
     },
     {
       "fullName": "Hanne Marie Hanne Marie",
-      "username": "HMHM",
-      "emailAddress": "hmHmHM@gmail.com",
+      "ntnuUsername": "HMHM",
+      "personalEmail": "hmHmHM@gmail.com",
       "phoneNumber": "+4730932232",
       "fieldOfStudy": "Informatics",
-      "yearOfStudy": 2022,
+      "yearOfStudy": 1,
       "position": [
         {
           "preference": 1,
@@ -46,17 +46,17 @@
           "name": "Electronics Engineer"
         }
       ],
-      "previousExperience": "Was in the military",
-      "personalInfo": "Coding genius and all round cool cat : 3",
+      "experience": "Was in the military",
+      "description": "Coding genius and all round cool cat : 3",
       "submissionDate": "2024-03-19"
     },
     {
       "fullName": "Jayan Thayanthanan",
-      "username": "jayt",
-      "emailAddress": "jaytan@gmail.com",
+      "ntnuUsername": "jayt",
+      "personalEmail": "jaytan@gmail.com",
       "phoneNumber": "+4740074363",
       "fieldOfStudy": "Informatics",
-      "yearOfStudy": 2019,
+      "yearOfStudy": 3,
       "position": [
         {
           "preference": 1,
@@ -71,17 +71,17 @@
           "name": "Systems Engineer"
         }
       ],
-      "previousExperience": "Went to school",
-      "personalInfo": "The one and only lanky boy in town :pray_emoji:",
+      "experience": "Went to school",
+      "description": "The one and only lanky boy in town :pray_emoji:",
       "submissionDate": "2024-02-12"
     },
     {
       "fullName": "Hanne Marie Hanne Marie",
-      "username": "HMHM",
-      "emailAddress": "hmHmHM@gmail.com",
+      "ntnuUsername": "HMHM",
+      "personalEmail": "hmHmHM@gmail.com",
       "phoneNumber": "+4730932232",
       "fieldOfStudy": "Informatics",
-      "yearOfStudy": 2022,
+      "yearOfStudy": 1,
       "position": [
         {
           "preference": 1,
@@ -96,17 +96,17 @@
           "name": "Electronics Engineer"
         }
       ],
-      "previousExperience": "Was in the military",
-      "personalInfo": "Coding genius and all round cool cat : 3",
+      "experience": "Was in the military",
+      "description": "Coding genius and all round cool cat : 3",
       "submissionDate": "2024-03-22"
     },
     {
       "fullName": "Jayan Thayanthanan",
-      "username": "jayt",
-      "emailAddress": "jaytan@gmail.com",
+      "ntnuUsername": "jayt",
+      "personalEmail": "jaytan@gmail.com",
       "phoneNumber": "+4740074363",
       "fieldOfStudy": "Informatics",
-      "yearOfStudy": 2019,
+      "yearOfStudy": 3,
       "position": [
         {
           "preference": 1,
@@ -121,17 +121,17 @@
           "name": "Systems Engineer"
         }
       ],
-      "previousExperience": "Went to school",
-      "personalInfo": "The one and only lanky boy in town :pray_emoji:",
+      "experience": "Went to school",
+      "description": "The one and only lanky boy in town :pray_emoji:",
       "submissionDate": "2024-01-12"
     },
     {
       "fullName": "Hanne Marie Hanne Marie",
-      "username": "HMHM",
-      "emailAddress": "hmHmHM@gmail.com",
+      "ntnuUsername": "HMHM",
+      "personalEmail": "hmHmHM@gmail.com",
       "phoneNumber": "+4730932232",
       "fieldOfStudy": "Informatics",
-      "yearOfStudy": 2022,
+      "yearOfStudy": 1,
       "position": [
         {
           "preference": 1,
@@ -146,17 +146,17 @@
           "name": "Electronics Engineer"
         }
       ],
-      "previousExperience": "Was in the military",
-      "personalInfo": "Coding genius and all round cool cat : 3",
+      "experience": "Was in the military",
+      "description": "Coding genius and all round cool cat : 3",
       "submissionDate": "2024-01-10"
     },
     {
       "fullName": "Jayan Thayanthanan",
-      "username": "jayt",
-      "emailAddress": "jaytan@gmail.com",
+      "ntnuUsername": "jayt",
+      "personalEmail": "jaytan@gmail.com",
       "phoneNumber": "+4740074363",
       "fieldOfStudy": "Informatics",
-      "yearOfStudy": 2019,
+      "yearOfStudy": 3,
       "position": [
         {
           "preference": 1,
@@ -171,17 +171,17 @@
           "name": "Systems Engineer"
         }
       ],
-      "previousExperience": "Went to school",
-      "personalInfo": "The one and only lanky boy in town :pray_emoji:",
+      "experience": "Went to school",
+      "description": "The one and only lanky boy in town :pray_emoji:",
       "submissionDate": "2024-01-12"
     },
     {
       "fullName": "Hanne Marie Hanne Marie",
-      "username": "HMHM",
-      "emailAddress": "hmHmHM@gmail.com",
+      "ntnuUsername": "HMHM",
+      "personalEmail": "hmHmHM@gmail.com",
       "phoneNumber": "+4730932232",
       "fieldOfStudy": "Informatics",
-      "yearOfStudy": 2022,
+      "yearOfStudy": 1,
       "position": [
         {
           "preference": 1,
@@ -196,17 +196,17 @@
           "name": "Electronics Engineer"
         }
       ],
-      "previousExperience": "Was in the military",
-      "personalInfo": "Coding genius and all round cool cat : 3",
+      "experience": "Was in the military",
+      "description": "Coding genius and all round cool cat : 3",
       "submissionDate": "2024-01-10"
     },
     {
       "fullName": "Jayan Thayanthanan",
-      "username": "jayt",
-      "emailAddress": "jaytan@gmail.com",
+      "ntnuUsername": "jayt",
+      "personalEmail": "jaytan@gmail.com",
       "phoneNumber": "+4740074363",
       "fieldOfStudy": "Informatics",
-      "yearOfStudy": 2019,
+      "yearOfStudy": 3,
       "position": [
         {
           "preference": 1,
@@ -221,17 +221,17 @@
           "name": "Systems Engineer"
         }
       ],
-      "previousExperience": "Went to school",
-      "personalInfo": "The one and only lanky boy in town :pray_emoji:",
+      "experience": "Went to school",
+      "description": "The one and only lanky boy in town :pray_emoji:",
       "submissionDate": "2024-01-12"
     },
     {
       "fullName": "Hanne Marie Hanne Marie",
-      "username": "HMHM",
-      "emailAddress": "hmHmHM@gmail.com",
+      "ntnuUsername": "HMHM",
+      "personalEmail": "hmHmHM@gmail.com",
       "phoneNumber": "+4730932232",
       "fieldOfStudy": "Informatics",
-      "yearOfStudy": 2022,
+      "yearOfStudy": 1,
       "position": [
         {
           "preference": 1,
@@ -246,17 +246,17 @@
           "name": "Electronics Engineer"
         }
       ],
-      "previousExperience": "Was in the military",
-      "personalInfo": "Coding genius and all round cool cat : 3",
-      "submissionDate": "2023-09-12"
+      "experience": "Was in the military",
+      "description": "Coding genius and all round cool cat : 3",
+      "submissionDate": "2-09-12"
     },
     {
       "fullName": "Jayan Thayanthanan",
-      "username": "jayt",
-      "emailAddress": "jaytan@gmail.com",
+      "ntnuUsername": "jayt",
+      "personalEmail": "jaytan@gmail.com",
       "phoneNumber": "+4740074363",
       "fieldOfStudy": "Informatics",
-      "yearOfStudy": 2019,
+      "yearOfStudy": 3,
       "position": [
         {
           "preference": 1,
@@ -271,17 +271,17 @@
           "name": "Systems Engineer"
         }
       ],
-      "previousExperience": "Went to school",
-      "personalInfo": "The one and only lanky boy in town :pray_emoji:",
+      "experience": "Went to school",
+      "description": "The one and only lanky boy in town :pray_emoji:",
       "submissionDate": "2024-01-12"
     },
     {
       "fullName": "Hanne Marie Hanne Marie",
-      "username": "HMHM",
-      "emailAddress": "hmHmHM@gmail.com",
+      "ntnuUsername": "HMHM",
+      "personalEmail": "hmHmHM@gmail.com",
       "phoneNumber": "+4730932232",
       "fieldOfStudy": "Informatics",
-      "yearOfStudy": 2022,
+      "yearOfStudy": 1,
       "position": [
         {
           "preference": 1,
@@ -296,17 +296,17 @@
           "name": "Electronics Engineer"
         }
       ],
-      "previousExperience": "Was in the military",
-      "personalInfo": "Coding genius and all round cool cat : 3",
+      "experience": "Was in the military",
+      "description": "Coding genius and all round cool cat : 3",
       "submissionDate": "2024-01-12"
     },
     {
       "fullName": "Jayan Thayanthanan",
-      "username": "jayt",
-      "emailAddress": "jaytan@gmail.com",
+      "ntnuUsername": "jayt",
+      "personalEmail": "jaytan@gmail.com",
       "phoneNumber": "+4740074363",
       "fieldOfStudy": "Informatics",
-      "yearOfStudy": 2019,
+      "yearOfStudy": 3,
       "position": [
         {
           "preference": 1,
@@ -321,17 +321,17 @@
           "name": "Systems Engineer"
         }
       ],
-      "previousExperience": "Went to school",
-      "personalInfo": "The one and only lanky boy in town :pray_emoji:",
+      "experience": "Went to school",
+      "description": "The one and only lanky boy in town :pray_emoji:",
       "submissionDate": "2024-01-12"
     },
     {
       "fullName": "Marie Hanne Marie Hanne",
-      "username": "HMHM",
-      "emailAddress": "hmHmHM@gmail.com",
+      "ntnuUsername": "HMHM",
+      "personalEmail": "hmHmHM@gmail.com",
       "phoneNumber": "+4730932232",
       "fieldOfStudy": "Informatics",
-      "yearOfStudy": 2022,
+      "yearOfStudy": 1,
       "position": [
         {
           "preference": 1,
@@ -346,17 +346,17 @@
           "name": "Deafening Engineer"
         }
       ],
-      "previousExperience": "Was in NOT the military",
-      "personalInfo": "Something of a genius and all round cool cat : 3",
+      "experience": "Was in NOT the military",
+      "description": "Something of a genius and all round cool cat : 3",
       "submissionDate": "2024-01-12"
     },
     {
       "fullName": "Jayan Thayanthanan",
-      "username": "jayt",
-      "emailAddress": "jaytan@gmail.com",
+      "ntnuUsername": "jayt",
+      "personalEmail": "jaytan@gmail.com",
       "phoneNumber": "+4740074363",
       "fieldOfStudy": "Ormix Gormix",
-      "yearOfStudy": 2019,
+      "yearOfStudy": 3,
       "position": [
         {
           "preference": 1,
@@ -371,17 +371,17 @@
           "name": "Systems Engineer"
         }
       ],
-      "previousExperience": "Went to school",
-      "personalInfo": "The one and only lanky boy in town :pray_emoji:",
+      "experience": "Went to school",
+      "description": "The one and only lanky boy in town :pray_emoji:",
       "submissionDate": "2024-01-12"
     },
     {
       "fullName": "Hanne Marie Hanne Marie",
-      "username": "HMHM",
-      "emailAddress": "hmHmHM@gmail.com",
+      "ntnuUsername": "HMHM",
+      "personalEmail": "hmHmHM@gmail.com",
       "phoneNumber": "+4730932232",
       "fieldOfStudy": "Data Science",
-      "yearOfStudy": 2011,
+      "yearOfStudy": 4,
       "position": [
         {
           "preference": 1,
@@ -396,17 +396,17 @@
           "name": "Defintion Engineer"
         }
       ],
-      "previousExperience": "Was in the military",
-      "personalInfo": "Coding genius and all round cool cat : 3",
+      "experience": "Was in the military",
+      "description": "Coding genius and all round cool cat : 3",
       "submissionDate": "2024-01-12"
     },
     {
       "fullName": "Qt The Ayanthanan",
-      "username": "jayt",
-      "emailAddress": "jaytan@gmail.com",
+      "ntnuUsername": "jayt",
+      "personalEmail": "jaytan@gmail.com",
       "phoneNumber": "+4740074363",
       "fieldOfStudy": "Informatics",
-      "yearOfStudy": 2000,
+      "yearOfStudy": 4,
       "position": [
         {
           "preference": 1,
@@ -421,17 +421,17 @@
           "name": "Systems Engineer"
         }
       ],
-      "previousExperience": "Went to school",
-      "personalInfo": "The one and only lanky boy in town :pray_emoji:",
+      "experience": "Went to school",
+      "description": "The one and only lanky boy in town :pray_emoji:",
       "submissionDate": "2024-01-12"
     },
     {
       "fullName": "Hanne Wario Acrio",
-      "username": "HMHM",
-      "emailAddress": "hmHmHM@gmail.com",
+      "ntnuUsername": "HMHM",
+      "personalEmail": "hmHmHM@gmail.com",
       "phoneNumber": "+4730932232",
       "fieldOfStudy": "Informatics",
-      "yearOfStudy": 2023,
+      "yearOfStudy": 2,
       "position": [
         {
           "preference": 1,
@@ -446,8 +446,8 @@
           "name": "Electronics Engineer"
         }
       ],
-      "previousExperience": "Was in the military",
-      "personalInfo": "Coding genius and all round cool cat : 3",
+      "experience": "Was in the military",
+      "description": "Coding genius and all round cool cat : 3",
       "submissionDate": "2024-01-12"
     }
   ]
