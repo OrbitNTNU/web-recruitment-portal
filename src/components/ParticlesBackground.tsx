@@ -2,10 +2,13 @@ import { useCallback } from "react";
 import { loadSlim } from "tsparticles-slim"; 
 import { Engine } from "tsparticles-engine";
 import Particles from "react-tsparticles";
+import { useStepStore } from "@/stores/useStepStore";
 
 export default function ParticlesBackground() {
+  const { step } = useStepStore();
+
   const particlesInit = useCallback(async (engine: Engine) => {
-    await loadSlim(engine); 
+    await loadSlim(engine);
   }, []);
 
   return (
@@ -17,11 +20,11 @@ export default function ParticlesBackground() {
           color: "transparent",
         },
         fullScreen: {
-          enable: false,
+          enable: true,
         },
         particles: {
           number: {
-            value: 40,
+            value: 10 + step * 10,
             density: {
               enable: true,
               value_area: 700,
@@ -34,28 +37,42 @@ export default function ParticlesBackground() {
             type: "circle",
           },
           opacity: {
-            value: 1,
+            value: 1, 
             random: true,
           },
           size: {
-            value: 2,
+            value:  3, 
             random: true,
+            animation: {
+              enable: true,
+              speed: 1,
+              sync: false,
+              minimumValue: 1,
+            },
           },
           links: {
             enable: true,
             distance: 150,
             color: "#ffffff",
-            opacity: 0.75,
+            opacity: 0.5, 
             width: 1,
           },
           move: {
             enable: true,
-            speed: 0.5,
+            speed: 0.8, 
             direction: "none",
-            random: false,
+            random: true,
             straight: false,
             outModes: {
               default: "out",
+            },
+            attract: {
+              enable: true,
+              rotateX: 600,
+              rotateY: 1200,
+            },
+            trail: {
+              enable: false, 
             },
           },
         },
@@ -82,6 +99,5 @@ export default function ParticlesBackground() {
         },
       }}
     />
-    
   );
 }

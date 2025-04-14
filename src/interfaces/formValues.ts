@@ -1,18 +1,23 @@
 export interface FormValues {
-  fullName: string;
-  username: string;
-  email: string;
+  name: string;
+  personalEmail: String;
+  ntnuUsername: string;
   phoneNumber: string;
-  emailAddress: string;
   fieldOfStudy: string;
   yearOfStudy: number;
-  positions: string[];
-  setFullName: (fullName: string) => void,
-  setUsername: (username: string) => void,
-  setEmail: (email: string) => void,
+  experience: string;
+  comments: string;
+  submissionDate: string;
+  saveApplication: Boolean;
+  setName: (name: string) => void,
+  setPersonalEmail: (email: string) => void,
+  setNtnuUsername: (ntnuUsername: string) => void,
   setPhoneNumber: (phoneNumber: number) => void,
-  setEmailAddress: (emailAddress: string) => void,
   setFieldOfStudy: (fieldOfStudy: string) => void,
   setYearOfStudy: (yearOfStudy: number) => void,
-  setPositions: (position: string) => void;
+  setPositions: (position: string) => void,
+  setComments: (comments: string) => void,
+  setaExperiene: (experience: string) => void,
+  setSubmissionDate: (submissionDate: string) => void,
+  setSaveApplication: (saveApplication: Boolean) => void
 }

@@ -14,8 +14,8 @@ export default function MultiStepForm() {
   const { step, nextStep, prevStep } = useStepStore();
 
   return (
-    <main className="h-screen w-screen overflow-y-clip bg-black bg-cover bg-center relative">
-      <form className="flex h-full items-center justify-center relative z-30">
+    <main className="h-screen w-screen overflow-y-clip bg-black bg-cover bg-[url('/5471985.jpg')]  bg-center relative">  
+      <form className="flex h-full items-center justify-center relative z-10">
         <section className="relative h-full w-full p-6">
           {step === 1 && <FirstStep />}
           {step === 2 && <SecondStep />}
@@ -25,13 +25,7 @@ export default function MultiStepForm() {
           {step === 6 && <ApplyStep />}
         </section>
       </form>
-      
-      <div className="absolute inset-0 z-20">
-        <ParticlesBackground />
-      </div>
-      <div className="absolute inset-0 z-10">
-        <ParticlesStars />
-      </div>
+      <ParticlesStars />
     </main>
   );
 }

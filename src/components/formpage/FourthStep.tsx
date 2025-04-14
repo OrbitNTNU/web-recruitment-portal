@@ -159,11 +159,7 @@ export default function FourthStep() {
         <motion.button
           type="button"
           onClick={prevStep}
-          whileHover={{
-            scale: 1.1,
-            y: -2,
-            boxShadow: "0px 0px 10px rgba(255, 255, 255, 0.8)",
-          }}
+          whileHover={{ scale: 1.05, y: 0 }}
           whileTap={{ scale: 0.9 }}
           className="rounded-lg border border-gray-500 bg-gray-700 px-5 py-2 text-white shadow-md transition-all hover:bg-gray-600"
         >
@@ -172,7 +168,7 @@ export default function FourthStep() {
         <motion.button
           type="button"
           onClick={nextStep}
-          whileHover={{ scale: 1.2, y: -4, boxShadow: "0px 0px 20px #38bdf8" }}
+          whileHover={{ scale: 1.05, y: 0 }}
           whileTap={{ scale: 0.9 }}
           className="rounded-lg border border-blue-400 bg-blue-500 px-6 py-2 text-white shadow-md transition-all hover:bg-blue-600"
         >
