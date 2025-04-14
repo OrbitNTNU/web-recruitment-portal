@@ -2,8 +2,10 @@ import { useCallback } from "react";
 import { loadSlim } from "tsparticles-slim";
 import { Engine } from "tsparticles-engine";
 import Particles from "react-tsparticles";
+import { useStepStore } from "@/stores/useStepStore";
 
 export default function ParticlesStars() {
+  const { step } = useStepStore();
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadSlim(engine);
   }, []);
@@ -52,7 +54,7 @@ export default function ParticlesStars() {
               width: 1920,
               height: 1080,
             },
-            value: 110,
+            value: 300,
           },
           color: {
             value: "#ffffff",
