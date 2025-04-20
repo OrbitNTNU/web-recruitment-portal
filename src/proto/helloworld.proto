@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package helloworld;
+
+service Greeter {
+    rpc SayHello (HelloRequest) returns (HelloReply);
+    rpc SayGoodbye (GoodbyeRequest) returns (GoodbyeReply);
+    rpc FetchAllApplicationsFromDatabase (EmptyRequest) returns (ApplicationListReply);
+    rpc SubmitApplication (Application) returns (SubmitReply);
+}
+
+message EmptyRequest {}
+
+message Application {
+    string name = 1;
+    string personalEmail = 2;
+    string ntnuUsername = 3;
+    string phoneNumber = 4;
+    string fieldOfStudy = 5;
+    int32 yearOfStudy = 6;
+    string experience = 7;
+    string description = 8;
+    string submissionDate = 9;
+    bool saveApplication = 10;
+}
+
+message ApplicationListReply {
+    repeated Application applications = 1;
+}
+
+message SubmitReply {
+    string message = 1;
+}
+
+message HelloRequest {
+    string name = 1;
+}
+
+message HelloReply {
+    string message = 1;
+}
+
+message GoodbyeRequest {
+    string name = 1;
+    uint32 replyFormat = 2;
+}
+
+message GoodbyeReply {
+    string message = 1;
+}

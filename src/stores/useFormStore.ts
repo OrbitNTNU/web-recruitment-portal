@@ -26,11 +26,12 @@ interface FormValues {
   resetForm: () => void;
 }
 
+
 const loadState = (): Partial<FormValues> => {
   if (typeof window === "undefined") return {}; // Doing this to make sure there are no SSR issues within Next.js
 
   const savedState = sessionStorage.getItem("formState");
-  return savedState ? JSON.parse(savedState) : {};
+  return savedState ? (JSON.parse(savedState) as Partial<FormValues>) : {};
 };
 
 export const useFormStore = create<FormValues>((set) => ({
