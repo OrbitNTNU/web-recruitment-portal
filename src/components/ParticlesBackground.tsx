@@ -27,7 +27,7 @@ export default function ParticlesBackground() {
             value: 10 + step * 10,
             density: {
               enable: true,
-              value_area: 700,
+              value_area: 300,
             },
           },
           color: {
