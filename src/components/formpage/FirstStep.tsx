@@ -1,64 +1,135 @@
+import { useFormFilledStore } from "@/stores/FormFilledStore";
 import { useFormStore, useSessionStorageSync } from "@/stores/useFormStore";
 import { useStepStore } from "@/stores/useStepStore";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import Button from "../shared/NavButton";
+import InputField from "../shared/InputFieldButton";
 
-export default function SecondStep() {
-  const { fullName, setFullName } = useFormStore();
+export default function FirstStep() {
+  const {
+    fullName,
+    setFullName,
+    phoneNumber,
+    setPhoneNumber,
+    username,
+    setUsername,
+  } = useFormStore();
+  const {
+    setFullNameFilled,
+    isFullNameFilled,
+    setPhoneNumberFilled,
+    isPhoneNumberFilled,
+    setUsernameFilled,
+    isUsernameFilled,
+  } = useFormFilledStore();
   const { prevStep, nextStep } = useStepStore();
   useSessionStorageSync();
 
+  const handleFullNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFullName(e.target.value);
+    if (e.target.value.trim()) {
+      setFullNameFilled(true);
+    } else {
+      setFullNameFilled(false);
+    }
+  };
+
+  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhoneNumber(e.target.value);
+    if (e.target.value.trim()) {
+      setPhoneNumberFilled(true);
+    } else {
+      setPhoneNumberFilled(false);
+    }
+  };
+
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
+    if (e.target.value.trim()) {
+      setUsernameFilled(true);
+    } else {
+      setUsernameFilled(false);
+    }
+  };
+
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex min-h-screen items-center justify-center">
       <motion.article
-        initial={{ opacity: 0, scale: 0.8, y: -50 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative flex w-1/3 flex-col items-center justify-center"
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="relative flex w-full max-w-md flex-col items-center justify-center p-10"
       >
         <motion.label
-          htmlFor="FullName"
-          initial={{ x: -100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="text-xl font-bold text-pink-200 drop-shadow"
+          htmlFor="Name"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="text-lg font-medium text-purple-300"
         >
-          Full name:
+          Your Full Name
         </motion.label>
-        <motion.input
-          type="text"
+        <InputField
           id="FullName"
-          name="FullName"
-          onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
-          whileFocus={{
-            scale: 1.05,
-            boxShadow: "0px 0px 15px #c084fc",
-          }}
-          className="mt-2 block w-full rounded-xl border-2 border-purple-400 bg-purple-100 p-3 text-purple-900 placeholder-purple-400 shadow-inner transition-all focus:outline-none"
           value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
+          onChange={handleFullNameChange}
           placeholder="Enter your name"
         />
 
-        <div className="mt-6 flex space-x-4">
-          <motion.button
-            type="button"
-            onClick={prevStep}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="rounded-lg border-2 border-pink-400 bg-pink-500 px-5 py-2 text-white shadow-lg hover:bg-pink-400 transition-all"
+        {isFullNameFilled && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
           >
-            Back
-          </motion.button>
-          <motion.button
-            type="button"
-            onClick={nextStep}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="rounded-lg border-2 border-blue-400 bg-blue-500 px-6 py-2 text-white shadow-lg hover:bg-blue-400 transition-all"
+            <motion.label
+              htmlFor="phoneNumber"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="text-lg font-medium text-purple-300"
+            >
+              Phone Number
+            </motion.label>
+            <InputField
+              id="PhoneNumber"
+              value={phoneNumber}
+              onChange={handlePhoneNumberChange}
+              placeholder="Enter your phone number"
+            />
+          </motion.div>
+        )}
+
+        {isPhoneNumberFilled && isFullNameFilled && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
           >
-            Next
-          </motion.button>
-        </div>
+            <motion.label
+              htmlFor="username"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="text-lg font-medium text-purple-300"
+            >
+              NTNU Username
+            </motion.label>
+            <InputField
+              id="Username"
+              value={username}
+              onChange={handleUsernameChange}
+              placeholder="Enter your username"
+            />
+          </motion.div>
+        )}
+
+        {isUsernameFilled && isFullNameFilled && isPhoneNumberFilled && (
+          <div className="mt-8 flex space-x-4">
+            <Button onClick={nextStep} label="Next" variant="next" />
+          </div>
+        )}
       </motion.article>
     </div>
   );

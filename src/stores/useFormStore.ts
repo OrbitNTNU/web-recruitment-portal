@@ -6,7 +6,7 @@ interface FormValues {
   fullName: string;
   username: string;
   email: string;
-  phoneNumber: number;
+  phoneNumber: string;
   emailAddress: string;
   fieldOfStudy: string;
   yearOfStudy: number;
@@ -16,7 +16,7 @@ interface FormValues {
   setFullName: (fullName: string) => void;
   setUsername: (username: string) => void;
   setEmail: (email: string) => void;
-  setPhoneNumber: (phoneNumber: number) => void;
+  setPhoneNumber: (phoneNumber: string) => void;
   setEmailAddress: (emailAddress: string) => void;
   setFieldOfStudy: (fieldOfStudy: string) => void;
   setYearOfStudy: (yearOfStudy: number) => void;
@@ -38,7 +38,7 @@ export const useFormStore = create<FormValues>((set) => ({
   fullName: "",
   username: "",
   email: "",
-  phoneNumber: 0,
+  phoneNumber: "",
   emailAddress: "",
   fieldOfStudy: "",
   yearOfStudy: 1,
@@ -80,7 +80,7 @@ export const useFormStore = create<FormValues>((set) => ({
     fullName: "",
     username: "",
     email: "",
-    phoneNumber: 0,
+    phoneNumber: "",
     emailAddress: "",
     fieldOfStudy: "",
     yearOfStudy: 1,

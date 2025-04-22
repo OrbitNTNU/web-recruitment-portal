@@ -1,7 +1,7 @@
-import { useFormStore,  useSessionStorageSync } from "@/stores/useFormStore";
+import { useFormStore, useSessionStorageSync } from "@/stores/useFormStore";
 import { useStepStore } from "@/stores/useStepStore";
 import { motion } from "framer-motion";
-import Email from "next-auth/providers/email";
+import Button from "../shared/NavButton";
 
 export default function SecondStep() {
   const { comments, setComments } = useFormStore();
@@ -10,53 +10,42 @@ export default function SecondStep() {
   useSessionStorageSync();
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-    <motion.article
-      initial={{ opacity: 0, scale: 0.8, y: -50 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="relative flex w-1/3 flex-col items-center justify-center rounded-2xl"
-    >
-      <motion.label
-        htmlFor="Comments"
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        className="text-lg font-semibold text-white"
+    <div className="flex min-h-screen items-center justify-center">
+      <motion.article
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="relative flex w-1/3 flex-col items-center justify-center p-10"
       >
-       Any other comments?
-      </motion.label>
-      <motion.textarea
-        id="Comments"
-        name="Comments"
-        onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
-        whileFocus={{ scale: 1.05, boxShadow: "0px 0px 10px #38bdf8" }}
-        className="mt-2 block w-full rounded-lg border border-gray-600 bg-gray-800 p-2 text-white transition-all focus:border-blue-400 focus:ring-2 focus:ring-blue-400"
-        value={comments}
-        onChange={(e) => setComments(e.target.value)}
-      />
+        <motion.label
+          htmlFor="Comments"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="text-lg font-medium text-purple-300"
+        >
+          Any other comments?
+        </motion.label>
+        <motion.textarea
+          id="Comments"
+          name="Comments"
+          onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
+          whileFocus={{
+            scale: 1.02,
+            boxShadow: "0px 0px 8px #9b6dde",
+          }}
+          className="mt-2 block w-full rounded-xl border border-purple-300 bg-gray-700 p-3 text-purple-100 placeholder-purple-400 shadow-md transition-all focus:outline-none"
+          value={comments}
+          onChange={(e) => setComments(e.target.value)}
+          placeholder="Write your thoughts here..."
+          rows={5}
+        />
 
-      <div className="mt-6 flex space-x-4">
-        <motion.button
-          type="button"
-          onClick={prevStep}
-          whileHover={{ scale: 1.05, y: 0 }}
-          whileTap={{ scale: 0.9 }}
-          className="rounded-lg border border-gray-500 bg-gray-700 px-5 py-2 text-white shadow-md transition-all hover:bg-gray-600"
-        >
-          Back
-        </motion.button>
-        <motion.button
-          type="button"
-          onClick={nextStep}
-          whileHover={{ scale: 1.05, y: 0 }}
-          whileTap={{ scale: 0.9 }}
-          className="rounded-lg border border-blue-400 bg-blue-500 px-6 py-2 text-white shadow-md transition-all hover:bg-blue-600"
-        >
-          Next
-        </motion.button>
-      </div>
-    </motion.article>
+        <div className="mt-8 flex space-x-4">
+          <Button onClick={prevStep} label="Back" variant="back" />
+          <Button onClick={nextStep} label="Next" variant="next" />
+        </div>
+      </motion.article>
     </div>
   );
 }
