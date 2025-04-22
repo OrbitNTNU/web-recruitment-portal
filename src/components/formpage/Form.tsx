@@ -7,8 +7,7 @@ import SecondStep from "./SecondStep";
 import FirstStep from "./FirstStep";
 import FifthStep from "./FifthStep";
 import ApplyStep from "./ApplyStep";
-import ParticlesBackground from "@/components/ParticlesBackground";
-import ParticlesStars from "../ParticlesStars";
+import ParticlesStars from "@/components/shared/ParticlesStars";
 
 export default function MultiStepForm() {
   const { step } = useStepStore();
@@ -53,11 +52,9 @@ export default function MultiStepForm() {
     }
   };
 
-
-
   return (
-    <main className="h-screen w-screen overflow-y-clip bg-black bg-cover bg-center relative bg-[url('/5471985.jpg')]">
-      <form className="flex h-full items-center justify-center relative z-30" onSubmit={submitApplication}>
+    <main className="h-screen w-screen overflow-y-clip bg-black bg-cover bg-[url('/spacebg.jpg')]  bg-center relative">  
+      <form className="flex h-full items-center justify-center relative z-10" onSubmit={submitApplication}>
         <section className="relative h-full w-full p-6">
           {step === 1 && <FirstStep />}
           {step === 2 && <SecondStep />}

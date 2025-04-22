@@ -1,86 +1,73 @@
 import { useStepStore } from "@/stores/useStepStore";
-import { useFormStore,  useSessionStorageSync } from "@/stores/useFormStore";
+import { useFormStore, useSessionStorageSync } from "@/stores/useFormStore";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Button from "../shared/NavButton";
+import InputField from "../shared/InputFieldButton";
 
 export default function ThirdStep() {
   const { nextStep, prevStep } = useStepStore();
-  const { setFieldOfStudy, setYearOfStudy, fieldOfStudy, yearOfStudy} = useFormStore();
+  const { setFieldOfStudy, setYearOfStudy, fieldOfStudy, yearOfStudy } = useFormStore();
   const [selectedOption, setSelectedOption] = useState<string>("");
   useSessionStorageSync();
 
   return (
-  <div className="flex items-center justify-center min-h-screen">
-    <motion.article
-      initial={{ opacity: 0, scale: 0.8, y: -50 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="relative flex w-1/3 flex-col items-center justify-center rounded-2xl"
-    >
-      <motion.label
-        htmlFor="study-background"
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        className="text-lg font-semibold text-white"
+    <div className="flex items-center justify-center min-h-screen">
+      <motion.article
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="relative flex w-1/3 flex-col items-center justify-center p-10"
       >
-        Study Background:
-      </motion.label>
-      <motion.input
-        type="text"
-        id="study-background"
-        name="study-background"
-        onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
-        whileFocus={{ scale: 1.05, boxShadow: "0px 0px 10px #38bdf8" }}
-        className="mt-2 block w-full rounded-lg border border-gray-600 bg-gray-800 p-2 text-white transition-all focus:border-blue-400 focus:ring-2 focus:ring-blue-400"
-         value={fieldOfStudy}
-        onChange={(e) => setFieldOfStudy(e.target.value)}
-      />
-
-      <motion.label
-        htmlFor="years"
-        initial={{ x: 100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
-        className="mt-4 block text-sm font-medium text-gray-300"
-      >
-        Select an option:
-      </motion.label>
-      <motion.select
-        id="years"
-        whileFocus={{ scale: 1.05, boxShadow: "0px 0px 10px #38bdf8" }}
-        className="block w-full rounded-lg border border-gray-600 bg-gray-800 p-2.5 text-sm text-white transition-all focus:border-blue-400 focus:ring-2 focus:ring-blue-400"
-        value={yearOfStudy}
-        onChange={(e) => setYearOfStudy(Number(e.target.value))}
-      >
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </motion.select>
-
-      <div className="mt-6 flex space-x-4">
-        <motion.button
-          type="button"
-          onClick={prevStep}
-          whileHover={{ scale: 1.05, y: 0 }}
-          whileTap={{ scale: 0.9 }}
-          className="rounded-lg border border-gray-500 bg-gray-700 px-5 py-2 text-white shadow-md transition-all hover:bg-gray-600"
+        <motion.label
+          htmlFor="study-background"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="text-lg font-medium text-purple-300"
         >
-          Back
-        </motion.button>
-        <motion.button
-          type="button"
-          onClick={nextStep}
-          whileHover={{ scale: 1.05, y: 0 }}
-          whileTap={{ scale: 0.9 }}
-          className="rounded-lg border border-blue-400 bg-blue-500 px-6 py-2 text-white shadow-md transition-all hover:bg-blue-600"
+          Study Background:
+        </motion.label>
+
+        <InputField
+          id="study-background"
+          value={fieldOfStudy}
+          onChange={(e: { target: { value: string; }; }) => setFieldOfStudy(e.target.value)}
+          placeholder="Enter your personal email"
+        />
+
+        <motion.label
+          htmlFor="years"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+          className="mt-6 block text-sm font-medium text-blue-300"
         >
-          Next
-        </motion.button>
-      </div>
-    </motion.article>
-  </div>
+          Year of study:
+        </motion.label>
+        <motion.select
+          id="years"
+          whileFocus={{
+            scale: 1.02,
+            boxShadow: "0px 0px 8px #9b6dde",
+          }}
+          className="mt-2 block w-full rounded-xl border border-purple-300 bg-gray-700 p-3 text-purple-100 placeholder-purple-400 shadow-md transition-all focus:outline-none"
+          value={yearOfStudy}
+          onChange={(e) => setYearOfStudy(Number(e.target.value))}
+        >
+          <option value="" disabled>Select a year</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+        </motion.select>
+
+        <div className="mt-8 flex space-x-4">
+           <Button onClick={prevStep} label="Back" variant="back" />
+           <Button onClick={nextStep} label="Next" variant="next" />
+         </div>
+      </motion.article>
+    </div>
   );
 }
