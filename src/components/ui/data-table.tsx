@@ -1,11 +1,12 @@
-"use client";
-
 import {
-    ColumnDef,
+    type ColumnDef,
     flexRender,
     getCoreRowModel,
     useReactTable,
-    getExpandedRowModel, getPaginationRowModel,
+    getExpandedRowModel,
+    getPaginationRowModel,
+    getFilteredRowModel,
+    ColumnFiltersState, SortingState, getSortedRowModel,
 } from "@tanstack/react-table";
 import {
     Table,
@@ -15,11 +16,11 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Member, ApplicationValues } from "@/interfaces/application";
+import { Member, ApplicationWithPositions, Comment } from "@/interfaces/application";
 import {ExpandableComponent} from "@/components/applicantArchive/ExpandableComponent";
-import { Button } from "@/components/ui/button";
-import {ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight} from "lucide-react";
 import {useState} from "react";
+import {PaginationMenu} from "@/components/applicantArchive/PaginationMenu";
+import SearchComponent from "@/components/applicantArchive/SearchComponent";
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
@@ -31,6 +32,8 @@ const member2: Member = { name: "Hanna" };
 const member3: Member = { name: "Bana Nana" };
 const allMembers: Member[] = [member1, member2, member3];
 
+const commentPlaceholder: Comment = {comment: "Nothing here yet"}
+
 export function DataTable<TData, TValue>({
                                              columns,
                                              data,
@@ -39,143 +42,110 @@ export function DataTable<TData, TValue>({
         pageIndex: 0, //initial page index
         pageSize: 5, //default page size
     });
+    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+    const [sorting, setSorting] = useState<SortingState>([])
+    const [globalFilter, setGlobalFilter] = useState<any>([])
 
     const table = useReactTable({
         data,
         columns,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
-        onPaginationChange: setPagination, //update the pagination state when internal APIs mutate the pagination state
-        state: {
-            pagination,
-        },
+        onPaginationChange: setPagination,
         getExpandedRowModel: getExpandedRowModel(),
+        onSortingChange: setSorting,
+        getSortedRowModel: getSortedRowModel(),
+        onColumnFiltersChange: setColumnFilters,
+        getFilteredRowModel: getFilteredRowModel(),
+        onGlobalFilterChange: setGlobalFilter,
+        state: {
+            sorting,
+            globalFilter,
+            pagination,
+            columnFilters,
+        },
         defaultColumn: {
-            size: 300, //starting column size
-            maxSize: 300, //enforced during column resizing
+            size: 300,
+            maxSize: 300,
         },
     });
 
     return (
-        <div className="">
-            <div className="flex items-center space-x-2" id={"paginationMenu"}>
-                <Button
-                    variant="outline"
-                    className="hidden h-8 w-8 p-0 lg:flex bg-slate-700 rounded-lg border-solid border-sky-200  "
-                    onClick={() => table.setPageIndex(0)}
-                    disabled={!table.getCanPreviousPage()}
+      <div className="p-0 m-0 flex h-screen w-full flex-col">
+        <PaginationMenu  table={table}></PaginationMenu>
+        <div className="flex-grow overflow-auto">
+            <SearchComponent table={table} ></SearchComponent>
+          <Table
+            className={
+              "min-w-full border-solid border-sky-200 text-slate-100"
+            }
+          >
+            <TableHeader className="sticky top-0 z-10">
+              {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow
+                  className={"text-base font-semibold text-slate-100"}
+                  key={headerGroup.id}
                 >
-                    <span className="sr-only">Go to first page</span>
-                    <ChevronsLeft />
-                </Button>
-                <Button
-                    variant="outline"
-                    className="h-8 w-8 p-0 bg-slate-700 rounded-lg border-solid border-sky-200  "
-                    onClick={() => table.previousPage()}
-                    disabled={!table.getCanPreviousPage()}
-                >
-                    <span className="sr-only">Go to previous page</span>
-                    <ChevronLeft />
-                </Button>
-                <Button
-                    variant="outline"
-                    className="h-8 w-8 bg-slate-700 rounded-lg border-solid border-sky-200 p-0"
-                    onClick={() => table.nextPage()}
-                    disabled={!table.getCanNextPage()}
-                >
-                    <span className="sr-only">Go to next page</span>
-                    <ChevronRight />
-                </Button>
-                <Button
-                    variant="outline"
-                    className="hidden h-8 w-8  lg:flex bg-slate-700 rounded-lg border-solid border-sky-200 "
-                    onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-                    disabled={!table.getCanNextPage()}
-                >
-                    <span className="sr-only">Go to last page</span>
-                    <ChevronsRight />
-                </Button>
-                <select
-                    value={table.getState().pagination.pageSize}
-                    className={"text-slate-100 bg-slate-700 rounded-lg border-solid border-sky-200 m-1  p-2 "}
-                    onChange={e => {
-                        table.setPageSize(Number(e.target.value));
-                    }}
-                >
-                    {[5, 10, 15, 20, 25].map(pageSize => (
-                        <option className={" text-slate-100 p-2 m-1"} key={pageSize} value={pageSize}>
-                            {pageSize}
-                        </option>
-                    ))}
-                </select>
-                {Array.from({ length: table.getPageCount() }, (_, index) => (
-                    <Button
-                        key={index}
-                        variant="outline"
-                        className={`text-slate-100 h-8 w-8 p-0 ${table.getState().pagination.pageIndex === index ? "bg-sky-700" : ""}`}
-                        onClick={() => table.setPageIndex(index)}
-                        disabled={table.getState().pagination.pageIndex === index}
+                  {headerGroup.headers.map((header) => (
+                    <TableHead className={"!bg-slate-800"} key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                    </TableHead>
+                  ))}
+                </TableRow>
+              ))}
+            </TableHeader>
+            <TableBody className={"bg-slate-800 text-md"}>
+              {table.getRowModel().rows?.length ? (
+                table.getRowModel().rows.map((row) => (
+                  <>
+                    <TableRow
+                      key={row.id}
+                      className={"w-full cursor-pointer text-lg"}
+                      data-state={row.getIsSelected() && "selected"}
+                      onClick={() => row.toggleExpanded()}
                     >
-                        {index + 1}
-                    </Button>
-                ))}
-            </div>
-            <Table className={"w-fit h-fit text-slate-100 rounded-lg border-solid border-sky-200"}>
-                <TableHeader>
-                    {table.getHeaderGroups().map((headerGroup) => (
-                        <TableRow className={"text-slate-100 font-semibold text-base font-light"} key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => (
-                                <TableHead className={"!bg-slate-800"} key={header.id}>
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                            header.column.columnDef.header,
-                                            header.getContext()
-                                        )}
-                                </TableHead>
-                            ))}
-                        </TableRow>
-                    ))}
-                </TableHeader>
-                <TableBody className={"text-sm !bg-slate-800"}>
-                    {table.getRowModel().rows?.length ? (
-                        table.getRowModel().rows.map((row) => (
-                            <>
-                                <TableRow
-                                    key={row.id}
-                                    className={"cursor-pointer text-lg"}
-                                    data-state={row.getIsSelected() && "selected"}
-                                    onClick={ ()=> row.toggleExpanded()}
-                                >
-                                    {row.getVisibleCells().map((cell) => (
-                                        <TableCell key={cell.id + row.id}  >
-                                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                        </TableCell>
-                                    ))}
-                                </TableRow>
-                                {row.getIsExpanded() && (
-                                    <TableRow>
-                                        <TableCell colSpan={columns.length}>
-                                            <ExpandableComponent
-                                                allMember={allMembers}
-                                                data={row.original as ApplicationValues}
-                                            />
-                                        </TableCell>
-                                    </TableRow>
-                                )}
-                            </>
-                        ))
-                    ) : (
-                        <TableRow>
-                            <TableCell colSpan={columns.length} className="h-24 text-center">
-                                No results.
-                            </TableCell>
-                        </TableRow>
+                      {row.getVisibleCells().map((cell) => (
+                        <TableCell key={cell.id + row.id}>
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          )}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                    {row.getIsExpanded() && (
+
+                        <TableCell
+                          className={"bg-slate-700 border"}
+                          colSpan={columns.length}
+                        >
+                          <ExpandableComponent
+                            allMember={allMembers}
+                            data={row.original as ApplicationWithPositions}
+                            comment={commentPlaceholder}
+                          />
+                        </TableCell>
                     )}
-                </TableBody>
-
-            </Table>
-
+                  </>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
+                    No results.
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
         </div>
+      </div>
     );
 }

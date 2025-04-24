@@ -1,7 +1,7 @@
 
 import {DataTable} from "@/components/ui/data-table";
-import {ColumnDef} from "@tanstack/react-table";
-import {ApplicationWithPositions} from "@/interfaces/application";
+import {type ColumnDef} from "@tanstack/react-table";
+import {type ApplicationWithPositions} from "@/interfaces/application";
 
 interface TableComponentProps {
   applicationValues: ApplicationWithPositions[];
