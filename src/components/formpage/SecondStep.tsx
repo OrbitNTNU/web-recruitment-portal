@@ -64,9 +64,10 @@ export default function SecondStep() {
         <InputField
           id="school-email"
           value={email}
-          onChange={(e: { target: { value: string } }) => setEmail(e.target.value)}
+          onChange={handleEmailFilledChange}
           placeholder="Enter your school email"
         />
+        {isEmailFilled &&
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -89,6 +90,8 @@ export default function SecondStep() {
             placeholder="Enter your username"
           />
         </motion.div>
+        }
+        {isEmailFilled && isUsernameFilled &&
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -111,6 +114,8 @@ export default function SecondStep() {
             placeholder="Enter your phone number"
           />
         </motion.div>
+}
+
         <div className="mt-8 flex w-full justify-center space-x-4">
           <Button
             onClick={prevStep}
