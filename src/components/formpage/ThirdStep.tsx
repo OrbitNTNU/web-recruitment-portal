@@ -9,7 +9,6 @@ import StepSlider from "../shared/StepSlider";
 export default function ThirdStep() {
   const { nextStep, prevStep } = useStepStore();
   const { setFieldOfStudy, setYearOfStudy, fieldOfStudy, yearOfStudy } = useFormStore();
-  const [selectedOption, setSelectedOption] = useState<string>("");
   useSessionStorageSync();
 
   return (

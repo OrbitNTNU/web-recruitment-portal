@@ -5,7 +5,7 @@ import Button from "../shared/NavButton";
 import StepSlider from "../shared/StepSlider";
 
 export default function SecondStep() {
-  const { comments, setComments } = useFormStore();
+  const { experience, setExperience } = useFormStore();
   const { prevStep, nextStep } = useStepStore();
 
   useSessionStorageSync();
@@ -20,26 +20,26 @@ export default function SecondStep() {
       >
         <StepSlider />
         <motion.label
-          htmlFor="Comments"
+          htmlFor="Experience"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="text-lg font-medium text-purple-300"
         >
-          Any other comments?
+          Experience
         </motion.label>
         <motion.textarea
-          id="Comments"
-          name="Comments"
+          id="Experience"
+          name="Experience"
           onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
           whileFocus={{
             scale: 1.02,
             boxShadow: "0px 0px 8px #9b6dde",
           }}
           className="mt-2 block w-full rounded-xl border border-purple-300 bg-gray-700 p-3 text-purple-100 placeholder-purple-400 shadow-md transition-all focus:outline-none"
-          value={comments}
-          onChange={(e) => setComments(e.target.value)}
-          placeholder="Write your thoughts here..."
+          value={experience}
+          onChange={(e) => setExperience(e.target.value)}
+          placeholder="I have worked with satellite production prior to Orbit..."
           rows={5}
         />
 

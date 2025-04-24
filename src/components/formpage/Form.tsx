@@ -11,8 +11,8 @@ import ParticlesStars from "@/components/shared/ParticlesStars";
 
 export default function MultiStepForm() {
   const { step } = useStepStore();
-  const {  fullName, username, email, phoneNumber, emailAddress,fieldOfStudy,yearOfStudy,positions, comments} = useFormStore();
-  console.log({  fullName, username, email, phoneNumber, emailAddress,fieldOfStudy,yearOfStudy,positions, comments})
+  const { description, fullName, username, email, phoneNumber, emailAddress,fieldOfStudy,yearOfStudy,positions, experience} = useFormStore();
+  console.log({  fullName, username, email, phoneNumber, emailAddress,fieldOfStudy,yearOfStudy,positions, experience})
 
   const submitApplication = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,8 +24,8 @@ export default function MultiStepForm() {
       phoneNumber: phoneNumber,
       fieldOfStudy: fieldOfStudy,
       yearOfStudy: yearOfStudy,
-      experience: comments,
-      description: comments,
+      experience: experience,
+      description: description,
       submissionDate: new Date().toISOString(),
       saveApplication: true,
     };
