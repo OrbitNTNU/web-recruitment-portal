@@ -1,13 +1,14 @@
-import {ApplicationWithPositions, Member} from "@/interfaces/application";
+import type {ApplicationWithPositions, Member,Comment} from "@/interfaces/application";
 import SelectMemberCombo from "@/components/applicantArchive/SelectMemberCombo";
+import CommentBox from "@/components/applicantArchive/CommentBox";
 
 interface ExpandableComponentProps {
     allMember: Member[];
     data: ApplicationWithPositions;
+    comment: Comment;
 }
 
-export const ExpandableComponent = ({allMember, data}: ExpandableComponentProps) => (
-
+export const ExpandableComponent = ({allMember, data,comment}: ExpandableComponentProps) => (
   <div className="grid-cols grid gap-1 p-4 text-lg">
     <section className={"flex w-full flex-row gap-8"}>
       <p>
@@ -43,10 +44,13 @@ export const ExpandableComponent = ({allMember, data}: ExpandableComponentProps)
         {data.experience}
       </p>
       <p>
-        <span className="font-bold">Hobbies and Personal: </span>{" "}
+        <span className="font-bold">Description: </span>{" "}
         {data.description}
       </p>
     </section>
+      <section className={"flex w-full flex-row gap-8"}>
     <SelectMemberCombo members={allMember}></SelectMemberCombo>
+    <CommentBox comment={comment}></CommentBox>
+      </section>
   </div>
 );

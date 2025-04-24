@@ -1,4 +1,4 @@
-import {Position} from "@/interfaces/position";
+import {type Position} from "@/interfaces/position";
 
 export interface Application {
   name: string;
@@ -15,6 +15,9 @@ export interface Application {
 
 export interface Props {
   applications: Application[];
+}
+export interface PropsWithPositions {
+  applications: ApplicationWithPositions[];
 }
 
 
@@ -33,6 +36,10 @@ export interface ApplicationWithPositions {
 
 }
 
-export interface Member{
+export interface Member {
   name: string;
+}
+
+export interface Comment {
+  comment: string
 }
