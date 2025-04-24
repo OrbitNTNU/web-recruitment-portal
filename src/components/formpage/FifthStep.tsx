@@ -2,6 +2,7 @@ import { useFormStore, useSessionStorageSync } from "@/stores/useFormStore";
 import { useStepStore } from "@/stores/useStepStore";
 import { motion } from "framer-motion";
 import Button from "../shared/NavButton";
+import StepSlider from "../shared/StepSlider";
 
 export default function SecondStep() {
   const { comments, setComments } = useFormStore();
@@ -10,13 +11,14 @@ export default function SecondStep() {
   useSessionStorageSync();
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
+    <div className="flex items-start justify-center min-h-screen pt-10 md:items-center md:pt-0">
       <motion.article
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative flex w-1/3 flex-col items-center justify-center p-10"
+        className="relative flex w-full max-w-md flex-col items-center justify-center px-4 py-10 sm:p-10"
       >
+        <StepSlider />
         <motion.label
           htmlFor="Comments"
           initial={{ opacity: 0, y: -10 }}

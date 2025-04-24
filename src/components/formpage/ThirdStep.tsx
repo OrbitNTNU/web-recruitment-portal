@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Button from "../shared/NavButton";
 import InputField from "../shared/InputFieldButton";
+import StepSlider from "../shared/StepSlider";
 
 export default function ThirdStep() {
   const { nextStep, prevStep } = useStepStore();
@@ -12,13 +13,14 @@ export default function ThirdStep() {
   useSessionStorageSync();
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-start justify-center min-h-screen pt-10 md:items-center md:pt-0">
       <motion.article
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative flex w-1/3 flex-col items-center justify-center p-10"
+        className="relative flex w-full max-w-md flex-col items-center justify-center px-4 py-10 sm:p-10"
       >
+        <StepSlider />
         <motion.label
           htmlFor="study-background"
           initial={{ opacity: 0, y: -10 }}
@@ -32,8 +34,8 @@ export default function ThirdStep() {
         <InputField
           id="study-background"
           value={fieldOfStudy}
-          onChange={(e: { target: { value: string; }; }) => setFieldOfStudy(e.target.value)}
-          placeholder="Enter your personal email"
+          onChange={(e: { target: { value: string } }) => setFieldOfStudy(e.target.value)}
+          placeholder="Enter your field of study"
         />
 
         <motion.label
@@ -63,10 +65,18 @@ export default function ThirdStep() {
           <option value={5}>5</option>
         </motion.select>
 
-        <div className="mt-8 flex space-x-4">
-           <Button onClick={prevStep} label="Back" variant="back" />
-           <Button onClick={nextStep} label="Next" variant="next" />
-         </div>
+        <div className="mt-8 flex w-full justify-center space-x-4">
+          <Button 
+            onClick={prevStep} 
+            label="Back" 
+            variant="back" 
+          />
+          <Button 
+            onClick={nextStep} 
+            label="Next" 
+            variant="next" 
+          />
+        </div>
       </motion.article>
     </div>
   );
