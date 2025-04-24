@@ -14,7 +14,7 @@ export default function ApplyStep() {
     fieldOfStudy,
     yearOfStudy,
     positions,
-    comments,
+    experience,
   } = useFormStore();
 
   const { prevStep } = useStepStore();
@@ -55,7 +55,7 @@ export default function ApplyStep() {
             Additional Comments:
           </h3>
           <p className="rounded-md bg-gray-700 p-2 text-purple-100">
-            {comments || "No comments provided."}
+            {experience}
           </p>
         </div>
 

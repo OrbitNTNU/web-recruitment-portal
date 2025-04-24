@@ -11,7 +11,8 @@ interface FormValues {
   fieldOfStudy: string;
   yearOfStudy: number;
   positions: Team[];
-  comments: string;
+  experience: string;
+  description: string; 
   teams: Team[];
   setFullName: (fullName: string) => void;
   setUsername: (username: string) => void;
@@ -21,7 +22,8 @@ interface FormValues {
   setFieldOfStudy: (fieldOfStudy: string) => void;
   setYearOfStudy: (yearOfStudy: number) => void;
   setPositions: (positions: Team[]) => void;
-  setComments: (comments: string) => void;
+  setExperience: (comments: string) => void;
+  setDescrition: (description: string) => void;
   setTeams: (teams: Team[]) => void;
   resetForm: () => void;
 }
@@ -43,7 +45,8 @@ export const useFormStore = create<FormValues>((set) => ({
   fieldOfStudy: "",
   yearOfStudy: 1,
   positions: [],
-  comments: "",
+  experience: "",
+  description: "",
   teams: [
     "electronics",
     "dev-ops",
@@ -74,7 +77,8 @@ export const useFormStore = create<FormValues>((set) => ({
   setFieldOfStudy: (fieldOfStudy) => set({ fieldOfStudy }),
   setYearOfStudy: (yearOfStudy) => set({ yearOfStudy }),
   setPositions: (positions) => set((state) => ({ positions: [...state.positions, ...positions] })),
-  setComments: (comments) => set({ comments }),
+  setExperience: (experience) => set({ experience }),
+  setDescrition: (description) => set({ description }),
   setTeams: (teams) => set({ teams }),
   resetForm: () => set({
     fullName: "",
@@ -85,7 +89,7 @@ export const useFormStore = create<FormValues>((set) => ({
     fieldOfStudy: "",
     yearOfStudy: 1,
     positions: [],
-    comments: "",
+    experience: "",
     teams: [],
   }),
 }));
