@@ -36,6 +36,7 @@ export default function MultiStepForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
+      console.log(res)
 
       type SubmitResponse = { message: string } | { error: string };
       const data = (await res.json()) as SubmitResponse;
