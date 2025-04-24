@@ -2,6 +2,7 @@ import { useFormStore, useSessionStorageSync } from "@/stores/useFormStore";
 import { useStepStore } from "@/stores/useStepStore";
 import { motion } from "framer-motion";
 import Button from "../shared/NavButton";
+import StepSlider from "../shared/StepSlider";
 
 export default function ApplyStep() {
   const {
@@ -16,23 +17,26 @@ export default function ApplyStep() {
     comments,
   } = useFormStore();
 
-  const { prevStep, nextStep } = useStepStore();
+  const { prevStep } = useStepStore();
 
   useSessionStorageSync();
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
+    <div className="flex items-start justify-center min-h-screen pt-10 md:items-center md:pt-0 px-4">
       <motion.article
         initial={{ opacity: 0, scale: 0.9, y: -30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.7 }}
-        className="rp-10 relative w-full max-w-3xl"
+        className="relative flex w-full max-w-md flex-col items-center justify-center p-6 sm:p-8 overflow-y-auto"
       >
-        <h2 className="mb-8 text-center text-3xl font-bold text-white">
-          🚀 Application Overview
+        <div className="w-full mb-6">
+          <StepSlider />
+        </div>
+        <h2 className="mb-6 text-center text-3xl font-bold text-white">
+          🚀 Overview 🚀
         </h2>
 
-        <div className="grid grid-cols-1 gap-6 text-white sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 w-full text-white sm:grid-cols-2 max-h-[60vh] overflow-y-auto pr-2">
           <OverviewItem label="Full Name" value={fullName} />
           <OverviewItem label="Username" value={username} />
           <OverviewItem label="Email" value={email} />
@@ -46,25 +50,24 @@ export default function ApplyStep() {
           />
         </div>
 
-        <div className="mt-2 block w-full rounded-xl border border-purple-300 bg-gray-700 p-3 text-purple-100 placeholder-purple-400 shadow-md transition-all focus:outline-none">
+        <div className="mt-6 w-full rounded-xl border border-purple-300 bg-gray-700 p-4 text-purple-100 shadow-md">
           <h3 className="mb-2 text-lg font-semibold text-white">
             Additional Comments:
           </h3>
-          <p className="rounded-md border-purple-300 bg-gray-700 p-3 text-purple-100 placeholder-purple-400 shadow-md">
+          <p className="rounded-md bg-gray-700 p-2 text-purple-100">
             {comments || "No comments provided."}
           </p>
         </div>
 
-        <div className="mt-10 flex justify-center space-x-4">
+        <div className="mt-8 flex w-full justify-center space-x-4">
           <Button onClick={prevStep} label="Back" variant="back" />
-
           <motion.button
             type="submit"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
             className="rounded-md border border-blue-600 bg-blue-700 px-6 py-2 text-blue-100 shadow transition-all hover:bg-blue-600"
           >
-            Apply to Orbit 🌌
+            Apply to Orbit
           </motion.button>
         </div>
       </motion.article>
@@ -81,16 +84,13 @@ function OverviewItem({
 }) {
   return (
     <motion.div
-      whileFocus={{
-        scale: 1.02,
-        boxShadow: "0px 0px 8px #9b6dde",
-      }}
-      className="mt-2 block w-full rounded-xl border border-purple-300 bg-gray-700 p-3 text-purple-100 placeholder-purple-400 shadow-md transition-all focus:outline-none"
+      whileHover={{ scale: 1.01 }}
+      className="w-full rounded-xl border border-purple-300 bg-gray-700 p-3 shadow-md transition-all"
     >
-      <span className="block text-sm font-medium text-blue-300 text-opacity-80">
+      <span className="block text-sm font-medium text-blue-300">
         {label}
       </span>
-      <span className="text-md font-semibold text-white text-opacity-90">
+      <span className="text-md font-medium text-white break-words">
         {value || "—"}
       </span>
     </motion.div>

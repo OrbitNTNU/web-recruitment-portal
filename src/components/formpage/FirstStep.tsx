@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Button from "../shared/NavButton";
 import InputField from "../shared/InputFieldButton";
+import StepSlider from "../shared/StepSlider";
 
 export default function FirstStep() {
   const {
@@ -54,13 +55,14 @@ export default function FirstStep() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
+    <div className="flex min-h-screen items-start justify-center pt-10 md:items-center md:pt-0">
       <motion.article
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative flex w-full max-w-md flex-col items-center justify-center p-10"
+        className="relative flex w-full max-w-md flex-col items-center justify-center px-4 py-10 sm:p-10"
       >
+        <StepSlider />
         <motion.label
           htmlFor="Name"
           initial={{ opacity: 0, y: -10 }}
@@ -82,6 +84,7 @@ export default function FirstStep() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+            className="w-full"
           >
             <motion.label
               htmlFor="phoneNumber"
@@ -106,6 +109,7 @@ export default function FirstStep() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+            className="w-full"
           >
             <motion.label
               htmlFor="username"
@@ -126,8 +130,12 @@ export default function FirstStep() {
         )}
 
         {isUsernameFilled && isFullNameFilled && isPhoneNumberFilled && (
-          <div className="mt-8 flex space-x-4">
-            <Button onClick={nextStep} label="Next" variant="next" />
+          <div className="mt-8 flex w-full justify-center space-x-4">
+            <Button 
+              onClick={nextStep} 
+              label="Next" 
+              variant="next"
+            />
           </div>
         )}
       </motion.article>

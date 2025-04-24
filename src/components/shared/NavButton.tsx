@@ -9,8 +9,8 @@ interface ButtonProps {
 const Button = ({ onClick, label, variant }: ButtonProps) => {
   const buttonStyles =
     variant === "back"
-      ? "rounded-md border border-purple-600 bg-purple-700 px-5 py-2 text-purple-100 shadow hover:bg-purple-600"
-      : "rounded-md border border-blue-600 bg-blue-700 px-6 py-2 text-blue-100 shadow hover:bg-blue-600";
+      ? "rounded-md border border-purple-600 bg-purple-700 px-5 py-2 text-purple-100 shadow hover:bg-purple-600 w-full max-w-[200px]"
+      : "rounded-md border border-blue-600 bg-blue-700 px-6 py-2 text-blue-100 shadow hover:bg-blue-600 w-full max-w-[200px]";
 
   return (
     <motion.button
