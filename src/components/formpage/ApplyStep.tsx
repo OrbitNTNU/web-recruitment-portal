@@ -15,6 +15,7 @@ export default function ApplyStep() {
     yearOfStudy,
     positions,
     experience,
+    description
   } = useFormStore();
 
   const { prevStep } = useStepStore();
@@ -52,12 +53,23 @@ export default function ApplyStep() {
 
         <div className="mt-6 w-full rounded-xl border border-purple-300 bg-gray-700 p-4 text-purple-100 shadow-md">
           <h3 className="mb-2 text-lg font-semibold text-white">
-            Additional Comments:
+            Description:
+          </h3>
+          <p className="rounded-md bg-gray-700 p-2 text-purple-100">
+            {description}
+          </p>
+        </div>
+
+        <div className="mt-6 w-full rounded-xl border border-purple-300 bg-gray-700 p-4 text-purple-100 shadow-md">
+          <h3 className="mb-2 text-lg font-semibold text-white">
+            Experience:
           </h3>
           <p className="rounded-md bg-gray-700 p-2 text-purple-100">
             {experience}
           </p>
         </div>
+
+
 
         <div className="mt-8 flex w-full justify-center space-x-4">
           <Button onClick={prevStep} label="Back" variant="back" />

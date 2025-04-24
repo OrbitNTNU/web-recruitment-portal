@@ -5,11 +5,12 @@ export default function StepSlider() {
   const { step, setStep } = useStepStore();
 
   const steps = [
-    "Person info",
-    "Experience",
+    "Name",
+    "Info",
+    "Description",
     "Study",
     "Teams",
-    "Comments",
+    "Experience",
     "Apply",
   ];
 
