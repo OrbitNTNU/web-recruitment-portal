@@ -1,13 +1,14 @@
 import React from "react";
+import FifthStep from "@/components/formpage/FifthStep";
 import FourthStep from "@/components/formpage/FourthStep";
-import ThirdStep from "@/components/formpage/ThirdStep";
 import { useStepStore } from "@/stores/useStepStore";
 import { useFormStore } from "@/stores/useFormStore";
 import SecondStep from "./SecondStep";
 import FirstStep from "./FirstStep";
-import FifthStep from "./FifthStep";
+import SixthStep from "./SixthStep";
 import ApplyStep from "./ApplyStep";
 import ParticlesStars from "@/components/shared/ParticlesStars";
+import ThirdStep from "@/components/formpage/ThirdStep";
 
 export default function MultiStepForm() {
   const { step } = useStepStore();
@@ -62,7 +63,8 @@ export default function MultiStepForm() {
           {step === 3 && <ThirdStep />}
           {step === 4 && <FourthStep />}
           {step === 5 && <FifthStep />}
-          {step === 6 && <ApplyStep />}
+          {step === 6 && <SixthStep />}
+          {step === 7 && <ApplyStep />}
         </section>
       </form>
       <ParticlesStars />

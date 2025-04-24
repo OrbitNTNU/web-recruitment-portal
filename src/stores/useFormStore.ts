@@ -23,7 +23,7 @@ interface FormValues {
   setYearOfStudy: (yearOfStudy: number) => void;
   setPositions: (positions: Team[]) => void;
   setExperience: (comments: string) => void;
-  setDescrition: (description: string) => void;
+  setDescription: (description: string) => void;
   setTeams: (teams: Team[]) => void;
   resetForm: () => void;
 }
@@ -78,7 +78,7 @@ export const useFormStore = create<FormValues>((set) => ({
   setYearOfStudy: (yearOfStudy) => set({ yearOfStudy }),
   setPositions: (positions) => set((state) => ({ positions: [...state.positions, ...positions] })),
   setExperience: (experience) => set({ experience }),
-  setDescrition: (description) => set({ description }),
+  setDescription: (description) => set({ description }),
   setTeams: (teams) => set({ teams }),
   resetForm: () => set({
     fullName: "",
