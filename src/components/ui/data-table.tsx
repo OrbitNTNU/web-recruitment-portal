@@ -32,6 +32,7 @@ const member2: Member = { name: "Hanna" };
 const member3: Member = { name: "Bana Nana" };
 const allMembers: Member[] = [member1, member2, member3];
 
+
 const commentPlaceholder: Comment = {comment: "Nothing here yet"}
 
 export function DataTable<TData, TValue>({
@@ -42,9 +43,9 @@ export function DataTable<TData, TValue>({
         pageIndex: 0, //initial page index
         pageSize: 5, //default page size
     });
-    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+
     const [sorting, setSorting] = useState<SortingState>([])
-    const [globalFilter, setGlobalFilter] = useState<any>([])
+    const [globalFilter, setGlobalFilter] = useState<string>("")
 
     const table = useReactTable({
         data,
@@ -55,14 +56,12 @@ export function DataTable<TData, TValue>({
         getExpandedRowModel: getExpandedRowModel(),
         onSortingChange: setSorting,
         getSortedRowModel: getSortedRowModel(),
-        onColumnFiltersChange: setColumnFilters,
         getFilteredRowModel: getFilteredRowModel(),
         onGlobalFilterChange: setGlobalFilter,
         state: {
             sorting,
             globalFilter,
             pagination,
-            columnFilters,
         },
         defaultColumn: {
             size: 300,
@@ -71,9 +70,9 @@ export function DataTable<TData, TValue>({
     });
 
     return (
-      <div className="p-0 m-0 flex h-screen w-full flex-col">
+      <div className="p-0 m-0 flex max-h-full min-h-screen w-full flex-col">
         <PaginationMenu  table={table}></PaginationMenu>
-        <div className="flex-grow overflow-auto">
+        <div className="flex-grow overflow-none">
             <SearchComponent table={table} ></SearchComponent>
           <Table
             className={
@@ -105,12 +104,12 @@ export function DataTable<TData, TValue>({
                   <>
                     <TableRow
                       key={row.id}
-                      className={"w-full cursor-pointer text-lg"}
+                      className={"cursor-pointer text-lg"}
                       data-state={row.getIsSelected() && "selected"}
                       onClick={() => row.toggleExpanded()}
                     >
                       {row.getVisibleCells().map((cell) => (
-                        <TableCell key={cell.id + row.id}>
+                        <TableCell className={""} key={cell.id + row.id}>
                           {flexRender(
                             cell.column.columnDef.cell,
                             cell.getContext(),
@@ -145,6 +144,7 @@ export function DataTable<TData, TValue>({
               )}
             </TableBody>
           </Table>
+            <PaginationMenu  table={table}></PaginationMenu>
         </div>
       </div>
     );
