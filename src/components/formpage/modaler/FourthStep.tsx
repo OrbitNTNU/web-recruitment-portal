@@ -1,10 +1,9 @@
 import { useStepStore } from "@/stores/useStepStore";
 import { useFormStore, useSessionStorageSync } from "@/stores/useFormStore";
 import { motion } from "framer-motion";
-import { useState } from "react";
-import Button from "../shared/NavButton";
-import InputField from "../shared/InputFieldButton";
-import StepSlider from "../shared/StepSlider";
+import Button from "../../shared/NavButton";
+import InputField from "../../shared/InputFieldButton";
+import StepSlider from "../../shared/StepSlider";
 
 export default function FourthStep() {
   const { nextStep, prevStep } = useStepStore();

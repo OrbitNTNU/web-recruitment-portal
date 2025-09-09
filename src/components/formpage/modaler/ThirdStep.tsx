@@ -1,11 +1,11 @@
 import { useFormStore, useSessionStorageSync } from "@/stores/useFormStore";
 import { useStepStore } from "@/stores/useStepStore";
 import { motion } from "framer-motion";
-import Button from "../shared/NavButton";
-import StepSlider from "../shared/StepSlider";
+import Button from "../../shared/NavButton";
+import StepSlider from "../../shared/StepSlider";
 
-export default function SixthStep() {
-  const { experience, setExperience } = useFormStore();
+export default function ThirdStep() {
+  const { description, setDescription } = useFormStore();
   const { prevStep, nextStep } = useStepStore();
 
   useSessionStorageSync();
@@ -20,26 +20,26 @@ export default function SixthStep() {
       >
         <StepSlider />
         <motion.label
-          htmlFor="Experience"
+          htmlFor="Description"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="text-lg font-medium text-purple-300"
         >
-          Experience
+          Description
         </motion.label>
         <motion.textarea
-          id="Experience"
-          name="Experience"
+          id="Description"
+          name="Description"
           onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
           whileFocus={{
             scale: 1.02,
             boxShadow: "0px 0px 8px #9b6dde",
           }}
           className="mt-2 block w-full rounded-xl border border-purple-300 bg-gray-700 p-3 text-purple-100 placeholder-purple-400 shadow-md transition-all focus:outline-none"
-          value={experience}
-          onChange={(e) => setExperience(e.target.value)}
-          placeholder="I have worked with satellite production prior to Orbit..."
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="I love to play video games and read books..."
           rows={5}
         />
 

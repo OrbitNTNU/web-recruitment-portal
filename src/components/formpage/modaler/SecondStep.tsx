@@ -1,9 +1,9 @@
 import { useFormStore, useSessionStorageSync } from "@/stores/useFormStore";
 import { useStepStore } from "@/stores/useStepStore";
 import { motion } from "framer-motion";
-import Button from "../shared/NavButton";
-import InputField from "../shared/InputFieldButton";
-import StepSlider from "../shared/StepSlider";
+import Button from "../../shared/NavButton";
+import InputField from "../../shared/InputFieldButton";
+import StepSlider from "../../shared/StepSlider";
 import { useFormFilledStore } from "@/stores/FormFilledStore";
 
 export default function SecondStep() {
