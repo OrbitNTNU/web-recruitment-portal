@@ -27,6 +27,14 @@ function ApplicantArchive(applications: PropsWithPositions) {
                     submissionDate: application.submissionDate,
                     saveApplication: application.saveApplication,
                     positions: [{
+                        preference: 3,
+                        name: "Analyitcs",
+                        teamId: "4"
+                    },{
+                        preference: 2,
+                        name: "DevOps",
+                        teamId: "1"
+                    },{
                         preference: 1,
                         name: "WebTeam",
                         teamId: "2"
@@ -42,10 +50,6 @@ function ApplicantArchive(applications: PropsWithPositions) {
     return (
       <>
         <Navbar></Navbar>
-        <div>
-          {applicationState?.length <= 0 ? (
-            <h1> NOT FOUND</h1>
-          ) : (
             <section className={"h-full w-full overflow-y-auto p-3 bg-slate-800"}>
               <TableComponent
                 columns={TableColumns}
@@ -53,8 +57,6 @@ function ApplicantArchive(applications: PropsWithPositions) {
               />
               <h1>HI</h1>
             </section>
-          )}
-        </div>
       </>
     );
 }
