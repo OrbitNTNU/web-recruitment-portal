@@ -1,11 +1,12 @@
 
 import type {ApplicationWithPositions} from "@/interfaces/application";
 import type {Position} from "@/interfaces/position";
-import type {Column, ColumnDef} from "@tanstack/react-table";
+import type {Column, ColumnDef, FilterFn, Row} from "@tanstack/react-table";
 import {Button} from "@/components/ui/button";
 import {ArrowUpDown} from "lucide-react";
 
 const  sortingButton = (label: string, column: Column<ApplicationWithPositions>) => (
+
     <Button
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
@@ -14,7 +15,6 @@ const  sortingButton = (label: string, column: Column<ApplicationWithPositions>)
         <ArrowUpDown className="ml-2 h-4 w-4" />
     </Button>
 );
-
 
 export const columns: ColumnDef<ApplicationWithPositions>[] = [
     {
@@ -40,8 +40,8 @@ export const columns: ColumnDef<ApplicationWithPositions>[] = [
         accessorKey: "positions",
         cell: (info) => {
             const positions = info.getValue() as Position[];
-            const position = positions.find((p) => p.preference === 1);
-            return position ? `1: ${position.name}` : positions[0]?.name ?? "—";
+            positions.sort((a: Position, b: Position) => a.preference -  b.preference)
+            return positions ? positions[0]!.preference +": "+ positions[0]!.name /*positions.map((value) => value.preference +": " + value.name).join(", ") */: "No Position Submission Found";
         },
         enableGlobalFilter: true,
     },
