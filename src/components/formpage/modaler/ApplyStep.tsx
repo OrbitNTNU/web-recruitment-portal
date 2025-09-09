@@ -1,8 +1,8 @@
 import { useFormStore, useSessionStorageSync } from "@/stores/useFormStore";
 import { useStepStore } from "@/stores/useStepStore";
 import { motion } from "framer-motion";
-import Button from "../shared/NavButton";
-import StepSlider from "../shared/StepSlider";
+import Button from "../../shared/NavButton";
+import StepSlider from "../../shared/StepSlider";
 
 export default function ApplyStep() {
   const {

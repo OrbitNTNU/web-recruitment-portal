@@ -4,8 +4,8 @@ import type { Team } from "@/types/teams";
 import { generateGradientColors } from "src/utilities/gradientColors";
 import { useStepStore } from "@/stores/useStepStore";
 import { useFormStore, useSessionStorageSync } from "@/stores/useFormStore";
-import Button from "../shared/NavButton";
-import StepSlider from "../shared/StepSlider";
+import Button from "../../shared/NavButton";
+import StepSlider from "../../shared/StepSlider";
 
 export default function FifthStep() {
   const { nextStep, prevStep } = useStepStore();
