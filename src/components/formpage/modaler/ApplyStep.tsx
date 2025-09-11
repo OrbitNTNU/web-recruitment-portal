@@ -45,10 +45,6 @@ export default function ApplyStep() {
           <OverviewItem label="Alt. Email" value={emailAddress} />
           <OverviewItem label="Field of Study" value={fieldOfStudy} />
           <OverviewItem label="Year of Study" value={yearOfStudy} />
-          <OverviewItem
-            label="Preferred Teams"
-            value={positions.map((p) => p.toString()).join(", ")}
-          />
         </div>
 
         <div className="mt-6 w-full rounded-xl border border-purple-300 bg-gray-700 p-4 text-purple-100 shadow-md">
