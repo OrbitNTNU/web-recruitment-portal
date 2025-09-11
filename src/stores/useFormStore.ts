@@ -6,22 +6,24 @@ interface FormValues {
   fullName: string;
   username: string;
   email: string;
-  phoneNumber: number;
+  phoneNumber: string;
   emailAddress: string;
   fieldOfStudy: string;
   yearOfStudy: number;
   positions: Team[];
-  comments: string;
+  experience: string;
+  description: string; 
   teams: Team[];
   setFullName: (fullName: string) => void;
   setUsername: (username: string) => void;
   setEmail: (email: string) => void;
-  setPhoneNumber: (phoneNumber: number) => void;
+  setPhoneNumber: (phoneNumber: string) => void;
   setEmailAddress: (emailAddress: string) => void;
   setFieldOfStudy: (fieldOfStudy: string) => void;
   setYearOfStudy: (yearOfStudy: number) => void;
   setPositions: (positions: Team[]) => void;
-  setComments: (comments: string) => void;
+  setExperience: (comments: string) => void;
+  setDescription: (description: string) => void;
   setTeams: (teams: Team[]) => void;
   resetForm: () => void;
 }
@@ -38,12 +40,13 @@ export const useFormStore = create<FormValues>((set) => ({
   fullName: "",
   username: "",
   email: "",
-  phoneNumber: 0,
+  phoneNumber: "",
   emailAddress: "",
   fieldOfStudy: "",
   yearOfStudy: 1,
   positions: [],
-  comments: "",
+  experience: "",
+  description: "",
   teams: [
     "electronics",
     "dev-ops",
@@ -74,18 +77,19 @@ export const useFormStore = create<FormValues>((set) => ({
   setFieldOfStudy: (fieldOfStudy) => set({ fieldOfStudy }),
   setYearOfStudy: (yearOfStudy) => set({ yearOfStudy }),
   setPositions: (positions) => set((state) => ({ positions: [...state.positions, ...positions] })),
-  setComments: (comments) => set({ comments }),
+  setExperience: (experience) => set({ experience }),
+  setDescription: (description) => set({ description }),
   setTeams: (teams) => set({ teams }),
   resetForm: () => set({
     fullName: "",
     username: "",
     email: "",
-    phoneNumber: 0,
+    phoneNumber: "",
     emailAddress: "",
     fieldOfStudy: "",
     yearOfStudy: 1,
     positions: [],
-    comments: "",
+    experience: "",
     teams: [],
   }),
 }));

@@ -3,13 +3,15 @@ import { motion } from "framer-motion";
 import type { Team } from "@/types/teams";
 import { generateGradientColors } from "src/utilities/gradientColors";
 import { useStepStore } from "@/stores/useStepStore";
-import { useFormStore,  useSessionStorageSync} from "@/stores/useFormStore";
+import { useFormStore, useSessionStorageSync } from "@/stores/useFormStore";
+import Button from "../../shared/NavButton";
+import StepSlider from "../../shared/StepSlider";
 
-export default function FourthStep() {
+export default function FifthStep() {
   const { nextStep, prevStep } = useStepStore();
   const [selectedTeam, setSelectedTeam] = useState<Team>("web-team");
   const listRef = useRef<HTMLDivElement>(null);
-  const {positions, setPositions, teams, setTeams} = useFormStore();
+  const { positions, setPositions, teams, setTeams } = useFormStore();
   const infiniteTeams = [...teams, ...teams, ...teams];
   const numTeams = teams.length;
   const startOffset = numTeams;
@@ -57,12 +59,12 @@ export default function FourthStep() {
         event.preventDefault();
       }
     };
-  
+
     const currentList = listRef.current;
     if (currentList) {
       currentList.addEventListener("wheel", handleWheelScroll);
     }
-  
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowUp") {
         setCenterIndex((prev) => Math.max(prev - 1, 0));
@@ -72,17 +74,16 @@ export default function FourthStep() {
         setIsCenterClicked(true);
       }
     };
-  
+
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       if (currentList) {
         currentList.removeEventListener("wheel", handleWheelScroll);
       }
-      window.removeEventListener("keydown", handleKeyDown)
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
-
 
   useEffect(() => {
     if (listRef.current) {
@@ -101,23 +102,23 @@ export default function FourthStep() {
 
   const handleTeamClick = (team: Team) => {
     const selectedIndex = infiniteTeams.indexOf(team, startOffset);
-  
+
     if (selectedIndex !== centerIndex) {
       setCenterIndex(selectedIndex);
       setIsCenterClicked(false);
     } else {
       if (!isCenterClicked) {
-        setPositions(teams.filter((t) => t === team))
+        setPositions(teams.filter((t) => t === team));
         const updatedTeams = teams.filter((t) => t !== team);
         setTeams(updatedTeams);
-        setIsCenterClicked(true); 
+        setIsCenterClicked(true);
       }
     }
   };
-  
 
   return (
     <article className="flex h-full flex-row items-center justify-center gap-4 text-white">
+      <StepSlider />
       <div
         ref={listRef}
         className="flex h-full w-2/4 flex-col space-y-4 overflow-hidden whitespace-nowrap p-4"
@@ -125,7 +126,6 @@ export default function FourthStep() {
       >
         {infiniteTeams.map((team, index) => {
           const colorIndex = index % gradientColors.length;
-
           const distance = Math.abs(index - centerIndex);
           const maxDistance = numTeams / 16;
           const opacity = Math.max(1 - distance / maxDistance, 0.1);
@@ -150,34 +150,17 @@ export default function FourthStep() {
       <input type="hidden" name="selectedTeam" value={selectedTeam} />
       <div className="mt-6 flex space-x-4">
         <motion.div>
-        <p>
-          {positions.map((position, index) => (
-            <span key={index} style={{ display: 'block' }}>{position}</span>
-          ))}
-        </p>
+          <p>
+            {positions.map((position, index) => (
+              <span key={index} style={{ display: "block" }}>
+                {position}
+              </span>
+            ))}
+          </p>
         </motion.div>
-        <motion.button
-          type="button"
-          onClick={prevStep}
-          whileHover={{
-            scale: 1.1,
-            y: -2,
-            boxShadow: "0px 0px 10px rgba(255, 255, 255, 0.8)",
-          }}
-          whileTap={{ scale: 0.9 }}
-          className="rounded-lg border border-gray-500 bg-gray-700 px-5 py-2 text-white shadow-md transition-all hover:bg-gray-600"
-        >
-          Back
-        </motion.button>
-        <motion.button
-          type="button"
-          onClick={nextStep}
-          whileHover={{ scale: 1.2, y: -4, boxShadow: "0px 0px 20px #38bdf8" }}
-          whileTap={{ scale: 0.9 }}
-          className="rounded-lg border border-blue-400 bg-blue-500 px-6 py-2 text-white shadow-md transition-all hover:bg-blue-600"
-        >
-          Next
-        </motion.button>
+
+        <Button onClick={prevStep} label="Back" variant="back" />
+        <Button onClick={nextStep} label="Next" variant="next" />
       </div>
     </article>
   );
