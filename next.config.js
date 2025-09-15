@@ -4,7 +4,20 @@
  */
 import "./src/env.js";
 
-/** @type {import("next").NextConfig} */
-const config = {};
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: '/Home',
+        destination: '/homepage/HomePage',
+      },
+      {
+        source: '/Form',
+        destination: '/formpage/FormPage',
+      },
+    ];
+  },
+};
 
-export default config;
+export default nextConfig;
