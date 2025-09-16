@@ -1,6 +1,5 @@
-import { useFormFilledStore } from "@/stores/FormFilledStore";
-import { useFormStore, useSessionStorageSync } from "@/stores/useFormStore";
-import { useStepStore } from "@/stores/useStepStore";
+import { useFormStore, useSessionStorageSync } from "@/stores/FormStore/useFormStore";
+import { useStepStore } from "@/stores/StepStore/useStepStore";
 import { motion } from "framer-motion";
 import Button from "../../../shared/NavButton";
 import InputField from "../../../shared/InputFieldButton";
@@ -10,21 +9,10 @@ export default function PersonalInfoModal() {
   const {
     fullName,
     setFullName, } = useFormStore();
-  const {setFullNameFilled} = useFormFilledStore();
   const {  nextStep } = useStepStore();
   useSessionStorageSync();
     const { setFieldOfStudy, setYearOfStudy, fieldOfStudy, yearOfStudy } = useFormStore();
   useSessionStorageSync();
-
-
-  const handleFullNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFullName(e.target.value);
-    if (e.target.value.trim()) {
-      setFullNameFilled(true);
-    } else {
-      setFullNameFilled(false);
-    }
-  };
   
   return (
     <div className="flex min-h-screen items-start justify-center pt-10 md:items-center md:pt-0">
@@ -44,12 +32,7 @@ export default function PersonalInfoModal() {
         >
           Your Full Name
         </motion.label>
-        <InputField
-          id="FullName"
-          value={fullName}
-          onChange={handleFullNameChange}
-          placeholder="Enter your name"
-        />
+
           <div className="mt-8 flex w-full justify-center space-x-4">
             <Button 
               onClick={nextStep} 

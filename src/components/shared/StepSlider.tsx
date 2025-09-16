@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useStepStore } from "@/stores/useStepStore";
+import { useStepStore } from "@/stores/StepStore/useStepStore";
 
 export default function StepSlider() {
   const { step, setStep } = useStepStore();
