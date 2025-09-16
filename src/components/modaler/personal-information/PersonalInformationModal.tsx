@@ -1,9 +1,9 @@
+import Button from "@/components/shared/NavButton";
+import StepSlider from "@/components/shared/StepSlider";
 import { useFormStore, useSessionStorageSync } from "@/stores/FormStore/useFormStore";
 import { useStepStore } from "@/stores/StepStore/useStepStore";
 import { motion } from "framer-motion";
-import Button from "../../../shared/NavButton";
-import InputField from "../../../shared/InputFieldButton";
-import StepSlider from "../../../shared/StepSlider";
+
 
 export default function PersonalInfoModal() {
   const {
