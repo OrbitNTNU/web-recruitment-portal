@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { useEffect } from "react";
-import type { Team } from "@/types/teams";
 
 interface FormValues {
   fullName: string;
@@ -10,10 +9,10 @@ interface FormValues {
   emailAddress: string;
   fieldOfStudy: string;
   yearOfStudy: number;
-  positions: Team[];
+  positions: [];
   experience: string;
   description: string; 
-  teams: Team[];
+  teams: []; 
   setFullName: (fullName: string) => void;
   setUsername: (username: string) => void;
   setEmail: (email: string) => void;
@@ -21,10 +20,10 @@ interface FormValues {
   setEmailAddress: (emailAddress: string) => void;
   setFieldOfStudy: (fieldOfStudy: string) => void;
   setYearOfStudy: (yearOfStudy: number) => void;
-  setPositions: (positions: Team[]) => void;
+  setPositions: (positions: []) => void;
   setExperience: (comments: string) => void;
   setDescription: (description: string) => void;
-  setTeams: (teams: Team[]) => void;
+  setTeams: (teams: []) => void;
   resetForm: () => void;
 }
 
@@ -47,28 +46,7 @@ export const useFormStore = create<FormValues>((set) => ({
   positions: [],
   experience: "",
   description: "",
-  teams: [
-    "electronics",
-    "dev-ops",
-    "web-team",
-    "ai-research",
-    "cloud-computing",
-    "cyber-security",
-    "data-science",
-    "game-development",
-    "iot",
-    "mobile-development",
-    "blockchain",
-    "networking",
-    "robotics",
-    "software-engineering",
-    "system-administration",
-    "ui-ux-design",
-    "database-management",
-    "bioinformatics",
-    "embedded-systems",
-    "quantum-computing",
-  ],
+  teams: [],
   setFullName: (fullName) => set({ fullName }),
   setUsername: (username) => set({ username }),
   setEmail: (email) => set({ email }),

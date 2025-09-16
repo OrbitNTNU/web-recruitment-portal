@@ -1,6 +1,6 @@
 import React from "react";
-import { useStepStore } from "@/stores/useStepStore";
-import { useFormStore } from "@/stores/useFormStore";
+import { useStepStore } from "@/stores/StepStore/useStepStore";
+import { useFormStore } from "@/stores/FormStore/useFormStore";
 import FifthStep from "@/components/formpage/modaler/teams-and-wishes/TeamsAndWishesModal";
 import SecondStep from "@/components/formpage/modaler/description-and-experience/DescriptionAndExperienceModal";
 import PersonalInfoModal from "@/components/formpage/modaler/personal-information/PersonalInformationModal";
