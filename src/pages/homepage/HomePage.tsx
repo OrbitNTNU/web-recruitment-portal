@@ -1,7 +1,12 @@
 import React from "react";
 import Navbar from "@/components/shared/Navbar";
+import { useRouter } from 'next/navigation'
 
 export default function HomePage() {
+  const navigate = useRouter();
+  const handleRouteToForm = () => {
+    navigate.push("/Form")
+  }
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -24,7 +29,7 @@ export default function HomePage() {
             hesitate to apply using the links provided. Your enthusiasm could be
             the perfect fit for Orbit NTNU!
           </p>
-          <button className="bg-[#FFB347] text-black font-medium px-6 py-3 rounded-full hover:bg-violet-600">
+          <button className="bg-[#FFB347] text-black font-medium px-6 py-3 rounded-full hover:bg-laserLemon" onClick={handleRouteToForm}>
             Proceed to apply
           </button>
         </div>

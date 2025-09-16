@@ -2,8 +2,6 @@ import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useStepStore } from "@/stores/StepStore/useStepStore";
 import { useFormStore, useSessionStorageSync } from "@/stores/FormStore/useFormStore";
-import Button from "../../../shared/NavButton";
-import StepSlider from "../../../shared/StepSlider";
 
 export default function FifthStep() {
   const { nextStep, prevStep } = useStepStore();
