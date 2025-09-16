@@ -1,10 +1,10 @@
 import React from "react";
 import { useStepStore } from "@/stores/StepStore/useStepStore";
 import { useFormStore } from "@/stores/FormStore/useFormStore";
-import FifthStep from "@/components/formpage/modaler/teams-and-wishes/TeamsAndWishesModal";
-import SecondStep from "@/components/formpage/modaler/description-and-experience/DescriptionAndExperienceModal";
-import PersonalInfoModal from "@/components/formpage/modaler/personal-information/PersonalInformationModal";
-import ApplyStep from "@/components/formpage/modaler/summary/SummaryModal";
+import TeamsAndWishesModal from "@/components/modaler/teams-and-wishes/TeamsAndWishesModal";
+import DescriptionAndExperienceModal from "@/components/modaler/description-and-experience/DescriptionAndExperienceModal";
+import PersonalInfoModal from "@/components/modaler/personal-information/PersonalInformationModal";
+import SummaryModal from "@/components/modaler/summary/SummaryModal";
 import "@/styles/globals.css";
 
 export default function FormPage(){
@@ -55,9 +55,9 @@ export default function FormPage(){
       <form className="flex h-full items-center justify-center relative z-10" onSubmit={submitApplication}>
         <section className="relative h-full w-full p-6">
           {step === 1 && <PersonalInfoModal />}
-          {step === 2 && <SecondStep />}
-          {step === 4 && <FifthStep />}
-          {step === 4 && <ApplyStep />}
+          {step === 2 && <DescriptionAndExperienceModal />}
+          {step === 4 && <TeamsAndWishesModal />}
+          {step === 4 && <SummaryModal />}
         </section>
       </form>
     </main>
