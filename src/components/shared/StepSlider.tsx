@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useStepStore } from "@/stores/StepStore/useStepStore";
+import { useStepStore } from "@/stores/step-store/useStepStore";
 
 export default function StepSlider() {
   const { step, setStep } = useStepStore();
@@ -24,24 +24,25 @@ export default function StepSlider() {
         return (
           <div
             key={label}
-            className="relative flex flex-col items-center cursor-pointer group"
+            className="group relative flex cursor-pointer flex-col items-center"
             onClick={() => stepIndex <= step && setStep(stepIndex)}
           >
             <motion.div
-              className={`z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 text-sm font-bold transition-colors
-                ${
-                  isActive
-                    ? "border-blue-400 bg-blue-500 text-white"
-                    : isCompleted
+              className={`z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 text-sm font-bold transition-colors ${
+                isActive
+                  ? "border-blue-400 bg-blue-500 text-white"
+                  : isCompleted
                     ? "border-green-400 bg-green-500 text-white"
                     : "border-gray-400 bg-gray-700 text-gray-300"
-                }`}
+              }`}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
               {stepIndex}
             </motion.div>
-            <span className="mt-2 text-xs text-white group-hover:text-purple-300">{label}</span>
+            <span className="mt-2 text-xs text-white group-hover:text-purple-300">
+              {label}
+            </span>
 
             {index < steps.length - 1 && (
               <div className="absolute left-1/2 top-5 w-full">

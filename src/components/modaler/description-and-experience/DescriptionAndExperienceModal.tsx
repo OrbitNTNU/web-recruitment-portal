@@ -1,22 +1,23 @@
 import Button from "@/components/shared/NavButton";
 import StepSlider from "@/components/shared/StepSlider";
-import { useFormStore, useSessionStorageSync } from "@/stores/FormStore/useFormStore";
-import { useStepStore } from "@/stores/StepStore/useStepStore";
+import {
+  useFormStore,
+  useSessionStorageSync,
+} from "@/stores/form-store/useFormStore";
+import { useStepStore } from "@/stores/step-store/useStepStore";
 import { motion } from "framer-motion";
-
+import NextButton from "@/components/shared/NextButton";
+import BackButton from "@/components/shared/BackButton";
 
 export default function SecondStep() {
   const { email, emailAddress, setEmail, setEmailAddress } = useFormStore();
   const { experience, setExperience } = useFormStore();
   const { description, setDescription } = useFormStore();
-  const { prevStep, nextStep } = useStepStore();
   useSessionStorageSync();
-  const {phoneNumber,setPhoneNumber, username,
-    setUsername,} = useFormStore();
+  const { phoneNumber, setPhoneNumber, username, setUsername } = useFormStore();
 
   return (
-    <div className="flex items-start justify-center min-h-screen pt-10 md:items-center md:pt-0">
-
+    <div className="flex min-h-screen items-start justify-center pt-10 md:items-center md:pt-0">
       <motion.article
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -34,16 +35,8 @@ export default function SecondStep() {
           Email
         </motion.label>
         <div className="mt-8 flex w-full justify-center space-x-4">
-          <Button
-            onClick={prevStep}
-            label="Back"
-            variant="back"
-          />
-          <Button
-            onClick={nextStep}
-            label="Next"
-            variant="next"
-          />
+          <BackButton />
+          <NextButton />
         </div>
       </motion.article>
     </div>
