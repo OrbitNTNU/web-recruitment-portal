@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="relative font-mono flex-grow flex flex-col items-center justify-center text-center text-white px-4">
+      <main className="relative font-mono flex-grow flex flex-col items-start justify-center text-start text-white px-10">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/orbitsat.jpg')" }}

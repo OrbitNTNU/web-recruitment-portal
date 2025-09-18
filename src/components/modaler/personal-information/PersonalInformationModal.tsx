@@ -1,19 +1,20 @@
-import Button from "@/components/shared/NavButton";
+import NextButton from "@/components/shared/NextButton";
 import StepSlider from "@/components/shared/StepSlider";
-import { useFormStore, useSessionStorageSync } from "@/stores/FormStore/useFormStore";
-import { useStepStore } from "@/stores/StepStore/useStepStore";
+import {
+  useFormStore,
+  useSessionStorageSync,
+} from "@/stores/form-store/useFormStore";
+import { useStepStore } from "@/stores/step-store/useStepStore";
 import { motion } from "framer-motion";
 
-
 export default function PersonalInfoModal() {
-  const {
-    fullName,
-    setFullName, } = useFormStore();
-  const {  nextStep } = useStepStore();
+  const { fullName, setFullName } = useFormStore();
+  const { nextStep } = useStepStore();
   useSessionStorageSync();
-    const { setFieldOfStudy, setYearOfStudy, fieldOfStudy, yearOfStudy } = useFormStore();
+  const { setFieldOfStudy, setYearOfStudy, fieldOfStudy, yearOfStudy } =
+    useFormStore();
   useSessionStorageSync();
-  
+
   return (
     <div className="flex min-h-screen items-start justify-center pt-10 md:items-center md:pt-0">
       <motion.article
@@ -33,13 +34,9 @@ export default function PersonalInfoModal() {
           Your Full Name
         </motion.label>
 
-          <div className="mt-8 flex w-full justify-center space-x-4">
-            <Button 
-              onClick={nextStep} 
-              label="Next" 
-              variant="next"
-            />
-          </div>
+        <div className="mt-8 flex w-full justify-center space-x-4">
+          <NextButton />
+        </div>
       </motion.article>
     </div>
   );
