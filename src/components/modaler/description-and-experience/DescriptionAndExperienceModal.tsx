@@ -1,13 +1,13 @@
 import Button from "@/components/shared/NavButton";
-import StepSlider from "@/components/shared/StepSlider";
+import StepSlider from "@/components/form/StepSlider";
 import {
   useFormStore,
   useSessionStorageSync,
 } from "@/stores/form-store/useFormStore";
 import { useStepStore } from "@/stores/step-store/useStepStore";
 import { motion } from "framer-motion";
-import NextButton from "@/components/shared/NextButton";
-import BackButton from "@/components/shared/BackButton";
+import NextButton from "@/components/form/NextButton";
+import BackButton from "@/components/form/BackButton";
 
 export default function SecondStep() {
   const { email, emailAddress, setEmail, setEmailAddress } = useFormStore();

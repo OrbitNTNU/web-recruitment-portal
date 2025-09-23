@@ -16,7 +16,7 @@ const LoadingModal: React.FC<LoadingModalProps> = ({ logoSrc }) => {
 
     const interval = setInterval(() => {
       setRandomFact();
-    }, 3000);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, [isLoading, setRandomFact]);
@@ -56,7 +56,7 @@ const LoadingModal: React.FC<LoadingModalProps> = ({ logoSrc }) => {
               transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
             ></motion.div>
 
-            <img src={logoSrc} alt="Orbit Logo" className="z-10 h-24 w-24" />
+            <img src={logoSrc} alt="OrbitLogo" className="z-10 h-24 w-24" />
           </div>
         </motion.div>
       )}
