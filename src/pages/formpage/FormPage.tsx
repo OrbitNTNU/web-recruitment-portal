@@ -7,6 +7,7 @@ import PersonalInfoModal from "@/components/modaler/personal-information/Persona
 import SummaryModal from "@/components/modaler/summary/SummaryModal";
 import LoadingModal from "@/components/modaler/loading-screen/LoadingScreenModal";
 import "@/styles/globals.css";
+import Navbar from "@/components/shared/Navbar";
 
 export default function FormPage() {
   const { step } = useStepStore();
@@ -63,7 +64,8 @@ export default function FormPage() {
 
   return (
     <main className="relative h-screen w-screen overflow-y-clip bg-black bg-[url('/spacebg.jpg')] bg-cover bg-center">
-      <LoadingModal logoSrc="url('/orbitLogo.png')" />
+      <Navbar />
+      <LoadingModal logoSrc="logos/orbitLogo.png"/>
 
       <form
         className="relative z-10 flex h-full items-center justify-center"

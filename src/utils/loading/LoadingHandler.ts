@@ -1,4 +1,5 @@
 import { useLoadingStore } from "@/stores/loading-store/useLoadingStore";
+import { useStepStore } from "@/stores/step-store/useStepStore";
 
 export const triggerLoading = () => {
   const { showLoading } = useLoadingStore.getState();
@@ -14,7 +15,20 @@ export const triggerLoadingForDuration = (duration = 2000) => {
   const { showLoading, hideLoading } = useLoadingStore.getState();
 
   showLoading();
+  setTimeout(() => hideLoading(), duration);
+};
+
+export const handleStepChange = (action: "next" | "prev", duration = 1800) => {
+  const { showLoading, hideLoading } = useLoadingStore.getState();
+  const { nextStep, prevStep } = useStepStore.getState();
+  showLoading();
+
   setTimeout(() => {
     hideLoading();
+    if (action === "next") {
+      nextStep();
+    } else {
+      prevStep();
+    }
   }, duration);
 };

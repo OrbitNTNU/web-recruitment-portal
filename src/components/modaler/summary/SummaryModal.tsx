@@ -4,8 +4,8 @@ import {
 } from "@/stores/form-store/useFormStore";
 import { useStepStore } from "@/stores/step-store/useStepStore";
 import { motion } from "framer-motion";
-import StepSlider from "@/components/shared/StepSlider";
-import BackButton from "@/components/shared/BackButton";
+import StepSlider from "@/components/form/StepSlider";
+import BackButton from "@/components/form/BackButton";
 
 export default function ApplyStep() {
   const {

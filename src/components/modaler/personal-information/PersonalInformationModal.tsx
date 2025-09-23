@@ -1,5 +1,5 @@
-import NextButton from "@/components/shared/NextButton";
-import StepSlider from "@/components/shared/StepSlider";
+import NextButton from "@/components/form/NextButton";
+import StepSlider from "@/components/form/StepSlider";
 import {
   useFormStore,
   useSessionStorageSync,
