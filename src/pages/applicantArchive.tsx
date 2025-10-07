@@ -1,13 +1,34 @@
 import TableComponent from "@/components/applicantArchive/TableComponent";
 import {type ApplicationWithPositions, type PropsWithPositions} from "@/interfaces/application";
-import TableColumns from "@/components/applicantArchive/TableColumns";
+import TableColumns, { allColumns, columns } from "@/components/applicantArchive/TableColumns";
+import ColumnsChoice from "@/components/applicantArchive/ColumnsChoice";
 import {getServerSideProps} from "@/pages/api/client";
 import Navbar from "@/components/shared/Navbar";
 import {useEffect, useState} from "react";
 import "@/styles/globals.css";
+import { type ColumnDef } from "@tanstack/react-table";
+
+
 function ApplicantArchive(applications: PropsWithPositions) {
 
     const [applicationState, setApplicationState] = useState<ApplicationWithPositions[]>([]);
+    const [relColumns, setRelColumns] = useState<ColumnDef<ApplicationWithPositions>[]>([]);
+    const [columnsChoiseVisible, setColumnsChoiceVisible] = useState<boolean>(false);
+    const [chosenColumns, setChosenColumns] = useState<string[]>([
+        "ID",
+        "name",
+        "fieldOfStudy",
+        "yearOfStudy",
+        "positions"
+    ]);
+
+    useEffect(() => {
+        setRelColumns(columns(chosenColumns));
+    }, []);
+
+    useEffect(() => {
+        setRelColumns(columns(chosenColumns));
+    }, [chosenColumns]);
 
     useEffect(() => {
 
@@ -50,13 +71,34 @@ function ApplicantArchive(applications: PropsWithPositions) {
     return (
       <>
         <Navbar></Navbar>
-            <section className={"h-full w-full overflow-y-auto p-3 bg-slate-800"}>
-              <TableComponent
-                columns={TableColumns}
+        {columnsChoiseVisible &&
+        <section
+            className="fixed inset-0 z-10 flex justify-end p-4 h-full w-full bg-black/50"
+            onClick={() => setColumnsChoiceVisible(false)}
+        >
+            <div className="flex h-full w-[30%]" onClick={(e) => e.stopPropagation()}>
+                <ColumnsChoice
+                    columns={allColumns}
+                    chosenColumns={chosenColumns}
+                    setChosenColumns={setChosenColumns}
+                    closeFunction={setColumnsChoiceVisible}
+                />
+            </div>
+        </section>
+        }
+        <section className={"h-full w-full overflow-y-auto p-3 bg-slate-800"}>
+            <button
+                className="border text-white p-2 hover:bg-gray-400/15"
+                onClick={() => setColumnsChoiceVisible(true)}
+            >
+                Customize columns
+            </button>
+            <TableComponent
+                columns={relColumns}
                 applicationValues={applicationState}
-              />
-              <h1>HI</h1>
-            </section>
+            />
+            <h1>HI</h1>
+        </section>
       </>
     );
 }
