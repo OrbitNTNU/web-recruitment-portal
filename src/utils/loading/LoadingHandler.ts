@@ -1,5 +1,5 @@
-import { useLoadingStore } from "@/stores/loading-store/useLoadingStore";
-import { useStepStore } from "@/stores/step-store/useStepStore";
+import { useLoadingStore } from "@/stores/LoadingStore/UseLoadingStore";
+import { useStepStore } from "@/stores/StepStore/UseStepStore";
 
 export const triggerLoading = () => {
   const { showLoading } = useLoadingStore.getState();

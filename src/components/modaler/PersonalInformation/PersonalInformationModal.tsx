@@ -1,20 +1,19 @@
-import Button from "@/components/shared/NavButton";
-import StepSlider from "@/components/form/StepSlider";
+import NextButton from "@/components/Form/NextButton";
+import StepSlider from "@/components/Form/StepSlider";
 import {
   useFormStore,
   useSessionStorageSync,
-} from "@/stores/form-store/useFormStore";
-import { useStepStore } from "@/stores/step-store/useStepStore";
+} from "@/stores/FormStore/UseFormStore";
+import { useStepStore } from "@/stores/StepStore/UseStepStore";
 import { motion } from "framer-motion";
-import NextButton from "@/components/form/NextButton";
-import BackButton from "@/components/form/BackButton";
 
-export default function SecondStep() {
-  const { email, emailAddress, setEmail, setEmailAddress } = useFormStore();
-  const { experience, setExperience } = useFormStore();
-  const { description, setDescription } = useFormStore();
+export default function PersonalInfoModal() {
+  const { fullName, setFullName } = useFormStore();
+  const { nextStep } = useStepStore();
   useSessionStorageSync();
-  const { phoneNumber, setPhoneNumber, username, setUsername } = useFormStore();
+  const { setFieldOfStudy, setYearOfStudy, fieldOfStudy, yearOfStudy } =
+    useFormStore();
+  useSessionStorageSync();
 
   return (
     <div className="flex min-h-screen items-start justify-center pt-10 md:items-center md:pt-0">
@@ -26,16 +25,16 @@ export default function SecondStep() {
       >
         <StepSlider />
         <motion.label
-          htmlFor="Email"
+          htmlFor="Name"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="text-lg font-medium text-purple-300"
         >
-          Email
+          Your Full Name
         </motion.label>
+
         <div className="mt-8 flex w-full justify-center space-x-4">
-          <BackButton />
           <NextButton />
         </div>
       </motion.article>

@@ -1,32 +1,34 @@
 import React, { useEffect } from "react";
-import { useFunFactStore } from "@/stores/fun-fact-store/useFunFactStore";
+import { useFunFactStore } from "@/stores/FunFactStore/UseFunFactStore";
 import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const { currentFact, setRandomFact } = useFunFactStore();
   const router = useRouter();
-  
+
   const handleRouteToHome = () => {
     router.push("/Home");
   };
-  
 
   useEffect(() => {
     const interval = setInterval(() => {
       setRandomFact();
-    }, 5000); 
+    }, 5000);
     return () => clearInterval(interval);
   }, [setRandomFact]);
 
   return (
-    <nav className="bg-[var(--color-night-sky)] text-[var(--color-strong)] p-6 shadow-md">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <h1 onClick={() => handleRouteToHome()} className="text-2xl md:text-3xl font-bold font-mono tracking-wide cursor-pointer hover:text-[var(--color-sky-mint)] transition-colors">
+    <nav className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-[var(--color-moonlight)/70] text-[var(--color-strong)] shadow-lg backdrop-blur-md">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <h1
+          onClick={handleRouteToHome}
+          className="--font-poppins cursor-pointer text-2xl font-bold tracking-wide text-[var(--color-strong)] transition-colors duration-300 hover:text-[var(--color-orange-sherbert)] md:text-3xl"
+        >
           ORBIT
         </h1>
 
-        <span className="text-[var(--color-sky-mint)] font-medium hidden md:inline max-w-xs truncate">
-          {currentFact || "Exploring the cosmos"}
+        <span className="--font-poppins hidden max-w-xs truncate font-bold text-[var(--color-orange-sherbert)] md:inline">
+          {currentFact || "Build cubesats with us!"}
         </span>
       </div>
     </nav>

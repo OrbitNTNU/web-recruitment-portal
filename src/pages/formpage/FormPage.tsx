@@ -1,13 +1,12 @@
 import React from "react";
-import { useStepStore } from "@/stores/step-store/useStepStore";
-import { useFormStore } from "@/stores/form-store/useFormStore";
-import TeamsAndWishesModal from "@/components/modaler/teams-and-wishes/TeamsAndWishesModal";
-import DescriptionAndExperienceModal from "@/components/modaler/description-and-experience/DescriptionAndExperienceModal";
-import PersonalInfoModal from "@/components/modaler/personal-information/PersonalInformationModal";
-import SummaryModal from "@/components/modaler/summary/SummaryModal";
-import LoadingModal from "@/components/modaler/loading-screen/LoadingScreenModal";
-import "@/styles/globals.css";
-import Navbar from "@/components/shared/Navbar";
+import { useStepStore } from "@/stores/StepStore/UseStepStore";
+import { useFormStore } from "@/stores/FormStore/UseFormStore";
+import TeamsAndWishesModal from "@/components/Modaler/TeamsAndWishes/TeamsAndWishesModal";
+import DescriptionAndExperienceModal from "@/components/Modaler/DescriptionAndExperience/DescriptionAndExperienceModal";
+import PersonalInfoModal from "@/components/Modaler/PersonalInformation/PersonalInformationModal";
+import SummaryModal from "@/components/Modaler/Summary/SummaryModal";
+import LoadingModal from "@/components/Modaler/LoadingScreen/LoadingScreenModal";
+import Navbar from "@/components/Shared/Navbar";
 
 export default function FormPage() {
   const { step } = useStepStore();
@@ -63,9 +62,9 @@ export default function FormPage() {
   };
 
   return (
-    <main className="relative h-screen w-screen overflow-y-clip bg-black bg-[url('/spacebg.jpg')] bg-cover bg-center">
+    <main className="relative h-screen w-screen overflow-y-clip bg-black bg-[url('/shared/orbitsat.jpg')] bg-cover bg-center">
       <Navbar />
-      <LoadingModal logoSrc="logos/orbitLogo.png"/>
+      <LoadingModal logoSrc="logos/orbitLogo.png" />
 
       <form
         className="relative z-10 flex h-full items-center justify-center"
