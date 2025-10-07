@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useFunFactStore } from "@/stores/fun-fact-store/useFunFactStore";
-import { useLoadingStore } from "@/stores/loading-store/useLoadingStore";
+import { useFunFactStore } from "@/stores/FunFactStore/UseFunFactStore";
+import { useLoadingStore } from "@/stores/LoadingStore/UseLoadingStore";
 
 interface LoadingModalProps {
   logoSrc: string;

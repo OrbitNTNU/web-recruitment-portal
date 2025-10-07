@@ -10,11 +10,11 @@ const nextConfig = {
     return [
       {
         source: '/Home',
-        destination: '/homepage/HomePage',
+        destination: '/HomePage/HomePage',
       },
       {
         source: '/Form',
-        destination: '/formpage/FormPage',
+        destination: '/FormPage/FormPage',
       },
     ];
   },

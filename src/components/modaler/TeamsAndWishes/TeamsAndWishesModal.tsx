@@ -1,10 +1,10 @@
 import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useStepStore } from "@/stores/step-store/useStepStore";
+import { useStepStore } from "@/stores/StepStore/UseStepStore";
 import {
   useFormStore,
   useSessionStorageSync,
-} from "@/stores/form-store/useFormStore";
+} from "@/stores/FormStore/UseFormStore";
 
 export default function FifthStep() {
   const { nextStep, prevStep } = useStepStore();

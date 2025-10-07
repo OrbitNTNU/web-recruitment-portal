@@ -1,11 +1,11 @@
 import {
   useFormStore,
   useSessionStorageSync,
-} from "@/stores/form-store/useFormStore";
-import { useStepStore } from "@/stores/step-store/useStepStore";
+} from "@/stores/FormStore/UseFormStore";
+import { useStepStore } from "@/stores/StepStore/UseStepStore";
 import { motion } from "framer-motion";
-import StepSlider from "@/components/form/StepSlider";
-import BackButton from "@/components/form/BackButton";
+import StepSlider from "@/components/Form/StepSlider";
+import BackButton from "@/components/Form/BackButton";
 
 export default function ApplyStep() {
   const {

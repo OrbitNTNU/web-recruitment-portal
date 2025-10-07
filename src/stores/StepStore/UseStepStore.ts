@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { FormState } from "@/interfaces/formState";
+import type { FormState } from "@/interfaces/form_state";
 
 export const useStepStore = create<FormState>((set) => ({
   step: 1,
