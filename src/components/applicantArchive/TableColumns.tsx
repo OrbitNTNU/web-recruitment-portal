@@ -16,7 +16,13 @@ const  sortingButton = (label: string, column: Column<ApplicationWithPositions>)
     </Button>
 );
 
-export const columns: ColumnDef<ApplicationWithPositions>[] = [
+export const allColumns: ColumnDef<ApplicationWithPositions>[] = [
+    {
+        header: ({ column }) => sortingButton("ID", column),
+        accessorKey: "ID",
+        cell: (info) => info.getValue<number>(),
+        enableGlobalFilter: true,
+    },
     {
         header: ({ column }) => sortingButton("Full Name", column),
         accessorKey: "name",
@@ -51,8 +57,27 @@ export const columns: ColumnDef<ApplicationWithPositions>[] = [
         cell: (info) => info.getValue<string>(),
         enableGlobalFilter: false,
     },
+    {
+        header: ({ column }) => sortingButton("Experience", column),
+        accessorKey: "experience",
+        cell: (info) => info.getValue<string>(),
+        enableGlobalFilter: true,
+    },
+    {
+        header: ({ column }) => sortingButton("Description", column),
+        accessorKey: "description",
+        cell: (info) => info.getValue<string>(),
+        enableGlobalFilter: true,
+    },
 
 ];
 
+export function columns(chosenColumns: string[]) {
+    return allColumns.filter((column) => {
+        const accessorKey = "accessorKey" in column ? column.accessorKey : "";
+        return chosenColumns.includes(accessorKey);
+    });
+}
 
-export default columns;
+
+export default allColumns;

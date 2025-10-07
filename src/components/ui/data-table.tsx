@@ -79,7 +79,7 @@ export function DataTable<TData, TValue>({
               "min-w-full border-solid border-sky-200 text-slate-100"
             }
           >
-            <TableHeader className="sticky top-0 z-10">
+            <TableHeader className="sticky top-0 z-8">
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow
                   className={"text-base font-semibold text-slate-100"}
