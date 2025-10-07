@@ -100,12 +100,27 @@ export default function HomePage() {
             />
           </div>
         </div>
+
+        <div className="absolute bottom-0 left-0 z-10 w-full overflow-hidden">
+          <svg
+            className="relative block h-20 w-full text-[var(--color-muted)]"
+            viewBox="0 0 1440 320"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill="currentColor"
+              d="M0,256C120,240,240,192,360,192C480,192,600,240,720,240C840,240,960,192,1080,176C1200,160,1320,176,1440,192L1440,320L0,320Z"
+            />
+          </svg>
+        </div>
       </section>
 
       <section className="relative flex h-screen">
-        <div className="flex w-full items-center bg-[var(--color-moonlight)]">
+
+        <div className="flex w-full items-center bg-[var(--color-muted)]">
           <div className="mx-auto max-w-3xl px-6 py-12 text-center">
-            <h3 className="mb-6 text-3xl font-bold text-[var(--color-strong)] md:text-4xl">
+            <h3 className="mb-6 text-3xl font-bold text-[var(--color-cream)] md:text-4xl">
               Ready to Launch Your Career?
             </h3>
           </div>
