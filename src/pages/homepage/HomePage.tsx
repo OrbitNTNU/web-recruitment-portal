@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Navbar from "@/components/Shared/Navbar";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function HomePage() {
   const router = useRouter();
@@ -116,15 +117,78 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative flex h-screen">
+      <section className="relative bg-[var(--color-muted)] text-[var(--color-cream)]">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
+            <div className="space-y-4">
+              <div className="flex items-center space-x-2">
+                <div>
+                  <Image
+                    src="/logos/orbitTextlogo.png"
+                    alt="Orbit Logo"
+                    width={75}
+                    height={75}
+                  />
+                </div>
+                <h3 className="text-xl font-bold tracking-wide"> - Orbit</h3>
+              </div>
+              <p className="text-sm opacity-75">
+                Orbit NTNU is a student organization at the Norwegian University
+                of Science and Technology (NTNU) dedicated to designing,
+                building, and launching small satellites. 
+              </p>
+            </div>
 
-        <div className="flex w-full items-center bg-[var(--color-muted)]">
-          <div className="mx-auto max-w-3xl px-6 py-12 text-center">
-            <h3 className="mb-6 text-3xl font-bold text-[var(--color-cream)] md:text-4xl">
-              Ready to Launch Your Career?
-            </h3>
+            <div>
+              <h4 className="mb-4 text-lg font-semibold">Quick Links</h4>
+              <ul className="space-y-2 text-sm opacity-80">
+                <li>
+                  <a href="https://orbitntnu.com/about" className="hover:underline hover:opacity-100">
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a href="https://orbitntnu.com/teams" className="hover:underline hover:opacity-100">
+                    Teams
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="mb-4 text-lg font-semibold">Our Sponsors</h4>
+              <div className="flex flex-wrap items-center gap-4">
+                <div className="h-10 w-24 rounded bg-[var(--color-cream)] opacity-70"></div>
+                <div className="h-10 w-24 rounded bg-[var(--color-cream)] opacity-70"></div>
+                <div className="h-10 w-24 rounded bg-[var(--color-cream)] opacity-70"></div>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="mb-4 text-lg font-semibold">Stay Connected</h4>
+              <div className="flex space-x-4">
+                <a href="#" className="transition-transform hover:scale-110">
+                  <i className="fa-brands fa-twitter text-2xl"></i>
+                </a>
+                <a href="#" className="transition-transform hover:scale-110">
+                  <i className="fa-brands fa-linkedin text-2xl"></i>
+                </a>
+                <a href="#" className="transition-transform hover:scale-110">
+                  <i className="fa-brands fa-instagram text-2xl"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="border-[var(--color-cream)]/30 my-10 border-t"></div>
+
+          <div className="flex flex-col items-center justify-between text-sm opacity-70 md:flex-row">
+            <p>© {new Date().getFullYear()} Orbit. All rights reserved.</p>
+            <p>Contact - contact@orbitntnu.com</p>
+            <p>Search Orbit ntnu now!</p>
           </div>
         </div>
+
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
       </section>
     </div>
   );
