@@ -1,34 +1,28 @@
 import TableComponent from "@/components/applicantArchive/TableComponent";
 import {type ApplicationWithPositions, type PropsWithPositions} from "@/interfaces/application";
-import TableColumns, { allColumns, columns } from "@/components/applicantArchive/TableColumns";
+import { allColumns, findRelColumns } from "@/components/applicantArchive/TableColumns";
 import ColumnsChoice from "@/components/applicantArchive/ColumnsChoice";
 import {getServerSideProps} from "@/pages/api/client";
 import Navbar from "@/components/shared/Navbar";
 import {useEffect, useState} from "react";
 import "@/styles/globals.css";
 import { type ColumnDef } from "@tanstack/react-table";
+import { useSessionStorageSync, useTableStore } from "@/stores/TableStore/UseTableStore";
 
 
 function ApplicantArchive(applications: PropsWithPositions) {
 
+    const { columns, setColumns } = useTableStore();
+
     const [applicationState, setApplicationState] = useState<ApplicationWithPositions[]>([]);
     const [relColumns, setRelColumns] = useState<ColumnDef<ApplicationWithPositions>[]>([]);
     const [columnsChoiseVisible, setColumnsChoiceVisible] = useState<boolean>(false);
-    const [chosenColumns, setChosenColumns] = useState<string[]>([
-        "ID",
-        "name",
-        "fieldOfStudy",
-        "yearOfStudy",
-        "positions"
-    ]);
+
+    useSessionStorageSync();
 
     useEffect(() => {
-        setRelColumns(columns(chosenColumns));
-    }, []);
-
-    useEffect(() => {
-        setRelColumns(columns(chosenColumns));
-    }, [chosenColumns]);
+        setRelColumns(findRelColumns(columns));
+    }, [columns]);
 
     useEffect(() => {
 
@@ -79,8 +73,8 @@ function ApplicantArchive(applications: PropsWithPositions) {
             <div className="flex h-full w-[30%]" onClick={(e) => e.stopPropagation()}>
                 <ColumnsChoice
                     columns={allColumns}
-                    chosenColumns={chosenColumns}
-                    setChosenColumns={setChosenColumns}
+                    chosenColumns={columns}
+                    setChosenColumns={setColumns}
                     closeFunction={setColumnsChoiceVisible}
                 />
             </div>

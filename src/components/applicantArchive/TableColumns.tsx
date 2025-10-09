@@ -72,7 +72,7 @@ export const allColumns: ColumnDef<ApplicationWithPositions>[] = [
 
 ];
 
-export function columns(chosenColumns: string[]) {
+export function findRelColumns(chosenColumns: string[]) {
     return allColumns.filter((column) => {
         const accessorKey = "accessorKey" in column ? column.accessorKey : "";
         return chosenColumns.includes(accessorKey);
