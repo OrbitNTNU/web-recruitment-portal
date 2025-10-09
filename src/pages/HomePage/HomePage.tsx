@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Navbar from "@/components/Shared/Navbar";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 export default function HomePage() {
   const router = useRouter();
@@ -135,7 +136,7 @@ export default function HomePage() {
               <p className="text-sm opacity-75">
                 Orbit NTNU is a student organization at the Norwegian University
                 of Science and Technology (NTNU) dedicated to designing,
-                building, and launching small satellites. 
+                building, and launching small satellites.
               </p>
             </div>
 
@@ -158,9 +159,33 @@ export default function HomePage() {
             <div>
               <h4 className="mb-4 text-lg font-semibold">Our Sponsors</h4>
               <div className="flex flex-wrap items-center gap-4">
-                <div className="h-10 w-24 rounded bg-[var(--color-cream)] opacity-70"></div>
-                <div className="h-10 w-24 rounded bg-[var(--color-cream)] opacity-70"></div>
-                <div className="h-10 w-24 rounded bg-[var(--color-cream)] opacity-70"></div>
+                <div className="rounded opacity-70">
+                  <Image
+                    src="/logos/kongsberg.png"
+                    alt="Orbit Logo"
+                    width={75}
+                    height={75}
+                  />
+                </div>
+                <div className="opacity-70">
+                  <Image
+                    src="/logos/norsk_romsenter.png"
+                    alt="Orbit Logo"
+                    width={75}
+                    height={75}
+                  />
+                </div>
+                <div className="opacity-70">
+                  <Image
+                    src="/logos/andoya_space.png"
+                    alt="Orbit Logo"
+                    width={75}
+                    height={75}
+                  />
+                </div>
+                <a href="https://orbitntnu.com/sponsors" className="hover:underline hover:opacity-100">
+                  +++
+                </a>
               </div>
             </div>
 
@@ -184,7 +209,7 @@ export default function HomePage() {
           <div className="flex flex-col items-center justify-between text-sm opacity-70 md:flex-row">
             <p>© {new Date().getFullYear()} Orbit. All rights reserved.</p>
             <p>Contact - contact@orbitntnu.com</p>
-            <p>Search Orbit ntnu now!</p>
+            <p>Search Orbit NTNU now!</p>
           </div>
         </div>
 
