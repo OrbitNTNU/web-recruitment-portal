@@ -106,7 +106,7 @@ export function DataTable<TData, TValue>({
                   <>
                     <TableRow
                       key={row.id}
-                      className={"cursor-pointer text-lg"}
+                      className={`cursor-pointer text-lg border ${row.getIsExpanded() ? "bg-slate-700 border-x border-b-gray-500" : "border-x-transparent"}`}
                       data-state={row.getIsSelected() && "selected"}
                       onClick={() => row.toggleExpanded()}
                     >
@@ -119,19 +119,29 @@ export function DataTable<TData, TValue>({
                         </TableCell>
                       ))}
                     </TableRow>
-                    {row.getIsExpanded() && (
-
+                    <AnimatePresence>
+                      {row.getIsExpanded() && (
                         <TableCell
-                          className={"bg-slate-700 border"}
+                          className={"bg-slate-700 border-x border-b p-0"}
                           colSpan={columns.length}
                         >
-                          <ExpandableComponent
-                            allMember={allMembers}
-                            data={row.original as ApplicationWithPositions}
-                            comment={commentPlaceholder}
-                          />
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1}}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            className="overflow-hidden"
+                          >
+                            <ExpandableComponent
+                              allMember={allMembers}
+                              data={row.original as ApplicationWithPositions}
+                              comment={commentPlaceholder}
+                            />
+                          </motion.div>
                         </TableCell>
-                    )}
+
+                      )}
+                    </AnimatePresence>
                   </>
                 ))
               ) : (
