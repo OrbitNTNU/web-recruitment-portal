@@ -16,30 +16,48 @@ const  sortingButton = (label: string, column: Column<ApplicationWithPositions>)
     </Button>
 );
 
-export const allColumns: ColumnDef<ApplicationWithPositions>[] = [
+export type CustomColumnDef<ApplicationWithPositions> = ColumnDef<ApplicationWithPositions> & {
+    meta: {
+      displayName: string;
+    };
+};
+
+export const allColumns: CustomColumnDef<ApplicationWithPositions>[] = [
     {
         header: ({ column }) => sortingButton("ID", column),
         accessorKey: "ID",
         cell: (info) => info.getValue<number>(),
         enableGlobalFilter: true,
+        meta: {
+            displayName: "ID",
+        }
     },
     {
         header: ({ column }) => sortingButton("Full Name", column),
         accessorKey: "name",
         cell: (info) => info.getValue<string>(),
         enableGlobalFilter: true,
+        meta: {
+            displayName: "Full Name",
+        }
     },
     {
         header: ({ column }) => sortingButton("Field of Study", column),
         accessorKey: "fieldOfStudy",
         cell: (info) => info.getValue<string>(),
         enableGlobalFilter: true,
+        meta: {
+            displayName: "Field of Study",
+        },
     },
     {
         header: ({ column }) => sortingButton("Year of Study", column),
         accessorKey: "yearOfStudy",
         cell: (info) => info.getValue<number>(),
         enableGlobalFilter: false,
+        meta: {
+            displayName: "Year of Study",
+        },
     },
     {
         header: ({ column }) => sortingButton("Positions", column),
@@ -50,32 +68,44 @@ export const allColumns: ColumnDef<ApplicationWithPositions>[] = [
             return positions ? positions[0]!.preference +": "+ positions[0]!.name /*positions.map((value) => value.preference +": " + value.name).join(", ") */: "No Position Submission Found";
         },
         enableGlobalFilter: true,
+        meta: {
+            displayName: "Positions",
+        },
     },
     {
         header: ({ column }) => sortingButton("Submission Date", column),
         accessorKey: "submissionDate",
         cell: (info) => info.getValue<string>(),
         enableGlobalFilter: false,
+        meta: {
+            displayName: "Submission Date",
+        },
     },
     {
         header: ({ column }) => sortingButton("Experience", column),
         accessorKey: "experience",
         cell: (info) => info.getValue<string>(),
         enableGlobalFilter: true,
+        meta: {
+            displayName: "Experience",
+        },
     },
     {
         header: ({ column }) => sortingButton("Description", column),
         accessorKey: "description",
         cell: (info) => info.getValue<string>(),
         enableGlobalFilter: true,
+        meta: {
+            displayName: "Description",
+        },
     },
 
 ];
 
 export function findRelColumns(chosenColumns: string[]) {
     return allColumns.filter((column) => {
-        const accessorKey = "accessorKey" in column ? column.accessorKey : "";
-        return chosenColumns.includes(accessorKey);
+        const columnName = column.meta?.displayName;
+        return chosenColumns.includes(columnName);
     });
 }
 
