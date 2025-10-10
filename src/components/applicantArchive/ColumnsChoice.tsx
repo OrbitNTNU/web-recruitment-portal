@@ -5,7 +5,7 @@ import React, { type Dispatch, type SetStateAction } from "react";
 interface ColumnsChoiseProps {
     columns: CustomColumnDef<ApplicationWithPositions>[],
     chosenColumns: string[],         // AccessorKeys of the ColumnDef
-    setChosenColumns: Dispatch<SetStateAction<string[]>>,
+    setChosenColumns: (columns: string[]) => void,
     closeFunction: Dispatch<SetStateAction<boolean>>,
 }
 
