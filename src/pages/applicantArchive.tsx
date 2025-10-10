@@ -11,6 +11,7 @@ import Navbar from "@/components/shared/Navbar";
 import {useEffect, useState} from "react";
 import "@/styles/globals.css";
 import { useSessionStorageSync, useTableStore } from "@/stores/TableStore/UseTableStore";
+import { AnimatePresence, motion } from "framer-motion";
 
 
 function ApplicantArchive(applications: PropsWithPositions) {
@@ -68,21 +69,34 @@ function ApplicantArchive(applications: PropsWithPositions) {
     return (
       <>
         <Navbar></Navbar>
+        <AnimatePresence>
         {columnsChoiseVisible &&
-        <section
-            className="fixed inset-0 z-10 flex justify-end p-4 h-full w-full bg-black/50"
-            onClick={() => setColumnsChoiceVisible(false)}
-        >
-            <div className="flex h-full w-[30%]" onClick={(e) => e.stopPropagation()}>
-                <ColumnsChoice
-                    columns={allColumns}
-                    chosenColumns={columns}
-                    setChosenColumns={setColumns}
-                    closeFunction={setColumnsChoiceVisible}
-                />
-            </div>
-        </section>
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4, ease: "easeInOut"}}
+                className="fixed inset-0 z-10 flex justify-end p-4 h-full w-full bg-black/50"
+                onClick={() => setColumnsChoiceVisible(false)}
+            >
+                <motion.div
+                    initial={{ height: 0 }}
+                    animate={{ height: "auto" }}
+                    exit={{ height: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut"}}
+                    className="flex h-full w-[30%]"
+                    onClick={(e) => e.stopPropagation()}
+                >
+                    <ColumnsChoice
+                        columns={allColumns}
+                        chosenColumns={columns}
+                        setChosenColumns={setColumns}
+                        closeFunction={setColumnsChoiceVisible}
+                    />
+                </motion.div>
+            </motion.div>
         }
+        </AnimatePresence>
         <section className={"h-full w-full overflow-y-auto p-3 bg-slate-800"}>
             <button
                 className="border text-white p-2 hover:bg-gray-400/15"
