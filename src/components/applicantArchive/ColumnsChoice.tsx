@@ -1,9 +1,9 @@
 import type { ApplicationWithPositions } from "@/interfaces/application";
-import type { ColumnDef } from "@tanstack/react-table";
+import { type CustomColumnDef } from "./TableColumns";
 import React, { type Dispatch, type SetStateAction } from "react";
 
 interface ColumnsChoiseProps {
-    columns: ColumnDef<ApplicationWithPositions>[],
+    columns: CustomColumnDef<ApplicationWithPositions>[],
     chosenColumns: string[],         // AccessorKeys of the ColumnDef
     setChosenColumns: Dispatch<SetStateAction<string[]>>,
     closeFunction: Dispatch<SetStateAction<boolean>>,
@@ -20,22 +20,22 @@ const ColumnsChoice = ({
             <div className="w-full border-b border-gray-400"></div>
             <section className="flex flex-col h-full overflow-y-auto gap-4">
                 {columns.map((column) => {
-                    const accessorKey = "accessorKey" in column ? column.accessorKey : "";
-                    let checked = chosenColumns.includes(accessorKey);
+                    const columnName = column.meta?.displayName;
+                    let checked = chosenColumns.includes(columnName);
                     
                     return (
                         <button
-                        className={`flex border p-2 ${checked ? "bg-green-600 border-green-600 hover:border-red-400 hover:bg-green-600/80" : "hover:border-green-600"}`} key={accessorKey}
+                        className={`flex border p-2 ${checked ? "bg-green-600 border-green-600 hover:border-red-400 hover:bg-green-600/80" : "hover:border-green-600"}`} key={columnName}
                         onClick={() => {
                             if (checked) {
-                                setChosenColumns(chosenColumns.filter(key => key !== accessorKey))
+                                setChosenColumns(chosenColumns.filter(key => key !== columnName))
                             } else {
-                                setChosenColumns([...chosenColumns, accessorKey]);
+                                setChosenColumns([...chosenColumns, columnName]);
                             }
                             checked = !checked;
                         }}
                         >
-                            {accessorKey}
+                            {columnName}
                         </button>
                     );
                 })}

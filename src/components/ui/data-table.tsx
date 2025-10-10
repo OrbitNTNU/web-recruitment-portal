@@ -21,10 +21,12 @@ import {ExpandableComponent} from "@/components/applicantArchive/ExpandableCompo
 import {useState} from "react";
 import {PaginationMenu} from "@/components/applicantArchive/PaginationMenu";
 import SearchComponent from "@/components/applicantArchive/SearchComponent";
+import { motion, AnimatePresence } from "framer-motion";
+import { CustomColumnDef } from "../applicantArchive/TableColumns";
 
 interface DataTableProps<TData, TValue> {
-    columns: ColumnDef<TData, TValue>[];
-    data: TData[];
+    columns: CustomColumnDef<ApplicationWithPositions>[];
+    data: ApplicationWithPositions[];
 }
 
 const member1: Member = { name: "Wasabiy" };

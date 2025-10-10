@@ -1,11 +1,11 @@
 
 import {DataTable} from "@/components/ui/data-table";
-import {type ColumnDef} from "@tanstack/react-table";
+import { type CustomColumnDef } from "./TableColumns";
 import {type ApplicationWithPositions} from "@/interfaces/application";
 
 interface TableComponentProps {
   applicationValues: ApplicationWithPositions[];
-  columns?: ColumnDef<ApplicationWithPositions>[];
+  columns?: CustomColumnDef<ApplicationWithPositions>[];
 }
 
 

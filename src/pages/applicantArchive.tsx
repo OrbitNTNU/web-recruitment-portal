@@ -1,12 +1,15 @@
 import TableComponent from "@/components/applicantArchive/TableComponent";
 import {type ApplicationWithPositions, type PropsWithPositions} from "@/interfaces/application";
-import { allColumns, findRelColumns } from "@/components/applicantArchive/TableColumns";
+import {
+    allColumns,
+    type CustomColumnDef,
+    findRelColumns
+} from "@/components/applicantArchive/TableColumns";
 import ColumnsChoice from "@/components/applicantArchive/ColumnsChoice";
 import {getServerSideProps} from "@/pages/api/client";
 import Navbar from "@/components/shared/Navbar";
 import {useEffect, useState} from "react";
 import "@/styles/globals.css";
-import { type ColumnDef } from "@tanstack/react-table";
 import { useSessionStorageSync, useTableStore } from "@/stores/TableStore/UseTableStore";
 
 
@@ -15,7 +18,7 @@ function ApplicantArchive(applications: PropsWithPositions) {
     const { columns, setColumns } = useTableStore();
 
     const [applicationState, setApplicationState] = useState<ApplicationWithPositions[]>([]);
-    const [relColumns, setRelColumns] = useState<ColumnDef<ApplicationWithPositions>[]>([]);
+    const [relColumns, setRelColumns] = useState<CustomColumnDef<ApplicationWithPositions>[]>([]);
     const [columnsChoiseVisible, setColumnsChoiceVisible] = useState<boolean>(false);
 
     useSessionStorageSync();
