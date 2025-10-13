@@ -113,11 +113,11 @@
   }
 
   .animate-fadeIn {
-    animation: fadeIn 1s ease-out forwards;
+    animation: fadeIn 2s ease-out forwards;
   }
 
   .animate-slideInLeft {
-    animation: slideInLeft 1s ease-out forwards;
+    animation: slideInLeft 2s ease-out forwards;
   }
 
   .animate-slideInUp {
@@ -130,13 +130,13 @@
 
   .animate-background {
     animation:
-      zoomFade 4s ease-out forwards,
+      zoomFade 3s ease-out forwards,
       subtleZoom 5s infinite,
   }
 
   .animate-button {
     animation: 
-      zoomFadeButton 1s ease-out forwards,
+      zoomFadeButton 3s ease-out forwards,
   }
 
   .animate-zoomFade {
@@ -152,7 +152,6 @@
     font-family: var(--font-merriweather);
   }
 }
-
 
 @keyframes fadeIn {
   0% { opacity: 0; }
@@ -175,8 +174,8 @@
 }
 
 @keyframes zoomFadeButton {
-  0% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% { opacity: 0; transform: translateX(-50px); }
+  100% { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes subtleZoom {
