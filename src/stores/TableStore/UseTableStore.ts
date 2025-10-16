@@ -28,7 +28,6 @@ const loadState = (): Partial<TableValues> => {
 
 export const useSessionStorageSync = () => {
     const tableState = useTableStore();
-    console.log("hei");
 
     useEffect(() => {
         const savedState = loadState();
