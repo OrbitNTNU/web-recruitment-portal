@@ -11,10 +11,10 @@ const SESSIONSTORAGE_NAME = "tableState";
 export const useTableStore = create<TableValues>((set) => ({
     columns: [
         "ID",
-        "name",
-        "fieldOfStudy",
-        "yearOfStudy",
-        "positions"
+        "Full Name",
+        "Field of Study",
+        "Year of Study",
+        "Positions"
     ],
     setColumns: (columns) => set({ columns }),
 }));
