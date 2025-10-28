@@ -1,11 +1,11 @@
-import TableComponent from "@/components/applicantArchive/TableComponent";
+import TableComponent from "@/components/applicantArchive/table/TableComponent";
 import {type ApplicationWithPositions, type PropsWithPositions} from "@/interfaces/application";
 import {
     allColumns,
     type CustomColumnDef,
     findRelColumns
-} from "@/components/applicantArchive/TableColumns";
-import ColumnsChoice from "@/components/applicantArchive/ColumnsChoice";
+} from "@/components/applicantArchive/table/TableColumns";
+import ColumnsChoice from "@/components/applicantArchive/shared/ColumnsChoice";
 import {getServerSideProps} from "@/pages/api/client";
 import Navbar from "@/components/shared/Navbar";
 import {useEffect, useState} from "react";
