@@ -84,7 +84,7 @@ function ApplicantArchive(applications: PropsWithPositions) {
                     animate={{ height: "auto" }}
                     exit={{ height: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut"}}
-                    className="flex h-full w-[30%]"
+                    className="flex h-full sm:w-[300px] w-full"
                     onClick={(e) => e.stopPropagation()}
                 >
                     <ColumnsChoice
@@ -102,7 +102,7 @@ function ApplicantArchive(applications: PropsWithPositions) {
                 className="border text-white p-2 hover:bg-gray-400/15"
                 onClick={() => setColumnsChoiceVisible(true)}
             >
-                Customize columns
+                Choose visible columns
             </button>
             <TableComponent
                 columns={relColumns}
