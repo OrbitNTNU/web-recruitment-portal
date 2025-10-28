@@ -1,5 +1,5 @@
 import type { ApplicationWithPositions } from "@/interfaces/application";
-import { type CustomColumnDef } from "./TableColumns";
+import { type CustomColumnDef } from "../table/TableColumns";
 import React, { type Dispatch, type SetStateAction } from "react";
 
 interface ColumnsChoiseProps {

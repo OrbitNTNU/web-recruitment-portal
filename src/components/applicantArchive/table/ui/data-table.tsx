@@ -15,14 +15,14 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from "@/components/ui/table";
+} from "@/components/applicantArchive/table/ui/table";
 import { Member, ApplicationWithPositions, Comment } from "@/interfaces/application";
-import {ExpandableComponent} from "@/components/applicantArchive/ExpandableComponent";
+import {ExpandableComponent} from "@/components/applicantArchive/shared/ExpandableComponent";
 import {useState} from "react";
-import {PaginationMenu} from "@/components/applicantArchive/PaginationMenu";
-import SearchComponent from "@/components/applicantArchive/SearchComponent";
+import {PaginationMenu} from "@/components/applicantArchive/table/PaginationMenu";
+import SearchComponent from "@/components/applicantArchive/shared/SearchComponent";
 import { motion, AnimatePresence } from "framer-motion";
-import { CustomColumnDef } from "../applicantArchive/TableColumns";
+import { CustomColumnDef } from "../TableColumns";
 
 interface DataTableProps<TData, TValue> {
     columns: CustomColumnDef<ApplicationWithPositions>[];
@@ -134,7 +134,7 @@ export function DataTable<TData, TValue>({
                           >
                             <ExpandableComponent
                               allMember={allMembers}
-                              data={row.original as ApplicationWithPositions}
+                              data={row.original}
                               comment={commentPlaceholder}
                             />
                           </motion.div>

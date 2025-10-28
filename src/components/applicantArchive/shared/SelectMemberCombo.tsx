@@ -24,7 +24,7 @@ interface SelectMemberComboProps {
     members: Member[]
 }
 
-export default function SelecetMemberCombo({members} : SelectMemberComboProps) {
+export default function SelectMemberCombo({members} : SelectMemberComboProps) {
     const [open, setOpen] = useState(false)
     const [selectedMembers, setSelectedMembers] = useState<Member[]>([])
 
