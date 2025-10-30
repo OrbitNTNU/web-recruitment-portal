@@ -46,7 +46,12 @@ export function DataTable<TData, TValue>({
         pageSize: 5, //default page size
     });
 
-    const [sorting, setSorting] = useState<SortingState>([])
+    const [sorting, setSorting] = useState<SortingState>([
+      {
+        id: 'submissionDate',
+        desc: true,   // Newest first
+      },
+    ])
     const [globalFilter, setGlobalFilter] = useState<string>("")
 
     const table = useReactTable({
