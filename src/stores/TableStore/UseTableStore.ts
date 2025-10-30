@@ -14,7 +14,8 @@ export const useTableStore = create<TableValues>((set) => ({
         "Full Name",
         "Field of Study",
         "Year of Study",
-        "Positions"
+        "Positions",
+        "Submission Date"
     ],
     setColumns: (columns) => set({ columns }),
 }));
