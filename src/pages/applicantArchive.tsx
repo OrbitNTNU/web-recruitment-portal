@@ -6,8 +6,8 @@ import {
     findRelColumns
 } from "@/components/applicantArchive/table/TableColumns";
 import ColumnsChoice from "@/components/applicantArchive/shared/ColumnsChoice";
-import {getServerSideProps} from "@/pages/api/client";
-import Navbar from "@/components/shared/Navbar";
+import {getServerSideProps} from "@/api/client";
+import Navbar from "@/components/Shared/Navbar";
 import {useEffect, useState} from "react";
 import "@/styles/globals.css";
 import { useSessionStorageSync, useTableStore } from "@/stores/TableStore/UseTableStore";
