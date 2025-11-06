@@ -16,6 +16,10 @@ const nextConfig = {
         source: '/Form',
         destination: '/FormPage/FormPage',
       },
+      {
+        source: "/Applicants",
+        destination: "/ApplicantArchive/ApplicantArchive",
+      }
     ];
   },
 };
