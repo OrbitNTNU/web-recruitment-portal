@@ -34,6 +34,7 @@
     font-family: var(--font-poppins);
     background-color: var(--color-night-sky);
     color: var(--color-cloud-white);
+    font-size: 13px;
   }
 
   h1 {
