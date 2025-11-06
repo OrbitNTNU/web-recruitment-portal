@@ -20,7 +20,6 @@ export interface PropsWithPositions {
   applications: ApplicationWithPositions[];
 }
 
-
 export interface ApplicationWithPositions {
   name: string;
   personalEmail: string;

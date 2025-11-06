@@ -6,6 +6,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import { AnimatePresence, motion } from "framer-motion";
 import { container, fadeIn, fadeInUp, fadeOut } from "@/utils/loading/Animations";
 import { useHomePageStore } from "@/stores/HomePageStore/useHomePageStore";
+import EarthWithSat from "@/components/Three/EarthWithSat";
 
 export default function HomePage() {
   const router = useRouter();
@@ -18,7 +19,7 @@ export default function HomePage() {
   const logoRef = useRef<HTMLImageElement | null>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowIntro(false), 4);
+    const timer = setTimeout(() => setShowIntro(false), 3);
     return () => clearTimeout(timer);
   }, []);
 
@@ -33,22 +34,8 @@ export default function HomePage() {
     };
   }, [showIntro]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      if (logoRef.current) {
-        const rotate = scrollY / 4
-        const translateX = Math.sin(scrollY / 100) * 10;
-        const translateY = Math.cos(scrollY / 100) * 10;
-        logoRef.current.style.transform = `translate(${translateX}px, ${translateY}px) rotate(${rotate}deg)`;
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <div className="flex min-h-screen flex-col overflow-x-hidden">
+    <div className="flex min-h-screen flex-col overflow-x-hidden ">
       <Navbar />
       <AnimatePresence>
         {showIntro && (
@@ -57,11 +44,11 @@ export default function HomePage() {
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 3, ease: "easeInOut" }}
+            transition={{ duration: 3.5, ease: "easeInOut" }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black"
           >
             <video
-              src="/shared/sunrise.mp4"
+              src="/shared/introVideo.mp4"
               autoPlay
               muted
               playsInline
@@ -91,10 +78,10 @@ export default function HomePage() {
         </motion.div>
 
         <div className="relative z-10 max-w-2xl">
-          <h2 className="animate-slideInUp mb-4 text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-strong)]">
+          <h2 className="animate-slideInUp mb-4 text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--color-strong)]">
             Orbit Application Form
           </h2>
-          <p className="animate-slideInLeft text-sm sm:text-base md:text-lg mb-4 text-[var(--color-cloud-white)]">
+          <p className="animate-slideInLeft text-xs sm:text-base md:text-lg mb-4 text-[var(--color-cloud-white)]">
             Join Our Team! We're on the lookout for passionate individuals to
             fill several key roles. While we've highlighted our most
             sought-after positions below, we value diverse talents and
@@ -135,14 +122,12 @@ export default function HomePage() {
           </div>
         </motion.div>
 
-        <motion.div variants={fadeInUp} className="flex flex-1 items-center justify-center bg-[var(--color-night-sky)] p-8">
-          <div className="w-56 h-56 sm:w-80 sm:h-80 md:w-96 md:h-96 flex items-center justify-center">
-            <img
-              ref={logoRef}
-              src="/shared/cubeSat.avif"
-              alt="Cubesat"
-              className="max-h-full max-w-full object-contain"
-            />
+        <motion.div
+          variants={fadeInUp}
+          className="flex flex-1 items-center justify-center bg-[var(--color-night-sky)] p-8"
+        >
+          <div className="w-80 h-80 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[36rem] lg:h-[36rem] flex items-center justify-center">
+            <EarthWithSat />
           </div>
         </motion.div>
       </motion.section>
