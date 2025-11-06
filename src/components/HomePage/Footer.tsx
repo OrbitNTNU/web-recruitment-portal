@@ -8,7 +8,7 @@ export const Footer = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ amount: 0.3 }}
-            className="relative bg-[var(--color-muted)] text-[var(--color-cream)]"
+            className="relative bg-[var(--color-dark-gray)] text-[var(--color-cream)]"
         >
             <div className="mx-auto max-w-6xl px-6 sm:px-10 py-12 sm:py-16">
                 <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-4">
