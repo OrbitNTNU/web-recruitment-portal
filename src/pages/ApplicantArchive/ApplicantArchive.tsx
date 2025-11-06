@@ -68,7 +68,6 @@ function ApplicantArchive(applications: PropsWithPositions) {
 
     return (
       <>
-        <Navbar></Navbar>
         <AnimatePresence>
         {columnsChoiseVisible &&
             <motion.div
