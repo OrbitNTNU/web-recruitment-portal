@@ -32,7 +32,7 @@
 
   html {
     font-family: var(--font-poppins);
-    background-color: var(--color-night-sky);
+    background-color: black;
     color: var(--color-cloud-white);
     font-size: 13px;
   }

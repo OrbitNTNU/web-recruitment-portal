@@ -107,7 +107,7 @@ export default function HomePage() {
         viewport={{ amount: 0.3 }}
         className="relative flex flex-col md:flex-row min-h-screen"
       >
-        <motion.div variants={fadeInUp} className="flex w-full items-center justify-center bg-[var(--color-night-sky)] p-8 sm:p-10 md:w-1/2">
+        <motion.div variants={fadeInUp} className="flex w-full items-center justify-center p-8 sm:p-10 md:w-1/2">
           <div className="max-w-lg text-center md:text-left">
             <h3 className="mb-6 text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--color-strong)]">
               Why Join Orbit NTNU?
@@ -124,7 +124,7 @@ export default function HomePage() {
 
         <motion.div
           variants={fadeInUp}
-          className="flex flex-1 items-center justify-center bg-[var(--color-night-sky)] p-8"
+          className="flex flex-1 items-center justify-center p-8"
         >
           <div className="w-80 h-80 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[36rem] lg:h-[36rem] flex items-center justify-center">
             <EarthWithSat />
