@@ -79,7 +79,7 @@ const EarthScene = () => {
         <CubeSat />
       </Suspense>
 
-      <OrbitControls enableZoom={true} />
+      <OrbitControls enableZoom={false}/>
     </Canvas>
   );
 };

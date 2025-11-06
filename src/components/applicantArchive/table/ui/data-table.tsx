@@ -15,12 +15,12 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from "@/components/applicantArchive/table/ui/table";
+} from "@/components/ApplicantArchive/table/ui/table";
 import { Member, ApplicationWithPositions, Comment } from "@/interfaces/application";
-import {ExpandableComponent} from "@/components/applicantArchive/shared/ExpandableComponent";
+import {ExpandableComponent} from "@/components/ApplicantArchive/shared/ExpandableComponent";
 import {useState} from "react";
-import {PaginationMenu} from "@/components/applicantArchive/table/PaginationMenu";
-import SearchComponent from "@/components/applicantArchive/shared/SearchComponent";
+import {PaginationMenu} from "@/components/ApplicantArchive/table/PaginationMenu";
+import SearchComponent from "@/components/ApplicantArchive/shared/SearchComponent";
 import { motion, AnimatePresence } from "framer-motion";
 import { CustomColumnDef } from "../TableColumns";
 

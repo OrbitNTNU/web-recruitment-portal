@@ -1,6 +1,6 @@
 import type {ApplicationWithPositions, Member,Comment} from "@/interfaces/application";
-import SelectMemberCombo from "@/components/applicantArchive/shared/SelectMemberCombo";
-import CommentBox from "@/components/applicantArchive/shared/CommentBox";
+import SelectMemberCombo from "@/components/ApplicantArchive/shared/SelectMemberCombo";
+import CommentBox from "@/components/ApplicantArchive/shared/CommentBox";
 
 interface ExpandableComponentProps {
     allMember: Member[];
