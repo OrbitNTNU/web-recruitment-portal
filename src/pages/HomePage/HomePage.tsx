@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { fadeIn, fadeInUp, fadeOut } from "@/utils/loading/Animations";
 import { useHomePageStore } from "@/stores/HomePageStore/useHomePageStore";
 import EarthWithSat from "@/components/Three/EarthWithSat";
-import { Footer } from "@/components/HomePage/Footer";
+import { Footer } from "@/components/Home/Footer";
 
 export default function HomePage() {
   const router = useRouter();
