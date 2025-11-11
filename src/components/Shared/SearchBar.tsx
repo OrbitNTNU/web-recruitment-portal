@@ -1,4 +1,3 @@
-// components/SearchBar.js
 import React, { useEffect, useRef } from "react";
 
 interface SearchBarProps {

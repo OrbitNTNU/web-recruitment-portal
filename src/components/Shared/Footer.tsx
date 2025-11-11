@@ -36,9 +36,9 @@ const Footer = () => {
         <div className="flex flex-wrap items-center justify-center p-8 text-sm text-slate">
           <p className="m-2">Hanne Marie Haakaas</p>
           <p className="m-2">Idar Buer</p>
-          <p className="m-2">Mats Kvanvik</p>
+          <p className="m-2">Jayan Thayananthan</p>
           <p className="m-2">Magnus Andreas Giverin</p>
-          <p className="m-2">Simon Bjerkås</p>
+          <p className="m-2">August Solli Middelkoop</p>
         </div>
       </div>
     </footer>
