@@ -123,7 +123,7 @@ export default function HomePage() {
         </motion.div>
 
         <motion.div
-          variants={fadeInUp}
+          variants={fadeIn}
           className="flex flex-1 items-center justify-center p-8"
         >
           <div className="w-80 h-80 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[36rem] lg:h-[36rem] flex items-center justify-center">

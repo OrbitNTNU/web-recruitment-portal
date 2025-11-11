@@ -31,9 +31,6 @@ export default function ApplyStep() {
         transition={{ duration: 0.7 }}
         className="relative flex w-full max-w-md flex-col items-center justify-center overflow-y-auto p-6 sm:p-8"
       >
-        <div className="mb-6 w-full">
-          <StepSlider />
-        </div>
         <h2 className="mb-6 text-center text-3xl font-bold text-white">
           🚀 Overview 🚀
         </h2>

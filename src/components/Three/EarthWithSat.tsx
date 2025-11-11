@@ -7,10 +7,10 @@ import { OrbitControls } from "@react-three/drei";
 const Earth = () => {
   const meshRef = useRef<THREE.Mesh>(null!);
 
-  const colorMap = useLoader(TextureLoader, "/textures/earthmap.jpg");
-  const bumpMap = useLoader(TextureLoader, "/textures/earthbump.jpg");
-  const lightsMap = useLoader(TextureLoader, "/textures/earthlights.jpg");
-  const specularMap = useLoader(TextureLoader, "/textures/earthspec.jpg")
+  const colorMap = useLoader(TextureLoader, "/other/textures/earthmap.jpg");
+  const bumpMap = useLoader(TextureLoader, "/other/textures/earthbump.jpg");
+  const lightsMap = useLoader(TextureLoader, "/other/textures/earthlights.jpg");
+  const specularMap = useLoader(TextureLoader, "/other/textures/earthspec.jpg")
 
   useFrame(() => {
     if (meshRef.current) {

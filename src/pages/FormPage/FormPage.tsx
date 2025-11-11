@@ -3,10 +3,11 @@ import { useStepStore } from "@/stores/StepStore/UseStepStore";
 import { useFormStore } from "@/stores/FormStore/UseFormStore";
 import TeamsAndWishesModal from "@/components/Modaler/TeamsAndWishes/TeamsAndWishesModal";
 import DescriptionAndExperienceModal from "@/components/Modaler/DescriptionAndExperience/DescriptionAndExperienceModal";
-import PersonalInfoModal from "@/components/Modaler/PersonalInformation/PersonalInformationModal";
+import PersonalInformationModal from "@/components/Modaler/PersonalInformation/PersonalInformationModal";
 import SummaryModal from "@/components/Modaler/Summary/SummaryModal";
 import LoadingModal from "@/components/Modaler/LoadingScreen/LoadingScreenModal";
 import Navbar from "@/components/Shared/Navbar";
+import StepSlider from "@/components/Form/StepSlider";
 
 export default function FormPage() {
   const { step } = useStepStore();
@@ -62,21 +63,22 @@ export default function FormPage() {
   };
 
   return (
-    <main className="relative h-screen w-screen overflow-y-clip bg-black bg-[url('/shared/orbitsat.jpg')] bg-cover bg-center">
+    <main className="relative h-screen w-screen overflow-y-clip">
       <Navbar />
       <LoadingModal logoSrc="logos/orbitLogo.png" />
 
       <form
-        className="relative z-10 flex h-full items-center justify-center"
+        className="relative flex h-full items-center justify-center "
         onSubmit={submitApplication}
       >
-        <section className="relative h-full w-full p-6">
-          {step === 1 && <PersonalInfoModal />}
+        <section className="relative h-full w-full p-6 ">
+          {step === 1 && <PersonalInformationModal />}
           {step === 2 && <DescriptionAndExperienceModal />}
           {step === 3 && <TeamsAndWishesModal />}
           {step === 4 && <SummaryModal />}
         </section>
       </form>
+      <StepSlider />
     </main>
   );
 }

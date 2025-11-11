@@ -8,10 +8,9 @@ import { useStepStore } from "@/stores/StepStore/UseStepStore";
 import { motion } from "framer-motion";
 
 export default function PersonalInfoModal() {
-  const { fullName, setFullName } = useFormStore();
   const { nextStep } = useStepStore();
   useSessionStorageSync();
-  const { setFieldOfStudy, setYearOfStudy, fieldOfStudy, yearOfStudy } =
+  const { fullName, setFullName, setFieldOfStudy, setYearOfStudy, fieldOfStudy, yearOfStudy } =
     useFormStore();
   useSessionStorageSync();
 
@@ -23,7 +22,6 @@ export default function PersonalInfoModal() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="relative flex w-full max-w-md flex-col items-center justify-center px-4 py-10 sm:p-10"
       >
-        <StepSlider />
         <motion.label
           htmlFor="Name"
           initial={{ opacity: 0, y: -10 }}
@@ -37,6 +35,7 @@ export default function PersonalInfoModal() {
         <div className="mt-8 flex w-full justify-center space-x-4">
           <NextButton />
         </div>
+     
       </motion.article>
     </div>
   );

@@ -24,7 +24,6 @@ export default function SecondStep() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="relative flex w-full max-w-md flex-col items-center justify-center px-4 py-10 sm:p-10"
       >
-        <StepSlider />
         <motion.label
           htmlFor="Email"
           initial={{ opacity: 0, y: -10 }}
