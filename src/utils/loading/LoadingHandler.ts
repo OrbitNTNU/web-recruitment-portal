@@ -18,17 +18,25 @@ export const triggerLoadingForDuration = (duration = 2000) => {
   setTimeout(() => hideLoading(), duration);
 };
 
-export const handleStepChange = (action: "next" | "prev", duration = 1800) => {
+export const handleStepChange = (
+  action: "next" | "prev" | "goto",
+  step?: number,
+  duration = 1800
+) => {
   const { showLoading, hideLoading } = useLoadingStore.getState();
-  const { nextStep, prevStep } = useStepStore.getState();
+  const { nextStep, prevStep, setStep } = useStepStore.getState();
+
   showLoading();
 
   setTimeout(() => {
     hideLoading();
+
     if (action === "next") {
       nextStep();
-    } else {
+    } else if (action === "prev") {
       prevStep();
+    } else if (action === "goto" && step !== undefined) {
+      setStep(step);
     }
   }, duration);
 };

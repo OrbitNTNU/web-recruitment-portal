@@ -4,13 +4,13 @@ import { container, fadeIn, fadeInUp } from "@/utils/loading/Animations";
 
 export const Footer = () => {
     return (
-        <motion.section variants={fadeIn}
+        <motion.section
             initial="hidden"
             whileInView="visible"
             viewport={{ amount: 0.3 }}
             className="relative bg-[var(--color-dark-gray)] text-[var(--color-cream)]"
         >
-            <div className="mx-auto max-w-6xl px-6 sm:px-10 py-12 sm:py-16">
+            <div className="mx-auto max-w-8xl px-6 sm:px-10 py-12 sm:py-16">
                 <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-4">
                     <motion.div variants={fadeInUp} className="space-y-4">
                         <Image

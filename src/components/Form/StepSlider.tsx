@@ -27,7 +27,6 @@ export default function StepSlider() {
             <div
               key={item.label}
               className="group relative flex flex-col items-center"
-              onClick={() => setStep(stepIndex)}
             >
               <motion.div
                 className={`z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 cursor-pointer transition-all duration-300 ${
@@ -39,7 +38,7 @@ export default function StepSlider() {
                 }`}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => handleStepChange}
+                onClick={() => handleStepChange("goto", stepIndex, 2000)}
                 animate={
                   isActive
                     ? {
