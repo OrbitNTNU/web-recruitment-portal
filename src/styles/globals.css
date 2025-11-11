@@ -2,6 +2,191 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base layer */
+@layer base {
+  :root {
+    --color-night-sky: #132940;
+    --color-moonlight: #142036;
+    --color-emerald-fizz: #2ecc71;
+    --color-dark-emerald: #145a32;
+    --color-pink-blast: #ff4f81;
+    --color-dark-pink: #8b0032;
+    --color-sky-mint: #48c9b0;
+    --color-dark-mint: #145c52;
+    --color-laser-lemon: #fff44f;
+    --color-orange-sherbert: #ffb347;
+    --color-dark-lemon: #665c00;
+    --color-cloud-white: #f5f5f5;
+    --color-dark-gray: #333333;
+    --color-strong: #ffffff;
+    --color-cream: #fdf6e3;
+    --color-slate: #708090;
+    --color-muted: #a0a0a0;
+    --color-berry-blast: #2897e0;
+    --color-musty-mangrove: #104859;
+
+    /* Fonts */
+    --font-poppins: "Poppins", sans-serif;
+    --font-merriweather: "Merriweather", serif;
+  }
+
+  html {
+    font-family: var(--font-poppins);
+    background-color: black;
+    color: var(--color-cloud-white);
+    font-size: 13px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 400;
+  }
+
+  p,
+  span {
+    font-size: 0.9rem;
+  }
+
+  @media (min-width: 640px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    p,
+    span {
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    h1 {
+      font-size: 3rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    p,
+    span {
+      font-size: 1rem;
+    }
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .sticky-bottom {
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 30px;
+    cursor: pointer;
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 2s ease-out forwards;
+  }
+
+  .animate-slideInLeft {
+    animation: slideInLeft 2s ease-out forwards;
+  }
+
+  .animate-slideInUp {
+    animation: slideInUp 1s ease-out forwards;
+  }
+
+  .animate-zoomFade {
+    animation: zoomFade 1.5s ease-out forwards;
+  }
+
+  .animate-background {
+    animation:
+      zoomFade 3s ease-out forwards,
+      subtleZoom 5s infinite,
+  }
+
+  .animate-button {
+    animation: 
+      zoomFadeButton 3s ease-out forwards,
+  }
+
+  .animate-zoomFade {
+    animation:
+      zoomFade 1.5s ease-out forwards,
+  }
+
+  .font-poppins {
+    font-family: var(--font-poppins);
+  }
+
+  .font-merriweather {
+    font-family: var(--font-merriweather);
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  0% { opacity: 0; transform: translateX(-30px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomFade {
+  0% { opacity: 0; transform: scale(1.1); }
+  100% { opacity: 0.6; transform: scale(1); }
+}
+
+@keyframes zoomFadeButton {
+  0% { opacity: 0; transform: translateX(-50px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes subtleZoom {
+  0%, 100% {
+    transform: scale(1); 
+  }
+  50% {
+    transform: scale(1.01);
+  }
+}
 @layer base {
   :root {
 
@@ -81,11 +266,3 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
