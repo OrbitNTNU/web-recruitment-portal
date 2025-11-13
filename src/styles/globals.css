@@ -129,12 +129,6 @@
     animation: zoomFade 1.5s ease-out forwards;
   }
 
-  .animate-background {
-    animation:
-      zoomFade 3s ease-out forwards,
-      subtleZoom 5s infinite,
-  }
-
   .animate-button {
     animation: 
       zoomFadeButton 3s ease-out forwards,

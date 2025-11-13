@@ -69,7 +69,7 @@ export default function HomePage() {
       </AnimatePresence>
 
       <section className="relative flex min-h-screen flex-col justify-center items-cente overflow-hidden px-6 sm:px-4 md:px-16 sm:text-left">
-        <motion.div variants={fadeOut} className="animate-background absolute inset-0 bg-cover bg-center opacity-70 bg-url('/shared/orbitsat.jpg')" style={{ backgroundImage: "url('/shared/orbitsat.jpg')" }}>
+        <motion.div variants={fadeOut} className="absolute inset-0 bg-cover bg-center  brightness-50" style={{ backgroundImage: "url('/shared/GroupShotOrbit.jpg')" }}>
           <div className="absolute bottom-0 right-0 left-0 sm:right-10 sm:left-auto flex animate-bounce justify-center sm:justify-end items-center px-4">
             <span className="font-poppins mb-2 text-sm text-[var(--color-cloud-white)]">
               Scroll to see why you should apply
@@ -105,6 +105,43 @@ export default function HomePage() {
         initial="hidden"
         whileInView="visible"
         viewport={{ amount: 0.3 }}
+        className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden"
+      >
+        <video
+          src="/shared/Galla EN.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          onLoadedMetadata={(e) => {
+            e.currentTarget.currentTime = 7;
+          }}
+        />
+
+        <div className="absolute inset-0 bg-black/50" />
+
+        <motion.div
+          variants={fadeInUp}
+          className="relative z-10 max-w-3xl px-6 text-center"
+        >
+          <h3 className="mb-4 text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-strong)]">
+            Pioneering the Future of Norways Satellite Technology
+          </h3>
+          <p className="text-base sm:text-lg md:text-xl leading-relaxed text-[var(--color-cloud-white)]">
+            Every orbit begins with a spark of curiosity. At Orbit NTNU, we turn
+            that spark into reality—through collaboration, innovation, and
+            relentless exploration. Join us as we push the boundaries of what’s
+            possible beyond Earth.
+          </p>
+        </motion.div>
+      </motion.section>
+
+      <motion.section
+        variants={fadeIn}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ amount: 0.3 }}
         className="relative flex flex-col md:flex-row min-h-screen"
       >
         <motion.div variants={fadeInUp} className="flex w-full items-center justify-center p-8 sm:p-10 md:w-1/2">
@@ -131,6 +168,7 @@ export default function HomePage() {
           </div>
         </motion.div>
       </motion.section>
+
       <Footer />
     </div>
   );

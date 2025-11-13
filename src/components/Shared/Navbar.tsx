@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Image from "next/image";
 import { useFunFactStore } from "@/stores/FunFactStore/UseFunFactStore";
 import { useRouter } from "next/navigation";
 
@@ -18,14 +19,20 @@ const Navbar = () => {
   }, [setRandomFact]);
 
   return (
-    <nav className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-[var(--color-moonlight)/70] text-[var(--color-strong)] shadow-lg backdrop-blur-md">
+    <nav className="fixed left-0 top-0 z-50 w-full bg-transparent">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <h1
+        <div
           onClick={handleRouteToHome}
-          className="--font-poppins cursor-pointer text-2xl font-bold tracking-wide text-[var(--color-strong)] transition-colors duration-300 hover:text-[var(--color-orange-sherbert)] md:text-3xl"
+          className="cursor-pointer transition-transform duration-300 hover:scale-105"
         >
-          ORBIT
-        </h1>
+          <Image
+            src="/shared/Orbit text Small.png"
+            alt="Orbit Logo"
+            width={80}
+            height={30} 
+            priority
+          />
+        </div>
 
         <span className="--font-poppins hidden max-w-xs truncate font-bold text-[var(--color-orange-sherbert)] md:inline">
           {currentFact || "Build cubesats with us!"}
