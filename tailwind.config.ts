@@ -5,61 +5,34 @@ export default {
   darkMode: ["class"],
   content: ["./src/**/*.tsx",],
   theme: {
-  	extend: {
-  		fontFamily: {
-  			sans: [
-  				'var(--font-geist-sans)',
-                    ...fontFamily.sans
-                ]
-  		},
-  		borderRadius: {
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
-  		},
-  		colors: {
-  			background: 'hsl(var(--background))',
-  			foreground: 'hsl(var(--foreground))',
-  			card: {
-  				DEFAULT: 'hsl(var(--card))',
-  				foreground: 'hsl(var(--card-foreground))'
-  			},
-  			popover: {
-  				DEFAULT: 'hsl(var(--popover))',
-  				foreground: 'hsl(var(--popover-foreground))'
-  			},
-  			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
-  			},
-  			secondary: {
-  				DEFAULT: 'hsl(var(--secondary))',
-  				foreground: 'hsl(var(--secondary-foreground))'
-  			},
-  			muted: {
-  				DEFAULT: 'hsl(var(--muted))',
-  				foreground: 'hsl(var(--muted-foreground))'
-  			},
-  			accent: {
-  				DEFAULT: 'hsl(var(--accent))',
-  				foreground: 'hsl(var(--accent-foreground))'
-  			},
-  			destructive: {
-  				DEFAULT: 'hsl(var(--destructive))',
-  				foreground: 'hsl(var(--destructive-foreground))'
-  			},
-  			border: 'hsl(var(--border))',
-  			input: 'hsl(var(--input))',
-  			ring: 'hsl(var(--ring))',
-  			chart: {
-  				'1': 'hsl(var(--chart-1))',
-  				'2': 'hsl(var(--chart-2))',
-  				'3': 'hsl(var(--chart-3))',
-  				'4': 'hsl(var(--chart-4))',
-  				'5': 'hsl(var(--chart-5))'
-  			}
-  		}
-  	}
+    extend: {
+      colors: {
+        nightSky: "var(--color-night-sky)",
+        moonlight: "var(--color-moonlight)",
+        emeraldFizz: "var(--color-emerald-fizz)",
+        pinkBlast: "var(--color-pink-blast)",
+        skyMint: "var(--color-sky-mint)",
+        laserLemon: "var(--color-laser-lemon)",
+        cloudWhite: "var(--color-cloud-white)",
+        orangeSherbert: "var(--color-orange-sherbert)",
+        darkEmerald: "var(--color-dark-emerald)",
+        darkPink: "var(--color-dark-pink)",
+        darkMint: "var(--color-dark-mint)",
+        darkLemon: "var(--color-dark-lemon)",
+        darkGray: "var(--color-dark-gray)",
+        berryBlast: "var(--color-berry-blast)",
+        mustyMangrove: "var(--color-musty-mangrove)",
+        strong: "var(--color-strong)",
+        cream: "var(--color-cream)",
+        slate: "var(--color-slate)",
+        muted: "var(--color-muted)",
+        charcoal: "var(--color-charcoal)",
+      },
+      fontFamily: {
+        poppins: ["var(--font-poppins)"],
+        merriweather: ["var(--font-merriweather)"],
+      },
+    },
   },
 	// eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require("tailwindcss-animate")],
