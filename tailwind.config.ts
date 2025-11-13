@@ -6,6 +6,17 @@ export default {
   content: ["./src/**/*.tsx",],
   theme: {
     extend: {
+	  fontFamily: {
+  		sans: [
+  		  'var(--font-geist-sans)',
+          ...fontFamily.sans
+        ]
+  	  },
+      borderRadius: {
+		lg: 'var(--radius)',
+  		md: 'calc(var(--radius) - 2px)',
+  		sm: 'calc(var(--radius) - 4px)'
+  	  },
       colors: {
         nightSky: "var(--color-night-sky)",
         moonlight: "var(--color-moonlight)",
@@ -27,10 +38,6 @@ export default {
         slate: "var(--color-slate)",
         muted: "var(--color-muted)",
         charcoal: "var(--color-charcoal)",
-      },
-      fontFamily: {
-        poppins: ["var(--font-poppins)"],
-        merriweather: ["var(--font-merriweather)"],
       },
     },
   },
