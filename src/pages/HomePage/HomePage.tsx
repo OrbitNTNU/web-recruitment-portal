@@ -108,7 +108,7 @@ export default function HomePage() {
         className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden"
       >
         <video
-          src="/shared/Galla EN.mp4"
+          src="/shared/Galla.mp4"
           autoPlay
           muted
           loop
