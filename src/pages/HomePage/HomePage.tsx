@@ -3,7 +3,7 @@ import Navbar from "@/components/Shared/Navbar";
 import { useRouter } from "next/navigation";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { AnimatePresence, motion } from "framer-motion";
-import { fadeIn, fadeInUp, fadeOut } from "@/utils/loading/Animations";
+import { fadeIn, fadeInUp, fadeOut } from "@/utils/Animations";
 import { useHomePageStore } from "@/stores/HomePageStore/useHomePageStore";
 import EarthWithSat from "@/components/Three/EarthWithSat";
 import { Footer } from "@/components/Home/Footer";
@@ -47,17 +47,8 @@ export default function HomePage() {
             transition={{ duration: 3.5, ease: "easeInOut" }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black"
           >
-            <video
-              src="/shared/introVideo.mp4"
-              autoPlay
-              muted
-              playsInline
-              onEnded={() => {
-                setShowIntro(false);
-                setHasPlayed(true);
-              }}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
+
+
             <motion.div
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
@@ -100,42 +91,35 @@ export default function HomePage() {
         </div>
       </section>
 
-      <motion.section
-        variants={fadeIn}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ amount: 0.3 }}
-        className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden"
-      >
+      <section className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
         <video
           src="/shared/Galla.mp4"
           autoPlay
           muted
           loop
           playsInline
+          preload="metadata"
           className="absolute inset-0 w-full h-full object-cover"
-          onLoadedMetadata={(e) => {
-            e.currentTarget.currentTime = 7;
-          }}
         />
 
         <div className="absolute inset-0 bg-black/50" />
 
         <motion.div
           variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
           className="relative z-10 max-w-3xl px-6 text-center"
         >
           <h3 className="mb-4 text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-strong)]">
-            Pioneering the Future of Norways Satellite Technology
+            Pioneering the Future of Norway’s Satellite Technology
           </h3>
           <p className="text-base sm:text-lg md:text-xl leading-relaxed text-[var(--color-cloud-white)]">
-            Every orbit begins with a spark of curiosity. At Orbit NTNU, we turn
-            that spark into reality—through collaboration, innovation, and
-            relentless exploration. Join us as we push the boundaries of what’s
-            possible beyond Earth.
+            Every orbit begins with a spark of curiosity...
           </p>
         </motion.div>
-      </motion.section>
+      </section>
+
 
       <motion.section
         variants={fadeIn}

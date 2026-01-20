@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useStepStore } from "@/stores/StepStore/UseStepStore";
-import { handleStepChange } from "@/utils/loading/LoadingHandler";
+import { handleStepChange } from "@/stores/LoadingStore/LoadingHandler";
 
 export default function StepSlider() {
   const { step, setStep } = useStepStore();
