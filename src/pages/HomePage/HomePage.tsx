@@ -70,7 +70,7 @@ export default function HomePage() {
 
       <section className="relative flex min-h-screen flex-col justify-center items-cente overflow-hidden px-6 sm:px-4 md:px-16 sm:text-left">
         <motion.div variants={fadeOut} className="absolute inset-0 bg-cover bg-center  brightness-50" style={{ backgroundImage: "url('/shared/GroupShotOrbit.jpg')" }}>
-          <div className="absolute bottom-0 right-0 left-0 sm:right-10 sm:left-auto flex animate-bounce justify-center sm:justify-end items-center px-4">
+          <div className="absolute bottom-0 sm:justify-center sm:justify-center flex animate-bounce justify-center sm:justify-end items-center px-4">
             <span className="font-poppins mb-2 text-sm text-[var(--color-cloud-white)]">
               Scroll to see why you should apply
             </span>

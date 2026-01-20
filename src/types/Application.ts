@@ -1,4 +1,4 @@
-import {type Position} from "@/interfaces/position";
+import {type Position} from "@/types/position";
 
 export interface Application {
   name: string;

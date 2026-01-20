@@ -1,6 +1,5 @@
 // Original file: proto/helloworld.proto
 
-
 export interface HelloRequest {
   'name'?: (string);
 }

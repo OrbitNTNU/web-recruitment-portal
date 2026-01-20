@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import * as grpc from '@grpc/grpc-js';
 import path from 'path';
 import { loadProto } from '@/client/loadProto';
-import type { ApplicationRequestBody } from '@/interfaces/application_request_body';
+import type { ApplicationRequestBody } from '@/types/application_request_body';
 
 const SUBMIT_PROTO_PATH = path.resolve(process.cwd(), 'src/proto/submitApplication.proto');
 

@@ -1,11 +1,11 @@
 import React from "react";
 import { useStepStore } from "@/stores/StepStore/UseStepStore";
 import { useFormStore } from "@/stores/FormStore/UseFormStore";
-import TeamsAndWishesModal from "@/components/Modaler/TeamsAndWishes/TeamsAndWishesModal";
-import DescriptionAndExperienceModal from "@/components/Modaler/DescriptionAndExperience/DescriptionAndExperienceModal";
-import PersonalInformationModal from "@/components/Modaler/PersonalInformation/PersonalInformationModal";
-import SummaryModal from "@/components/Modaler/Summary/SummaryModal";
-import LoadingModal from "@/components/Modaler/LoadingScreen/LoadingScreenModal";
+import TeamsAndWishesModal from "@/components/Modaler/TeamsAndWishesModal";
+import DescriptionAndExperienceModal from "@/components/Modaler/DescriptionAndExperienceModal";
+import PersonalInformationModal from "@/components/Modaler/PersonalInformationModal";
+import SummaryModal from "@/components/Modaler/SummaryModal";
+import LoadingModal from "@/components/Modaler/LoadingScreenModal";
 import Navbar from "@/components/Shared/Navbar";
 import StepSlider from "@/components/Form/StepSlider";
 
