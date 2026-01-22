@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import Image from "next/image";
-import { container, fadeIn, fadeInUp } from "@/utils/Animations";
+import { container, fadeIn, fadeInUp } from "@/utils/animations";
 
 export const Footer = () => {
     return (

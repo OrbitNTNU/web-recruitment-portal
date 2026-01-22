@@ -10,7 +10,7 @@ import {getServerSideProps} from "@/api/client";
 import Navbar from "@/components/Shared/Navbar";
 import {useEffect, useState} from "react";
 import "@/styles/globals.css";
-import { useSessionStorageSync, useTableStore } from "@/stores/TableStore/UseTableStore";
+import { useSessionStorageSync, useTableStore } from "@/stores/UseTableStore";
 import { AnimatePresence, motion } from "framer-motion";
 
 

@@ -2,7 +2,7 @@
 import type {ApplicationWithPositions} from "@/interfaces/application";
 import type {Position} from "@/types/position";
 import type {Column, ColumnDef, FilterFn, Row} from "@tanstack/react-table";
-import {Button} from "@/components/UI/button";
+import {Button} from "@/components/UI/Button";
 import {ArrowUpDown} from "lucide-react";
 
 const  sortingButton = (label: string, column: Column<ApplicationWithPositions>) => (

@@ -1,6 +1,6 @@
 import {type Position} from "@/types/position";
 
-export interface Application {
+export type Application = {
   name: string;
   personalEmail: string;
   ntnuUsername: string;
@@ -13,14 +13,14 @@ export interface Application {
   saveApplication: boolean;
 }
 
-export interface Props {
+export type Props = {
   applications: Application[];
 }
-export interface PropsWithPositions {
+export type PropsWithPositions = {
   applications: ApplicationWithPositions[];
 }
 
-export interface ApplicationWithPositions {
+export type ApplicationWithPositions = {
   name: string;
   personalEmail: string;
   ntnuUsername: string;
@@ -35,10 +35,10 @@ export interface ApplicationWithPositions {
 
 }
 
-export interface Member {
+export type Member = {
   name: string;
 }
 
-export interface Comment {
+export type Comment = {
   comment: string
 }

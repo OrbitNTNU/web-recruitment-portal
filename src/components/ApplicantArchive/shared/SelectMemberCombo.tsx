@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { Button } from "@/components/UI/button"
+import { Button } from "@/components/UI/Button"
 import {
     Command,
     CommandEmpty,
@@ -8,12 +8,12 @@ import {
     CommandInput,
     CommandItem,
     CommandList,
-} from "@/components/UI/command"
+} from "@/components/UI/Command"
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
-} from "@/components/UI/popover"
+} from "@/components/UI/Popover"
 import {useState} from "react";
 import {X} from "lucide-react";
 

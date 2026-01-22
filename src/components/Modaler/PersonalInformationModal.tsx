@@ -3,8 +3,8 @@ import StepSlider from "@/components/Form/StepSlider";
 import {
   useFormStore,
   useSessionStorageSync,
-} from "@/stores/FormStore/UseFormStore";
-import { useStepStore } from "@/stores/StepStore/UseStepStore";
+} from "@/stores/UseFormStore";
+import { useStepStore } from "@/stores/UseStepStore";
 import { motion } from "framer-motion";
 
 export default function PersonalInfoModal() {

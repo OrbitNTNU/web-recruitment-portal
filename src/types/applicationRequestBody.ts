@@ -1,4 +1,4 @@
-export interface ApplicationRequestBody {
+export type ApplicationRequestBody = {
   name: string;
   personalEmail: string;
   ntnuUsername: string;

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
-import { useFunFactStore } from "@/stores/FunFactStore/UseFunFactStore";
+import { useFunFactStore } from "@/stores/UseFunFactStore";
 import { useRouter } from "next/navigation";
 
 const Navbar = () => {

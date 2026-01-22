@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@/components/Shared/NavButton";
-import { handleStepChange } from "@/stores/LoadingStore/LoadingHandler";
+import { handleStepChange } from "@/stores/utils/LoadingUtils";
 
 const BackButton: React.FC = () => {
   return (

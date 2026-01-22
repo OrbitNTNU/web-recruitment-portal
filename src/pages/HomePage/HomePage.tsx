@@ -3,8 +3,8 @@ import Navbar from "@/components/Shared/Navbar";
 import { useRouter } from "next/navigation";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { AnimatePresence, motion } from "framer-motion";
-import { fadeIn, fadeInUp, fadeOut } from "@/utils/Animations";
-import { useHomePageStore } from "@/stores/HomePageStore/useHomePageStore";
+import { fadeIn, fadeInUp, fadeOut } from "@/utils/animations";
+import { useHomePageStore } from "@/stores/useHomePageStore";
 import EarthWithSat from "@/components/Three/EarthWithSat";
 import { Footer } from "@/components/Home/Footer";
 
