@@ -73,6 +73,7 @@ const EarthScene = () => {
     <Canvas camera={{ position: [8, 4, 8], fov: 50 }}>
       <ambientLight intensity={0.7} />
       <directionalLight position={[5, 5, 5]} intensity={1.2} />
+      <fog attach="fog" args={["white", 5, 30]} />
 
       <Suspense fallback={null}>
         <Earth />

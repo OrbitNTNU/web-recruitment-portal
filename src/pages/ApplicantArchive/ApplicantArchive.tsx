@@ -1,5 +1,5 @@
 import TableComponent from "@/components/ApplicantArchive/table/TableComponent";
-import {type ApplicationWithPositions, type PropsWithPositions} from "@/interfaces/application";
+import {type ApplicationWithPositions, type PropsWithPositions} from "@/types/application";
 import {
     allColumns,
     type CustomColumnDef,
@@ -10,7 +10,7 @@ import {getServerSideProps} from "@/api/client";
 import Navbar from "@/components/Shared/Navbar";
 import {useEffect, useState} from "react";
 import "@/styles/globals.css";
-import { useSessionStorageSync, useTableStore } from "@/stores/UseTableStore";
+import { useSessionStorageSync, useTableStore } from "@/stores/useTableStore";
 import { AnimatePresence, motion } from "framer-motion";
 
 

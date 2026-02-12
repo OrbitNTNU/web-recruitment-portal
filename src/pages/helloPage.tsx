@@ -1,5 +1,5 @@
 import { getServerSideProps } from "@/api/client";
-import type { Props } from "@/interfaces/application";
+import type { Props } from "@/types/application";
 
 function HelloPage({ applications }: Props) {
   return (

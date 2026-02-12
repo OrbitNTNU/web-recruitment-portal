@@ -1,8 +1,8 @@
 import {
   useFormStore,
   useSessionStorageSync,
-} from "@/stores/UseFormStore";
-import { useStepStore } from "@/stores/UseStepStore";
+} from "@/stores/useFormStore";
+import { useStepStore } from "@/stores/useStepStore";
 import { motion } from "framer-motion";
 import StepSlider from "@/components/Form/StepSlider";
 import BackButton from "@/components/Form/BackButton";
@@ -32,7 +32,7 @@ export default function ApplyStep() {
         className="relative flex w-full max-w-md flex-col items-center justify-center overflow-y-auto p-6 sm:p-8"
       >
         <h2 className="mb-6 text-center text-3xl font-bold text-white">
-          🚀 Overview 🚀
+          Summary Overview
         </h2>
 
         <div className="grid max-h-[60vh] w-full grid-cols-1 gap-4 overflow-y-auto pr-2 text-white sm:grid-cols-2">

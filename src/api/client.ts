@@ -1,17 +1,17 @@
 import * as grpc from "@grpc/grpc-js";
 import path from "path";
 import type { GetServerSideProps } from "next";
-import { loadProto } from "@/client/loadProto";
+import { loadProto } from "@/server/grpc/loadProto";
 import type { Application, Props } from "@/types/application";
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const GREETER_PROTO_PATH = path.resolve(
     process.cwd(),
-    "src/proto/helloworld.proto",
+    "src/server/grpc/protos/helloworld.proto",
   );
   const APP_QUERY_PROTO_PATH = path.resolve(
     process.cwd(),
-    "src/proto/applicationQuery.proto",
+    "src/server/grpc/protos/applicationQuery.proto",
   );
 
   const greeterDef = loadProto(GREETER_PROTO_PATH);
