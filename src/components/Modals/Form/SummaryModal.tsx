@@ -1,13 +1,37 @@
-import {
-  useFormStore,
-  useSessionStorageSync,
-} from "@/stores/useFormStore";
-import { useStepStore } from "@/stores/useStepStore";
 import { motion } from "framer-motion";
-import StepSlider from "@/components/Form/StepSlider";
-import BackButton from "@/components/Form/BackButton";
+import { useFormStore, useSessionStorageSync } from "@/stores/useFormStore";
 
-export default function ApplyStep() {
+interface SummaryItemProps {
+  label: string;
+  value: string | number;
+}
+
+const SummaryItem = ({ label, value }: SummaryItemProps) => (
+  <div className="flex justify-between items-center border-b border-[var(--color-slate)]/20 pb-3">
+    <span className="text-sm text-[var(--color-muted)]">{label}</span>
+    <span className="text-sm font-medium text-[var(--color-cloud-white)]">
+      {value || "—"}
+    </span>
+  </div>
+);
+
+interface TextBlockProps {
+  title: string;
+  content: string;
+}
+
+const TextBlock = ({ title, content }: TextBlockProps) => (
+  <div className="space-y-2 rounded-lg border border-[var(--color-slate)]/20 bg-[var(--color-night-sky)]/50 p-5">
+    <h4 className="text-sm font-semibold text-[var(--color-cloud-white)]">
+      {title}
+    </h4>
+    <p className="whitespace-pre-line text-sm leading-relaxed text-[var(--color-muted)]">
+      {content || "—"}
+    </p>
+  </div>
+);
+
+export default function SummaryModal() {
   const {
     fullName,
     username,
@@ -16,83 +40,100 @@ export default function ApplyStep() {
     emailAddress,
     fieldOfStudy,
     yearOfStudy,
-    positions,
-    experience,
     description,
+    experience,
+    teams,
   } = useFormStore();
 
   useSessionStorageSync();
 
+  const teamsDisplay = teams.length > 0 
+    ? teams.map(t => t.replace(/-/g, " ")).join(", ")
+    : "No teams selected";
+
   return (
-    <div className="flex min-h-screen items-start justify-center px-4 pt-10 md:items-center md:pt-0">
-      <motion.article
-        initial={{ opacity: 0, scale: 0.9, y: -30 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        className="relative flex w-full max-w-md flex-col items-center justify-center overflow-y-auto p-6 sm:p-8"
+    <div className="flex min-h-[calc(100vh-180px)] items-center justify-center px-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="w-full max-w-5xl space-y-10"
       >
-        <h2 className="mb-6 text-center text-3xl font-bold text-white">
-          Summary Overview
-        </h2>
-
-        <div className="grid max-h-[60vh] w-full grid-cols-1 gap-4 overflow-y-auto pr-2 text-white sm:grid-cols-2">
-          <OverviewItem label="Full Name" value={fullName} />
-          <OverviewItem label="Username" value={username} />
-          <OverviewItem label="Email" value={email} />
-          <OverviewItem label="Phone Number" value={phoneNumber} />
-          <OverviewItem label="Alt. Email" value={emailAddress} />
-          <OverviewItem label="Field of Study" value={fieldOfStudy} />
-          <OverviewItem label="Year of Study" value={yearOfStudy} />
-        </div>
-
-        <div className="mt-6 w-full rounded-xl border border-purple-300 bg-gray-700 p-4 text-purple-100 shadow-md">
-          <h3 className="mb-2 text-lg font-semibold text-white">
-            Description:
-          </h3>
-          <p className="rounded-md bg-gray-700 p-2 text-purple-100">
-            {description}
+        <div className="space-y-3 text-center">
+          <h1 className="text-[var(--color-strong)]">
+            Review Your Application
+          </h1>
+          <p className="text-[var(--color-muted)]">
+            Make sure everything looks correct before submitting
           </p>
         </div>
 
-        <div className="mt-6 w-full rounded-xl border border-purple-300 bg-gray-700 p-4 text-purple-100 shadow-md">
-          <h3 className="mb-2 text-lg font-semibold text-white">Experience:</h3>
-          <p className="rounded-md bg-gray-700 p-2 text-purple-100">
-            {experience}
-          </p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="space-y-6">
+            <div className="space-y-4">
+              <h3 className="text-base font-semibold text-[var(--color-cloud-white)] border-b border-[var(--color-slate)]/30 pb-3">
+                Personal Information
+              </h3>
+              <div className="space-y-3">
+                <SummaryItem label="Full Name" value={fullName} />
+                <SummaryItem label="Field of Study" value={fieldOfStudy} />
+                <SummaryItem label="Year of Study" value={yearOfStudy} />
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-base font-semibold text-[var(--color-cloud-white)] border-b border-[var(--color-slate)]/30 pb-3">
+                Contact Information
+              </h3>
+              <div className="space-y-3">
+                <SummaryItem label="Username" value={username} />
+                <SummaryItem label="Primary Email" value={email} />
+                <SummaryItem label="Secondary Email" value={emailAddress} />
+                <SummaryItem label="Phone" value={phoneNumber} />
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-base font-semibold text-[var(--color-cloud-white)] border-b border-[var(--color-slate)]/30 pb-3">
+                Team Preferences
+              </h3>
+              <div className="rounded-lg border border-[var(--color-slate)]/20 bg-[var(--color-night-sky)]/50 p-4">
+                <p className="text-sm capitalize text-[var(--color-cloud-white)]">
+                  {teamsDisplay}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <h3 className="text-base font-semibold text-[var(--color-cloud-white)] border-b border-[var(--color-slate)]/30 pb-3">
+              About You
+            </h3>
+            <div className="space-y-4">
+              <TextBlock title="Description" content={description} />
+              <TextBlock title="Experience" content={experience} />
+            </div>
+          </div>
         </div>
 
-        <div className="mt-8 flex w-full justify-center space-x-4">
-          <BackButton />
+        <div className="flex justify-between pt-6">
           <motion.button
             type="submit"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
-            className="rounded-md border border-blue-600 bg-blue-700 px-6 py-2 text-blue-100 shadow transition-all hover:bg-blue-600"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="
+              rounded-lg border-2 border-[var(--color-berry-blast)] 
+              bg-[var(--color-berry-blast)] px-8 py-3 
+              text-sm font-semibold text-white
+              transition-all duration-200
+              hover:bg-[var(--color-berry-blast)]/90
+              shadow-lg shadow-[var(--color-berry-blast)]/30
+            "
           >
-            Apply to Orbit
+            Submit Application
           </motion.button>
         </div>
-      </motion.article>
+      </motion.div>
     </div>
-  );
-}
-
-function OverviewItem({
-  label,
-  value,
-}: {
-  label: string;
-  value: string | number;
-}) {
-  return (
-    <motion.div
-      whileHover={{ scale: 1.01 }}
-      className="w-full rounded-xl border border-purple-300 bg-gray-700 p-3 shadow-md transition-all"
-    >
-      <span className="block text-sm font-medium text-blue-300">{label}</span>
-      <span className="text-md break-words font-medium text-white">
-        {value || "—"}
-      </span>
-    </motion.div>
   );
 }

@@ -1,104 +1,101 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { useStepStore } from "@/stores/useStepStore";
 import { handleStepChange } from "@/stores/utils/LoadingUtils";
 
-export default function StepSlider() {
-  const { step, setStep } = useStepStore();
+const STEPS = [
+  { label: "Personal Info" },
+  { label: "Contact & About" },
+  { label: "Teams" },
+  { label: "Review" },
+] as const;
 
-  const steps = [
-    { label: "Personal Information", img: "/other/steps/half-moon.png" },
-    { label: "Description", img: "/other/steps/half-moon2.png" },
-    { label: "Teams and Wishes", img: "/other/steps/half-moon3.png" },
-    { label: "Summary", img: "/other/steps/full-moon.png" },
-  ];
+export default function StepSlider() {
+  const { step } = useStepStore();
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center border-t border-[var(--color-slate)] bg-[var(--color-background)] py-6">
-      <div className="flex w-full max-w-2xl items-center justify-between px-8">
-        {steps.map((item, index) => {
-          const stepIndex = index + 1;
-          const isActive = step === stepIndex;
-          const isCompleted = step > stepIndex;
+    <div className="w-full py-6">
+      <div className="mx-auto max-w-2xl px-6">
+        <div className="relative flex items-center justify-between">
+          <div className="absolute left-8 right-8 top-4 h-[1px] bg-[var(--color-slate)]/20" />
+          
+          <motion.div
+            className="absolute left-8 top-4 h-[1px] bg-[var(--color-berry-blast)]"
+            initial={{ width: "0%" }}
+            animate={{ 
+              width: `calc(${((step - 1) / (STEPS.length - 1)) * 100}% * 0.88)` 
+            }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          />
 
-          return (
-            <div
-              key={item.label}
-              className="group relative flex flex-col items-center"
-            >
-              <motion.div
-                className={`z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 cursor-pointer transition-all duration-300 ${
-                  isActive
-                    ? "border-[var(--color-cloud-white)]"
-                    : isCompleted
-                      ? "border-[var(--color-sky-mint)]"
-                      : "border-[var(--color-slate)]"
-                }`}
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => handleStepChange("goto", stepIndex, 2000)}
-                animate={
-                  isActive
-                    ? {
-                        x: [0, -2, 2, -1, 1, 0], 
-                        transition: {
-                          duration: 0.6,
-                          ease: "easeInOut",
-                          repeat: Infinity,
-                        },
-                      }
-                    : { x: 0 }
-                }
+          {STEPS.map((item, index) => {
+            const stepNumber = index + 1;
+            const isActive = step === stepNumber;
+            const isCompleted = step > stepNumber;
+
+            return (
+              <div
+                key={item.label}
+                className="relative flex flex-col items-center gap-2.5 z-10"
               >
-                <Image
-                  src={item.img}
-                  alt={item.label}
-                  width={24}
-                  height={24}
-                  className={`opacity-90 ${
-                    isActive
-                      ? "brightness-125"
+                <motion.button
+                  type="button"
+                  onClick={() => handleStepChange("goto", stepNumber, 2000)}
+                  className={`
+                    relative flex h-8 w-8 items-center justify-center rounded-full
+                    text-xs font-semibold transition-all duration-300
+                    ${isActive 
+                      ? "bg-[var(--color-berry-blast)] text-white scale-110" 
                       : isCompleted
-                        ? "brightness-110"
-                        : "brightness-75"
-                  }`}
-                />
-              </motion.div>
+                        ? "bg-[var(--color-berry-blast)]/20 text-[var(--color-berry-blast)]"
+                        : "bg-[var(--color-slate)]/10 text-[var(--color-muted)]"
+                    }
+                    hover:scale-110
+                  `}
+                  whileHover={{ scale: 1.15 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {isCompleted ? (
+                    <motion.svg
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="h-4 w-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={3}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </motion.svg>
+                  ) : (
+                    <span>{stepNumber}</span>
+                  )}
+                </motion.button>
 
-              <span
-                className={`mt-2 text-[0.7rem] text-center ${
-                  isActive
-                    ? "text-[var(--color-strong)]"
-                    : isCompleted
-                      ? "text-[var(--color-sky-mint)]"
-                      : "text-[var(--color-muted)]"
-                }`}
-              >
-                {item.label}
-              </span>
-
-              {index < steps.length - 1 && (
-                <motion.div
-                  className="absolute left-1/2 top-5 w-20"
-                  initial={{ opacity: 0.3 }}
-                  animate={{
-                    backgroundColor: isCompleted
-                      ? "var(--color-sky-mint)"
-                      : "var(--color-slate)",
-                    opacity: isCompleted ? 1 : 0.3,
-                  }}
-                  transition={{ duration: 0.4 }}
-                  style={{
-                    height: "1px",
-                    transform: "translateX(50%)",
-                  }}
-                />
-              )}
-            </div>
-          );
-        })}
+                <span
+                  className={`
+                    text-xs font-medium text-center whitespace-nowrap transition-colors duration-300
+                    hidden sm:block
+                    ${isActive 
+                      ? "text-[var(--color-cloud-white)]" 
+                      : isCompleted
+                        ? "text-[var(--color-berry-blast)]"
+                        : "text-[var(--color-muted)]"
+                    }
+                  `}
+                >
+                  {item.label}
+                </span>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

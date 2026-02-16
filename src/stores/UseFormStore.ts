@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { useEffect } from "react";
+import { Team } from "@/consts/teams";
 
 interface FormValues {
   fullName: string;
@@ -11,8 +12,8 @@ interface FormValues {
   yearOfStudy: number;
   positions: [];
   experience: string;
-  description: string; 
-  teams: []; 
+  description: string;
+  teams: Team[];
   setFullName: (fullName: string) => void;
   setUsername: (username: string) => void;
   setEmail: (email: string) => void;
@@ -23,7 +24,7 @@ interface FormValues {
   setPositions: (positions: []) => void;
   setExperience: (comments: string) => void;
   setDescription: (description: string) => void;
-  setTeams: (teams: []) => void;
+  setTeams: (teams: Team[]) => void;
   resetForm: () => void;
 }
 
@@ -77,7 +78,7 @@ export const useSessionStorageSync = () => {
 
   useEffect(() => {
     const savedState = loadState();
-    useFormStore.setState(savedState); 
+    useFormStore.setState(savedState);
   }, []);
 
   useEffect(() => {

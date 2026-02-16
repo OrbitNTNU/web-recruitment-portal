@@ -11,6 +11,8 @@ import StepSlider from "@/components/Form/StepSlider";
 import { AnimatePresence, motion } from "framer-motion";
 import HyperspaceIntro from "@/components/Canvas/HyperSpaceIntro";
 
+const WARP_DURATION = 1500;
+
 export default function FormPage() {
   const [showWarp, setShowWarp] = useState(true);
   const [showPage, setShowPage] = useState(false);
@@ -33,11 +35,11 @@ export default function FormPage() {
       name: fullName,
       personalEmail: emailAddress,
       ntnuUsername: username,
-      phoneNumber: phoneNumber,
-      fieldOfStudy: fieldOfStudy,
-      yearOfStudy: yearOfStudy,
-      experience: experience,
-      description: description,
+      phoneNumber,
+      fieldOfStudy,
+      yearOfStudy,
+      experience,
+      description,
       submissionDate: new Date().toISOString(),
       saveApplication: true,
     };
@@ -48,19 +50,16 @@ export default function FormPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      console.log(res);
 
-      type SubmitResponse = { message: string } | { error: string };
-      const data = (await res.json()) as SubmitResponse;
-      console.log(data);
+      const data = await res.json();
+      
       if (!res.ok) {
-        const errMsg = "error" in data ? data.error : "Submission failed";
-        throw new Error(errMsg);
+        throw new Error(data?.error || "Submission failed");
       }
 
       alert("Application submitted successfully!");
     } catch (err) {
-      console.error("Submission error:", err);
+      console.error(err);
       alert("Failed to submit application.");
     }
   };
@@ -69,18 +68,17 @@ export default function FormPage() {
     const timer = setTimeout(() => {
       setShowWarp(false);
       setShowPage(true);
-    }, 1500);
+    }, WARP_DURATION);
+    
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <main className="relative h-screen w-screen overflow-y-clip">
+    <main className="relative flex min-h-screen flex-col bg-[var(--color-moonlight)]">
       <AnimatePresence>
         {showWarp && (
           <motion.div
             className="fixed inset-0 z-50"
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
           >
@@ -90,26 +88,25 @@ export default function FormPage() {
       </AnimatePresence>
 
       {showPage && (
-        <div>
+        <>
           <Navbar />
           <LoadingModal logoSrc="logos/orbitLogo.png" />
 
           <form
-            className="relative flex h-full items-center justify-center "
+            className="relative flex flex-1 items-center justify-center"
             onSubmit={submitApplication}
           >
-            <section className="relative h-full w-full p-6 ">
+            <section className="w-full">
               {step === 1 && <PersonalInformationModal />}
               {step === 2 && <DescriptionAndExperienceModal />}
               {step === 3 && <TeamsAndWishesModal />}
               {step === 4 && <SummaryModal />}
             </section>
           </form>
-          <StepSlider />
-        </div>
-      )
-      }
-    </main>
 
+          <StepSlider />
+        </>
+      )}
+    </main>
   );
 }
