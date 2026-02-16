@@ -9,10 +9,6 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/Home',
-        destination: '/HomePage/HomePage',
-      },
-      {
         source: '/Form',
         destination: '/FormPage/FormPage',
       },
