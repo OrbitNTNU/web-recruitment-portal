@@ -51,12 +51,27 @@ export default function FormPage() {
         body: JSON.stringify(formData),
       });
 
-      const data = await res.json();
-      
-      if (!res.ok) {
-        throw new Error(data?.error || "Submission failed");
-      }
+      type SubmitResponse = {
+        error?: string;
+      };
 
+      const data: unknown = await res.json();
+
+      if (!res.ok) {
+        let errorMessage = "Submission failed";
+
+        if (
+          typeof data === "object" &&
+          data !== null &&
+          "error" in data &&
+          typeof (data as SubmitResponse).error === "string"
+        ) {
+          errorMessage = (data as SubmitResponse).error!;
+        }
+
+        throw new Error(errorMessage);
+      }
+      
       alert("Application submitted successfully!");
     } catch (err) {
       console.error(err);
@@ -69,7 +84,7 @@ export default function FormPage() {
       setShowWarp(false);
       setShowPage(true);
     }, WARP_DURATION);
-    
+
     return () => clearTimeout(timer);
   }, []);
 
