@@ -7,7 +7,6 @@ import {
 } from "@/components/ApplicantArchive/table/TableColumns";
 import ColumnsChoice from "@/components/ApplicantArchive/shared/ColumnsChoice";
 import {getServerSideProps} from "@/api/client";
-import Navbar from "@/components/Shared/Navbar";
 import {useEffect, useState} from "react";
 import "@/styles/globals.css";
 import { useSessionStorageSync, useTableStore } from "@/stores/useTableStore";

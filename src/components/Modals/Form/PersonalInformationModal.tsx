@@ -37,7 +37,7 @@ export default function PersonalInformationModal() {
             Personal Information
           </h1>
           <p className="text-[var(--color-muted)]">
-            Let's start with the basics
+            Let&apos;s start with the basics
           </p>
         </div>
 

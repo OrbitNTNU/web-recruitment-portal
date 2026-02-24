@@ -1,6 +1,6 @@
 export interface FormValues {
   name: string;
-  personalEmail: String;
+  personalEmail: string;
   ntnuUsername: string;
   phoneNumber: string;
   fieldOfStudy: string;
@@ -8,7 +8,7 @@ export interface FormValues {
   experience: string;
   comments: string;
   submissionDate: string;
-  saveApplication: Boolean;
+  saveApplication: boolean;
   setName: (name: string) => void,
   setPersonalEmail: (email: string) => void,
   setNtnuUsername: (ntnuUsername: string) => void,
@@ -19,5 +19,5 @@ export interface FormValues {
   setComments: (comments: string) => void,
   setaExperiene: (experience: string) => void,
   setSubmissionDate: (submissionDate: string) => void,
-  setSaveApplication: (saveApplication: Boolean) => void
+  setSaveApplication: (saveApplication: boolean) => void
 }

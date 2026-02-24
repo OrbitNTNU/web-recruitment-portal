@@ -1,4 +1,4 @@
-import type {ApplicationWithPositions, Member, Comment} from "@/interfaces/application";
+import type {ApplicationWithPositions, Member, Comment} from "@/types/application";
 import SelectMemberCombo from "@/components/ApplicantArchive/shared/SelectMemberCombo";
 import CommentBox from "@/components/ApplicantArchive/shared/CommentBox";
 

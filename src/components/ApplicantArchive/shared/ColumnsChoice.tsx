@@ -1,4 +1,4 @@
-import type { ApplicationWithPositions } from "@/interfaces/application";
+import type { ApplicationWithPositions } from "@/types/application";
 import { type CustomColumnDef } from "../table/TableColumns";
 import React, { type Dispatch, type SetStateAction } from "react";
 

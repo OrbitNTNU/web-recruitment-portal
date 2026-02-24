@@ -1,7 +1,7 @@
 
-import {DataTable} from "@/components/ApplicantArchive/table/ui/data-table";
+import { DataTable } from "@/components/ApplicantArchive/table/ui/data-table";
 import { type CustomColumnDef } from "./TableColumns";
-import {type ApplicationWithPositions} from "@/interfaces/application";
+import {type ApplicationWithPositions} from "@/types/application";
 
 interface TableComponentProps {
   applicationValues: ApplicationWithPositions[];

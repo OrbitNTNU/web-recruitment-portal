@@ -30,7 +30,7 @@ export const WarpLines = () => {
         const lines = linesRef.current;
         if (!lines) return;
 
-        const geom = lines.geometry as THREE.BufferGeometry;
+        const geom = lines.geometry;
         const attr = geom.getAttribute("position");
         if (!(attr instanceof THREE.BufferAttribute)) return;
 

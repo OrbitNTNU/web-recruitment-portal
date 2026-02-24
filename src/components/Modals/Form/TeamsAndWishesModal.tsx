@@ -44,7 +44,7 @@ export default function TeamsAndWishesModal() {
             Choose Your Teams
           </h1>
           <p className="text-[var(--color-muted)]">
-            Select one or more teams you're interested in
+            Select one or more teams you&apos;re interested in
           </p>
         </div>
 

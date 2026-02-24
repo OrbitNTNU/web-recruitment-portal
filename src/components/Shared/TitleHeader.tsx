@@ -12,9 +12,7 @@ const TitleHeader = ({ title, titleText, description }: TitleHeaderProps) => {
     <div className="flex flex-row">
       <section className="w-full">
         <div className="my-2">
-          {title ? (
-            title
-          ) : (
+          {title ?? (
             <span className="text-2xl md:w-2/3 md:text-5xl lg:w-1/2">
               {titleText}
             </span>

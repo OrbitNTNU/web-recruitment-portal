@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { useEffect } from "react";
-import { Team } from "@/consts/teams";
+import { type Team } from "@/consts/teams";
 
 interface FormValues {
   fullName: string;
