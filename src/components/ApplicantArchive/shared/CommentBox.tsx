@@ -1,11 +1,11 @@
 import * as React from "react";
 
-import { Button } from "@/components/UI/Button";
+import { Button } from "@/components/UI/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/UI/Popover";
+} from "@/components/UI/popover";
 import { useState } from "react";
 
 interface Comment {

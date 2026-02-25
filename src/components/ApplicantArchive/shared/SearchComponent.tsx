@@ -1,4 +1,4 @@
-import { Input } from "@/components/UI/Input";
+import { Input } from "@/components/UI/input";
 import { type Table } from "@tanstack/react-table";
 import { Search } from "lucide-react";
 

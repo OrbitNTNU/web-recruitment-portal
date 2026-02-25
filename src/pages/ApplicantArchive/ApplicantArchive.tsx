@@ -8,7 +8,6 @@ import {
 import ColumnsChoice from "@/components/ApplicantArchive/shared/ColumnsChoice";
 import {getServerSideProps} from "@/api/client";
 import {useEffect, useState} from "react";
-import "@/styles/globals.css";
 import { useSessionStorageSync, useTableStore } from "@/stores/useTableStore";
 import { AnimatePresence, motion } from "framer-motion";
 
