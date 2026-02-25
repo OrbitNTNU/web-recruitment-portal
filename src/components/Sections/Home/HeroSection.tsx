@@ -1,4 +1,3 @@
-import StarsBackground from "@/components/Canvas/StarsBackground";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export function HeroSection({ onApply }: { onApply: () => void }) {
@@ -9,8 +8,6 @@ export function HeroSection({ onApply }: { onApply: () => void }) {
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6">
-      <StarsBackground />
-
       <motion.div
         style={{ opacity: fadeOut, y: driftDown }}
         className="relative z-10 max-w-3xl text-center"
@@ -21,7 +18,7 @@ export function HeroSection({ onApply }: { onApply: () => void }) {
           transition={{ delay: 0.25 }}
           className="mb-4 inline-block text-[11px] tracking-[0.4em] text-[var(--color-laser-lemon)]"
         >
-          ◆ WELCOME TO ORBIT NTNU RECRUITMENT PORTAL
+          WELCOME TO ORBIT NTNU RECRUITMENT PORTAL
         </motion.span>
 
         <motion.h1
@@ -53,13 +50,16 @@ export function HeroSection({ onApply }: { onApply: () => void }) {
             text-white/80
           "
         >
-        BLBALBALBABA
+          Join Us and Make a Difference
           <br />
-          BLABLABLABLABLAB BLABLABLABABA BLABLABLABLAA.
+          We are always looking for passionate people - apply for a listed role or reach out if your interests fit Orbit NTNU in another way.
         </motion.p>
 
         <motion.button
           onClick={onApply}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.25 }}
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.96 }}
           className="
@@ -88,7 +88,7 @@ export function HeroSection({ onApply }: { onApply: () => void }) {
           text-white/60
         "
       >
-        <span className="mb-1 animate-bounce">
+        <span className="text-[10px] animate-bounce">
           SCROLL
         </span>
       </motion.div>

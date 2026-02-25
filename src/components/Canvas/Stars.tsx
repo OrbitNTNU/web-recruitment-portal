@@ -1,10 +1,13 @@
 import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import type * as THREE from "three";
 
-export const Stars = () => {
+export const Stars = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
   const pointsRef = useRef<THREE.Points>(null!);
-  const starCount = 3000;
+  const starCount = 1500;
+  const targetSpeed = 0.02; 
+  const introDuration = 2; 
+  const speedRef = useRef(1.5);
 
   const positions = useMemo(() => {
     const arr = new Float32Array(starCount * 3);
@@ -20,16 +23,26 @@ export const Stars = () => {
     return arr;
   }, []);
 
-  useFrame(({ clock }) => {
-    if (!pointsRef.current) return;
+ const hasCompleted = useRef(false);
 
-    const t = clock.elapsedTime;
+useFrame(({ clock }, delta) => {
+  const elapsed = clock.elapsedTime;
 
-    pointsRef.current.rotation.y = t * 0.02;
-    pointsRef.current.rotation.x = Math.sin(t * 0.1) * 0.2;
-    pointsRef.current.rotation.z = Math.cos(t * 0.05) * 0.1;
-  });
+  if (elapsed < introDuration) {
+    const progress = elapsed / introDuration;
+    const eased = 1 - Math.pow(1 - progress, 3);
+    speedRef.current = 1.5 - eased * (1.5 - targetSpeed);
+  } else {
+    speedRef.current = targetSpeed;
 
+    if (!hasCompleted.current) {
+      hasCompleted.current = true;
+      onIntroComplete?.();
+    }
+  }
+
+  pointsRef.current.rotation.y += speedRef.current * delta;
+});
   return (
     <points ref={pointsRef}>
       <bufferGeometry>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useStepStore } from "@/stores/useStepStore";
 import { useFormStore } from "@/stores/useFormStore";
 import TeamsAndWishesModal from "@/components/Modals/Form/TeamsAndWishesModal";
@@ -9,13 +9,8 @@ import LoadingModal from "@/components/Modals/Form/LoadingScreenModal";
 import Navbar from "@/components/Shared/Navbar";
 import StepSlider from "@/components/Form/StepSlider";
 import { AnimatePresence, motion } from "framer-motion";
-import HyperspaceIntro from "@/components/Canvas/HyperSpaceIntro";
-
-const WARP_DURATION = 1500;
 
 export default function FormPage() {
-  const [showWarp, setShowWarp] = useState(true);
-  const [showPage, setShowPage] = useState(false);
   const { step } = useStepStore();
   const {
     description,
@@ -78,32 +73,9 @@ export default function FormPage() {
       alert("Failed to submit application.");
     }
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowWarp(false);
-      setShowPage(true);
-    }, WARP_DURATION);
-
-    return () => clearTimeout(timer);
-  }, []);
-
+  
   return (
-    <main className="relative flex min-h-screen flex-col bg-[var(--color-moonlight)]">
-      <AnimatePresence>
-        {showWarp && (
-          <motion.div
-            className="fixed inset-0 z-50"
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <HyperspaceIntro label="FORM" />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {showPage && (
-        <>
+    <main className="relative flex min-h-screen flex-col">
           <Navbar />
           <LoadingModal logoSrc="logos/orbitLogo.png" />
 
@@ -120,8 +92,6 @@ export default function FormPage() {
           </form>
 
           <StepSlider />
-        </>
-      )}
     </main>
   );
 }
