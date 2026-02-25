@@ -1,12 +1,8 @@
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import React from "react";
+import HomePage from "./HomePage/HomePage";
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function Home() {
   return (
-    <div>
-      <Component {...pageProps} />
-      <SpeedInsights />
-    </div>
-  );
+    <HomePage />
+  )
 }
