@@ -1,7 +1,7 @@
 import Navbar from "@/components/Shared/Navbar";
 import { useRouter } from "next/navigation";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { Footer } from "@/components/Home/Footer";
+import { Footer } from "@/components/Shared/Footer";
 import { HeroSection } from "@/components/Sections/Home/HeroSection";
 import { OrbitSection } from "@/components/Sections/Home/OrbitSection";
 import StarsBackground from "@/components/Canvas/StarsBackground";
