@@ -4,7 +4,6 @@ import { motion, Reorder } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useFormStore, useSessionStorageSync } from "@/stores/useFormStore";
 import type { Team } from "@/types/team";
-import { getPublicTeams } from "@/api/teams";
 
 const container = {
   hidden: { opacity: 0 },
@@ -29,8 +28,14 @@ export default function TeamsAndWishesModal() {
   useEffect(() => {
     async function load() {
       try {
-        const teams = await getPublicTeams();
-        setAvailableTeams(teams);
+        const res = await fetch("/api/teams");
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch teams");
+        }
+
+        const teamsList: Team[] = await res.json();
+        setAvailableTeams(teamsList);
       } catch (error) {
         console.error(error);
       } finally {
