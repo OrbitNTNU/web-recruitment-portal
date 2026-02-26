@@ -34,8 +34,8 @@ export default function TeamsAndWishesModal() {
           throw new Error("Failed to fetch teams");
         }
 
-        const teamsList: Team[] = await res.json();
-        setAvailableTeams(teamsList);
+        const teamsList: unknown = await res.json();
+        setAvailableTeams(teamsList as Team[]);
       } catch (error) {
         console.error(error);
       } finally {

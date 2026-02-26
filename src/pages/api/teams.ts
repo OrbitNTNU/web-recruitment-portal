@@ -1,5 +1,15 @@
+// src/pages/api/teams.ts
+
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { Team } from "@/types/team";
+
+type TeamsApiResponse = {
+  result?: {
+    data?: {
+      json?: Team[];
+    };
+  };
+};
 
 export default async function handler(
   req: NextApiRequest,
@@ -14,8 +24,22 @@ export default async function handler(
       return res.status(500).json([]);
     }
 
-    const data = await response.json();
-    const teams = data?.result?.data?.json ?? [];
+    const raw: unknown = await response.json();
+
+    let teams: Team[] = [];
+
+    if (
+      typeof raw === "object" &&
+      raw !== null &&
+      "result" in raw
+    ) {
+      const data = raw as TeamsApiResponse;
+      const extracted = data.result?.data?.json;
+
+      if (Array.isArray(extracted)) {
+        teams = extracted;
+      }
+    }
 
     return res.status(200).json(teams);
   } catch (error) {
