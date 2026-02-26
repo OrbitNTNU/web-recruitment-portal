@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useFunFactStore } from "@/stores/useFunFactStore";
 import { useLoadingStore } from "@/stores/useLoadingStore";
@@ -56,7 +57,7 @@ const LoadingModal: React.FC<LoadingModalProps> = ({ logoSrc }) => {
               transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
             ></motion.div>
 
-            <img src={logoSrc} alt="OrbitLogo" className="z-10 h-24 w-24" />
+            <Image src={logoSrc} alt="OrbitLogo" className="z-10 h-24 w-24" width={96} height={96} />
           </div>
         </motion.div>
       )}

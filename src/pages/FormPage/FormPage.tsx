@@ -8,7 +8,6 @@ import SummaryModal from "@/components/Modals/Form/SummaryModal";
 import LoadingModal from "@/components/Modals/Form/LoadingScreenModal";
 import Navbar from "@/components/Shared/Navbar";
 import StepSlider from "@/components/Form/StepSlider";
-import { AnimatePresence, motion } from "framer-motion";
 
 export default function FormPage() {
   const { step } = useStepStore();
@@ -77,7 +76,7 @@ export default function FormPage() {
   return (
     <main className="relative flex min-h-screen flex-col">
           <Navbar />
-          <LoadingModal logoSrc="logos/orbitLogo.png" />
+          <LoadingModal logoSrc="/logos/orbitLogo.png" />
 
           <form
             className="relative flex flex-1 items-center justify-center"

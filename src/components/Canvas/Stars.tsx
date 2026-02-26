@@ -1,5 +1,5 @@
 import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef } from "react";
 import type * as THREE from "three";
 
 export const Stars = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {

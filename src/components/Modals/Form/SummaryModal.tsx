@@ -47,9 +47,10 @@ export default function SummaryModal() {
 
   useSessionStorageSync();
 
-  const teamsDisplay = teams.length > 0 
-    ? teams.map(t => t.replace(/-/g, " ")).join(", ")
-    : "No teams selected";
+  const teamsDisplay =
+    teams.length > 0
+      ? teams.map((t, i) => `${i + 1}. ${t.teamName}`).join("\n")
+      : "No teams selected";
 
   return (
     <div className="flex min-h-[calc(100vh-180px)] items-center justify-center px-6">
