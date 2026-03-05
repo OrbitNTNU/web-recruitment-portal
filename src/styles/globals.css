@@ -24,57 +24,101 @@
     --color-muted: #a0a0a0;
     --color-berry-blast: #2897e0;
     --color-musty-mangrove: #104859;
+    --color-charcoal: #111113;
+    --color-charcoal-light: #aeaeae;
 
-    /* Fonts */
     --font-poppins: "Poppins", sans-serif;
     --font-merriweather: "Merriweather", serif;
   }
 
-  html {
-    font-family: var(--font-poppins);
-    background-color: black;
-    color: var(--color-cloud-white);
-    font-size: 13px;
-  }
+  @layer base {
+    html {
+      font-family: var(--font-poppins);
+      background-color: var(--color-charcoal);
+      color: var(--color-cloud-white);
+    }
 
-  h1 {
-    font-size: 2rem;
-    font-weight: 500;
-  }
+    body {
+      margin: 0;
+      padding: 0;
+    }
 
-  h2 {
-    font-size: 1.5rem;
-    font-weight: 400;
-  }
+    h1,
+    h2,
+    h3 {
+      font-stretch: expanded;
+      font-weight: 300;
+      letter-spacing: 0;
+    }
 
-  h3 {
-    font-size: 1.1rem;
-    font-weight: 400;
-  }
-
-  p,
-  span {
-    font-size: 0.9rem;
-  }
-
-  @media (min-width: 640px) {
     h1 {
-      font-size: 2.5rem;
+      font-size: 1.7rem;
     }
 
     h2 {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
     }
 
     h3 {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
     }
 
     p,
     span {
-      font-size: 0.95rem;
+      font-size: 0.8rem;
+    }
+
+    small {
+      font-size: 0.7rem;
+    }
+
+    @media (min-width: 640px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+      }
+
+      p,
+      span {
+        font-size: 0.9rem;
+      }
+
+      small {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      h3 {
+        font-size: 1.3rem;
+      }
+
+      p,
+      span {
+        font-size: 1rem;
+      }
+
+      small {
+        font-size: 0.9rem;
+      }
     }
   }
+
 
   @media (min-width: 1024px) {
     h1 {
@@ -318,4 +362,49 @@
         rgba(255, 255, 255, 0.3),
         rgba(255, 255, 255, 0.5));
   }
+}
+
+@layer components {
+
+  .footer-link {
+    position: relative;
+    color: var(--color-charcoal-light);
+    transition: color 0.3s ease;
+  }
+
+  .footer-link:hover {
+    color: white;
+  }
+
+  /* underline animation */
+  .footer-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    transition: width 0.3s ease;
+  }
+
+  .footer-link:hover::after {
+    width: 100%;
+  }
+
+  .underline-emerald::after {
+    background: var(--color-emerald-fizz);
+  }
+
+  .underline-pink::after {
+    background: var(--color-pink-blast);
+  }
+
+  .underline-blue::after {
+    background: var(--color-berry-blast);
+  }
+
+  .underline-mint::after {
+    background: var(--color-sky-mint);
+  }
+
 }

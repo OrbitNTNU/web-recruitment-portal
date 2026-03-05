@@ -1,0 +1,59 @@
+"use client";
+
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+
+export const OrbitVideoSection = () => {
+  const ref = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 90%", "start 30%"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], [80, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.15, 1]);
+
+  return (
+    <section ref={ref} className="relative h-[85vh] w-full overflow-hidden">
+
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-[60%] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
+      <motion.video
+        src="/shared/video/Galla.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        style={{ scale }}
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+
+      <div className="absolute inset-0 bg-black/55" />
+
+      <div className="absolute top-0 h-40 w-full bg-gradient-to-b from-[var(--color-charcoal)] to-transparent" />
+      <div className="absolute bottom-0 h-40 w-full bg-gradient-to-t from-[var(--color-charcoal)] to-transparent" />
+
+      <motion.div
+        style={{ opacity, y }}
+        className="relative z-10 flex h-full items-center justify-center"
+      >
+        <div className="text-center max-w-xl px-8">
+
+          <span className="text-[10px] tracking-[0.45em] text-[var(--color-cloud-white)]/70">
+            ORBIT NTNU
+          </span>
+
+          <h2 className="mt-6 text-4xl md:text-5xl font-light tracking-wide text-[var(--color-strong)]">
+            Building satellites.
+            <br />
+            Training space engineers.
+          </h2>
+
+        </div>
+      </motion.div>
+
+    </section>
+  );
+}

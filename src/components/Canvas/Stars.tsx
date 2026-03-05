@@ -4,7 +4,7 @@ import type * as THREE from "three";
 
 export const Stars = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
   const pointsRef = useRef<THREE.Points>(null!);
-  const starCount = 1500;
+  const starCount = 2500;
   const targetSpeed = 0.02; 
   const introDuration = 2; 
   const speedRef = useRef(1.5);
@@ -53,13 +53,14 @@ useFrame(({ clock }, delta) => {
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial
-        color="white"
-        size={0.12}
-        transparent
-        opacity={0.9}
-        depthWrite={false}
-      />
+    <pointsMaterial
+  color="white"
+  size={0.08}
+  sizeAttenuation
+  transparent
+  opacity={0.9}
+  depthWrite={false}
+/>
     </points>
   );
 };

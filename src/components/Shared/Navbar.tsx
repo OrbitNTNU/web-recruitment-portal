@@ -52,7 +52,7 @@ const Navbar = () => {
             className="cursor-pointer transition-transform duration-300 hover:scale-105"
           >
             <Image
-              src="/logos/orbitTextLogo.png"
+              src="/logos/orbit/orbitTextLogo.png"
               alt="Orbit Logo"
               width={80}
               height={30}
