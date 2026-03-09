@@ -1,4 +1,4 @@
-import { SocialImages } from "@/consts/socialImages";
+import { SocialImages } from "@/constants/socialImages";
 
 export type SocialImageData = {
   src: string;

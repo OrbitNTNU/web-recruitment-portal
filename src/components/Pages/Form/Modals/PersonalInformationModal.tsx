@@ -1,16 +1,13 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { useFormStore, useSessionStorageSync } from "@/stores/useFormStore";
+import InfoIcon from "@/components/Pages/Form/InfoIcon";
+import FormInput from "@/components/Pages/Form/FormInput";
+import { FaUser, FaBook, FaGraduationCap } from "react-icons/fa";
+import { INPUT_CLASSES } from "@/constants/styles";
 
 const YEAR_OPTIONS = [1, 2, 3, 4, 5] as const;
-
-const INPUT_CLASSES = `
-  w-full rounded-lg border border-[var(--color-slate)]/30 
-  bg-[var(--color-night-sky)] px-6 py-4 
-  text-[var(--color-cloud-white)] placeholder-[var(--color-muted)]
-  transition-all duration-200 outline-none
-  focus:border-[var(--color-berry-blast)] focus:ring-2 focus:ring-[var(--color-berry-blast)]/20
-  hover:border-[var(--color-slate)]/50
-`;
 
 export default function PersonalInformationModal() {
   const {
@@ -25,72 +22,94 @@ export default function PersonalInformationModal() {
   useSessionStorageSync();
 
   return (
-    <div className="flex min-h-[calc(100vh-180px)] items-center justify-center px-6">
+    <div className="flex items-center justify-center px-4 sm:px-6">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="w-full max-w-2xl space-y-12"
+        transition={{ duration: 0.45 }}
+        className="w-full max-w-xl space-y-10"
       >
-        <div className="space-y-3 text-center">
-          <h1 className="text-[var(--color-strong)]">
-            Personal Information
-          </h1>
-          <p className="text-[var(--color-muted)]">
-            Let&apos;s start with the basics
+        <div className="space-y-4 text-center">
+          <div className="flex items-center justify-center gap-2 flex-wrap">
+            <h1 className="text-xl sm:text-2xl font-semibold tracking-wide text-[var(--color-cloud-white)]">
+              Personal Information
+            </h1>
+
+            <InfoIcon text="This information is only used for the application process. It is stored securely and used to contact you regarding recruitment and to verify your student status." />
+          </div>
+
+          <p className="text-sm text-[var(--color-charcoal-light)]">
+            Let’s start with the basics
           </p>
+
+          <div className="mx-auto max-w-md text-xs text-[var(--color-charcoal-light)] border border-[var(--color-dark-gray)] rounded-lg p-4 bg-[var(--color-charcoal)]/70 leading-relaxed">
+            We ask for both personal and student information so we can contact
+            you during the recruitment process and verify that applicants are
+            active students.
+          </div>
         </div>
 
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-[var(--color-cloud-white)]">
-              Full Name
-            </label>
-            <input
-              type="text"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-              placeholder="John Doe"
-              className={INPUT_CLASSES}
-              required
-            />
-          </div>
+        <div className="space-y-7">
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-[var(--color-cloud-white)]">
-              Field of Study
-            </label>
-            <input
-              type="text"
-              value={fieldOfStudy}
-              onChange={(e) => setFieldOfStudy(e.target.value)}
-              placeholder="Computer Science"
-              className={INPUT_CLASSES}
-              required
-            />
-          </div>
+          <FormInput
+            label="Full Name"
+            value={fullName}
+            onChange={setFullName}
+            placeholder="John Doe"
+            icon={<FaUser />}
+            info="Your legal name so we know who you are during the recruitment process."
+          />
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-[var(--color-cloud-white)]">
-              Year of Study
-            </label>
-            <select
-              value={yearOfStudy}
-              onChange={(e) => setYearOfStudy(Number(e.target.value))}
-              className={INPUT_CLASSES}
-              required
-            >
-              {YEAR_OPTIONS.map((year) => (
-                <option 
-                  key={year} 
-                  value={year} 
-                  className="bg-[var(--color-night-sky)]"
-                >
-                  Year {year}
-                </option>
-              ))}
-            </select>
-          </div>
+          <FormInput
+            label="Field of Study"
+            value={fieldOfStudy}
+            onChange={setFieldOfStudy}
+            placeholder="Computer Science"
+            icon={<FaBook />}
+            info="Your current study program at NTNU. This helps us understand your academic background."
+          />
+
+
+          <motion.div whileHover={{ scale: 1.01 }} className="space-y-2">
+
+            <div className="flex items-center gap-2">
+              <label className="text-sm font-medium text-[var(--color-cloud-white)]">
+                Year of Study
+              </label>
+
+              <InfoIcon text="Your current year in your study program." />
+            </div>
+
+            <div className="relative">
+
+              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-charcoal-light)]">
+                <FaGraduationCap />
+              </div>
+
+              <select
+                value={yearOfStudy}
+                onChange={(e) => setYearOfStudy(Number(e.target.value))}
+                className={`
+                  ${INPUT_CLASSES}
+                  pl-11
+                `}
+                required
+              >
+                {YEAR_OPTIONS.map((year) => (
+                  <option
+                    key={year}
+                    value={year}
+                    className="bg-[var(--color-charcoal)]"
+                  >
+                    Year {year}
+                  </option>
+                ))}
+              </select>
+
+            </div>
+
+          </motion.div>
+
         </div>
       </motion.div>
     </div>

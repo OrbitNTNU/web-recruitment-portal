@@ -1,5 +1,3 @@
-// src/pages/api/teams.ts
-
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { Team } from "@/types/team";
 

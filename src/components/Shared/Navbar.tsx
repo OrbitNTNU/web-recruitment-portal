@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useFunFactStore } from "@/stores/useFunFactStore";
 import { useRouter } from "next/navigation";
 import { routeTo } from "@/utils/routes";
-import { Routes } from "@/consts/routes";
+import { Routes } from "@/constants/routes";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
@@ -27,7 +27,7 @@ const Navbar = () => {
       if (currentScrollY > lastScrollY && currentScrollY > 80) {
         setHidden(true);
       } else {
-        setHidden(false); 
+        setHidden(false);
       }
 
       lastScrollY = currentScrollY;
@@ -42,7 +42,7 @@ const Navbar = () => {
       initial={{ y: 0 }}
       animate={{ y: hidden ? "-100%" : "0%" }}
       transition={{ duration: 0.35, ease: "easeInOut" }}
-      className="fixed left-0 top-0 z-50 w-full bg-transparent"
+      className="sticky top-0 z-50 w-full bg-transparent"
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
 

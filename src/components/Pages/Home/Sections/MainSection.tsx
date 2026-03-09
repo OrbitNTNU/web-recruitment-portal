@@ -1,3 +1,4 @@
+import StarsBackground from "@/components/Canvas/StarsBackground";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export const HeroSection = ({ onApply }: { onApply: () => void }) => {
@@ -7,14 +8,14 @@ export const HeroSection = ({ onApply }: { onApply: () => void }) => {
   const driftDown = useTransform(scrollY, [0, 300], [0, 40]);
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-8">
+    <section className="relative flex min-h-[95vh] items-center justify-center overflow-visible px-6 md:px-8">
 
-      <div className="mx-auto w-full max-w-[1400px]">
+      <div className="absolute inset-0 -top-24 z-0 pointer-events-none">
+        <StarsBackground />
+      </div>
 
-        <motion.div
-          style={{ opacity: fadeOut, y: driftDown }}
-          className="mx-auto max-w-2xl text-center"
-        >
+      <div className="relative z-10 mx-auto max-w-2xl -translate-y-12 text-center">
+        <motion.div style={{ opacity: fadeOut, y: driftDown }}>
 
           <motion.span
             initial={{ opacity: 0 }}
@@ -34,7 +35,7 @@ export const HeroSection = ({ onApply }: { onApply: () => void }) => {
               text-4xl sm:text-5xl md:text-[3.2rem]
               font-semibold
               tracking-[0.06em]
-              text-[var(--color-strong)]
+              text-[var(--color-cloud-white)]
             "
           >
             ORBIT APPLICATION
@@ -46,9 +47,9 @@ export const HeroSection = ({ onApply }: { onApply: () => void }) => {
             transition={{ delay: 0.5 }}
             className="
               mx-auto mb-10 max-w-xl
-              text-sm md:text-base
+              text-lg md:text-base
               leading-relaxed
-              text-white/70
+              text-[var(--color-charcoal-light)]
             "
           >
             Join us and help design the next generation of satellites.
@@ -60,34 +61,33 @@ export const HeroSection = ({ onApply }: { onApply: () => void }) => {
             onClick={onApply}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.96 }}
+            whileHover={{ scale: 1.02 }}
             className="
-              rounded-full
+              rounded-xl
               bg-[var(--color-orange-sherbert)]
               px-9 py-3
-              text-xs tracking-[0.35em]
-              font-semibold
+              text-sm tracking-[0.2em]
+              font-bold
               text-[var(--color-dark-gray)]
               transition
+              hover:brightness-110
             "
           >
-            INITIATE APPLICATION
+            APPLY HERE
           </motion.button>
 
         </motion.div>
-
       </div>
+
       <motion.div
         style={{ opacity: fadeOut, y: driftDown }}
-        className="absolute bottom-5 text-white/50 animate-bounce"
+        className="absolute bottom-10 animate-bounce text-[var(--color-charcoal-light)]"
       >
-        <span className="text-[10px] tracking-[0.2em] text-white/60e">
+        <span className="text-[10px] tracking-[0.2em]">
           SCROLL TO SEE WHY YOU SHOULD APPLY
         </span>
       </motion.div>
 
     </section>
   );
-}
+};

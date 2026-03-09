@@ -1,5 +1,5 @@
 import { type AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { type Routes } from "@/consts/routes";
+import { type Routes } from "@/constants/routes";
 
 export const routeTo = (
   router: AppRouterInstance,

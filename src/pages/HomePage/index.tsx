@@ -1,4 +1,5 @@
-import StarsBackground from "@/components/Canvas/StarsBackground";
+"use client";
+
 import { GallerySection } from "@/components/Pages/Home/Sections/GallerySection";
 import { HeroSection } from "@/components/Pages/Home/Sections/MainSection";
 import { OrbitVideoSection } from "@/components/Pages/Home/Sections/VideoSection";
@@ -15,19 +16,15 @@ export default function HomePage() {
   };
 
   return (
-    <div className="relative overflow-hidden">
-
-      <StarsBackground />
-
-      <div className="relative z-10">
-        <Navbar />
+    <div className="relative min-h-screen flex flex-col bg-[var(--color-charcoal)]">
+      <Navbar />
+      <main className="relative z-10 flex flex-1 flex-col">
         <HeroSection onApply={handleRouteToForm} />
         <PhilosophySection />
         <OrbitVideoSection />
         <GallerySection />
-        <Footer />
-
-      </div>
+      </main>
+      <Footer />
     </div>
   );
 }

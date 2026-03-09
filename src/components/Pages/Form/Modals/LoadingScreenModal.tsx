@@ -22,6 +22,18 @@ const LoadingModal: React.FC<LoadingModalProps> = ({ logoSrc }) => {
     return () => clearInterval(interval);
   }, [isLoading, setRandomFact]);
 
+  useEffect(() => {
+    if (isLoading) {
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "";
+    }
+
+    return () => {
+      document.documentElement.style.overflow = "";
+    };
+  }, [isLoading]);
+
   return (
     <AnimatePresence>
       {isLoading && (
@@ -29,7 +41,7 @@ const LoadingModal: React.FC<LoadingModalProps> = ({ logoSrc }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.35 }}
           className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm"
         >
           <div className="absolute top-20 px-4 text-center text-sm text-white">
@@ -39,7 +51,7 @@ const LoadingModal: React.FC<LoadingModalProps> = ({ logoSrc }) => {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.4 }}
               >
                 {currentFact}
               </motion.div>
@@ -47,6 +59,7 @@ const LoadingModal: React.FC<LoadingModalProps> = ({ logoSrc }) => {
           </div>
 
           <div className="relative flex h-40 w-40 items-center justify-center">
+
             <motion.div
               className="absolute h-48 w-48 rounded-full border-2 border-yellow-400"
               style={{
@@ -54,10 +67,22 @@ const LoadingModal: React.FC<LoadingModalProps> = ({ logoSrc }) => {
                 borderRightColor: "transparent",
               }}
               animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
-            ></motion.div>
+              transition={{
+                repeat: Infinity,
+                duration: 3,
+                ease: "linear",
+              }}
+            />
 
-            <Image src={logoSrc} alt="OrbitLogo" className="z-10 h-24 w-24" width={96} height={96} />
+            <Image
+              src={logoSrc}
+              alt="Orbit Logo"
+              width={96}
+              height={96}
+              className="z-10"
+              priority
+            />
+
           </div>
         </motion.div>
       )}

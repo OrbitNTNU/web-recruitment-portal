@@ -2,93 +2,131 @@
 
 import { motion } from "framer-motion";
 import { useStepStore } from "@/stores/useStepStore";
+import { useFormStore } from "@/stores/useFormStore";
 import { handleStepChange } from "@/stores/utils/LoadingUtils";
 
+import {
+  FaUser,
+  FaEnvelope,
+  FaUsers,
+  FaClipboardCheck,
+  FaLock,
+  FaChevronLeft,
+  FaChevronRight,
+  FaStar,
+} from "react-icons/fa";
+
 const STEPS = [
-  { label: "Personal Info" },
-  { label: "Contact & About" },
-  { label: "Teams" },
-  { label: "Review" },
+  { label: "Personal", icon: FaUser },
+  { label: "Contact", icon: FaEnvelope },
+  { label: "Teams", icon: FaUsers },
+  { label: "Review", icon: FaClipboardCheck },
 ] as const;
 
 export default function StepSlider() {
   const { step } = useStepStore();
 
+  const form = useFormStore();
+
+  const completed = [
+    Boolean(form.fullName && form.fieldOfStudy && form.yearOfStudy),
+    Boolean(form.username && form.email && form.emailAddress && form.phoneNumber),
+    Boolean(form.teams.length > 0),
+    true,
+  ];
+
+  const completedCount = completed.filter(Boolean).length;
+
+  const progress =
+    completedCount > 1
+      ? ((completedCount - 1) / (STEPS.length - 1)) * 100
+      : 0;
+
+  const canAccessStep = (target: number) => {
+    if (target <= step) return true;
+
+    for (let i = 0; i < target - 1; i++) {
+      if (!completed[i]) return false;
+    }
+
+    return true;
+  };
+
+  const goNext = () => {
+    if (step < STEPS.length && completed[step - 1]) {
+      handleStepChange("goto", step + 1, 2000);
+    }
+  };
+
+  const goBack = () => {
+    if (step > 1) {
+      handleStepChange("goto", step - 1, 2000);
+    }
+  };
+
   return (
-    <div className="w-full py-6">
-      <div className="mx-auto max-w-2xl px-6">
-        <div className="relative flex items-center justify-between">
-          <div className="absolute left-8 right-8 top-4 h-[1px] bg-[var(--color-slate)]/20" />
-          
+    <div className="w-full py-12">
+      <div className="mx-auto max-w-xl px-6">
+        <div className="relative flex items-start justify-between">
+          <div className="absolute left-0 right-0 top-[20px] h-[1px] bg-[var(--color-dark-gray)]" />
           <motion.div
-            className="absolute left-8 top-4 h-[1px] bg-[var(--color-berry-blast)]"
-            initial={{ width: "0%" }}
-            animate={{ 
-              width: `calc(${((step - 1) / (STEPS.length - 1)) * 100}% * 0.88)` 
-            }}
-            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+            className="absolute left-0 top-[20px] h-[1px] bg-[var(--color-cloud-white)]"
+            animate={{ width: `${progress}%` }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
           />
 
           {STEPS.map((item, index) => {
             const stepNumber = index + 1;
+
             const isActive = step === stepNumber;
-            const isCompleted = step > stepNumber;
+            const isCompleted = completed[index];
+            const isLocked = !canAccessStep(stepNumber);
+
+            const Icon = item.icon;
+
+            const baseStyle =
+              "flex h-10 w-10 items-center justify-center rounded-full text-sm transition-all duration-300";
+
+            const style =
+              isActive
+                ? "bg-[var(--color-cloud-white)] text-[var(--color-charcoal)]"
+                : isCompleted
+                ? "bg-[var(--color-dark-gray)] text-[var(--color-cloud-white)]"
+                : "border border-[var(--color-dark-gray)] text-[var(--color-charcoal-light)] bg-[var(--color-charcoal)]";
 
             return (
               <div
                 key={item.label}
-                className="relative flex flex-col items-center gap-2.5 z-10"
+                className="relative z-10 flex flex-col items-center gap-2"
               >
                 <motion.button
                   type="button"
-                  onClick={() => handleStepChange("goto", stepNumber, 2000)}
-                  className={`
-                    relative flex h-8 w-8 items-center justify-center rounded-full
-                    text-xs font-semibold transition-all duration-300
-                    ${isActive 
-                      ? "bg-[var(--color-berry-blast)] text-white scale-110" 
-                      : isCompleted
-                        ? "bg-[var(--color-berry-blast)]/20 text-[var(--color-berry-blast)]"
-                        : "bg-[var(--color-slate)]/10 text-[var(--color-muted)]"
+                  disabled={isLocked}
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={() => {
+                    if (!isLocked) {
+                      handleStepChange("goto", stepNumber, 2000);
                     }
-                    hover:scale-110
-                  `}
-                  whileHover={{ scale: 1.15 }}
-                  whileTap={{ scale: 0.95 }}
+                  }}
+                  whileHover={!isLocked ? { scale: 1.05 } : {}}
+                  whileTap={!isLocked ? { scale: 0.95 } : {}}
+                  className={`${baseStyle} ${style}`}
                 >
-                  {isCompleted ? (
-                    <motion.svg
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                      className="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={3}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </motion.svg>
+                  {isLocked ? (
+                    <FaLock size={11} />
+                  ) : isCompleted && !isActive ? (
+                    <FaStar size={12} />
                   ) : (
-                    <span>{stepNumber}</span>
+                    <Icon size={12} />
                   )}
                 </motion.button>
 
                 <span
-                  className={`
-                    text-xs font-medium text-center whitespace-nowrap transition-colors duration-300
-                    hidden sm:block
-                    ${isActive 
-                      ? "text-[var(--color-cloud-white)]" 
-                      : isCompleted
-                        ? "text-[var(--color-berry-blast)]"
-                        : "text-[var(--color-muted)]"
-                    }
-                  `}
+                  className={`text-[11px] ${
+                    isActive || isCompleted
+                      ? "text-[var(--color-cloud-white)]"
+                      : "text-[var(--color-charcoal-light)]"
+                  }`}
                 >
                   {item.label}
                 </span>
@@ -96,6 +134,33 @@ export default function StepSlider() {
             );
           })}
         </div>
+
+        <div className="mt-10 flex items-center justify-between">
+
+          <button
+            type="button"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={goBack}
+            disabled={step === 1}
+            className="flex items-center gap-2 text-sm text-[var(--color-charcoal-light)] hover:text-[var(--color-cloud-white)] disabled:opacity-30"
+          >
+            <FaChevronLeft size={12} />
+            Back
+          </button>
+
+          <button
+            type="button"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={goNext}
+            disabled={!completed[step - 1] || step === STEPS.length}
+            className="flex items-center gap-2 text-sm text-[var(--color-charcoal-light)] hover:text-[var(--color-cloud-white)] disabled:opacity-30"
+          >
+            Next
+            <FaChevronRight size={12} />
+          </button>
+
+        </div>
+
       </div>
     </div>
   );
