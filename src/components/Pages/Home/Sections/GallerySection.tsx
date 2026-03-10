@@ -66,14 +66,14 @@ export const GallerySection = () => {
               direction="vertical"
               length={90}
               thickness={2}
-              color="var(--color-sky-mint)"
+              color="var(--color-berry-blast)"
               start={0}
               end={0.8}
             />
           </div>
 
           <div className="text-center max-w-xl">
-            <span className="text-[10px] tracking-[0.45em] text-[var(--color-sky-mint)]">
+            <span className="text-[10px] tracking-[0.45em] text-[var(--color-berry-blast)]">
               LIFE AT ORBIT
             </span>
 

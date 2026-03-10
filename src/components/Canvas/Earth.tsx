@@ -1,49 +1,89 @@
-import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
-import type * as THREE from "three";
+"use client";
 
-function Satellite({ radius, speed }: { radius: number; speed: number }) {
-  const pivot = useRef<THREE.Group>(null!);
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useMemo, useRef } from "react";
+import * as THREE from "three";
+import { Satellite } from "./Satellite";
 
-  useFrame(() => {
-    pivot.current.rotation.y += speed;
+function WireEarth() {
+  const groupRef = useRef<THREE.Group>(null!);
+  const radius = 4;
+
+  useFrame((_, delta) => {
+    if (groupRef.current) {
+      groupRef.current.rotation.y += delta * 0.15;
+    }
   });
 
+  const geometries = useMemo(() => {
+    const result: THREE.BufferGeometry[] = [];
+
+    for (let i = -80; i <= 80; i += 10) {
+      const lat = THREE.MathUtils.degToRad(i);
+      const points: THREE.Vector3[] = [];
+
+      for (let j = 0; j <= 360; j += 5) {
+        const lon = THREE.MathUtils.degToRad(j);
+
+        const x = radius * Math.cos(lat) * Math.cos(lon);
+        const y = radius * Math.sin(lat);
+        const z = radius * Math.cos(lat) * Math.sin(lon);
+
+        points.push(new THREE.Vector3(x, y, z));
+      }
+
+      const geo = new THREE.BufferGeometry().setFromPoints(points);
+      result.push(geo);
+    }
+
+    for (let i = 0; i < 360; i += 10) {
+      const lon = THREE.MathUtils.degToRad(i);
+      const points: THREE.Vector3[] = [];
+
+      for (let j = -90; j <= 90; j += 5) {
+        const lat = THREE.MathUtils.degToRad(j);
+
+        const x = radius * Math.cos(lat) * Math.cos(lon);
+        const y = radius * Math.sin(lat);
+        const z = radius * Math.cos(lat) * Math.sin(lon);
+
+        points.push(new THREE.Vector3(x, y, z));
+      }
+
+      const geo = new THREE.BufferGeometry().setFromPoints(points);
+      result.push(geo);
+    }
+
+    return result;
+  }, []);
+
+  const material = useMemo(
+    () =>
+      new THREE.LineBasicMaterial({
+        color: "white",
+        transparent: true,
+        opacity: 0.7,
+      }),
+    []
+  );
+
   return (
-    <group ref={pivot}>
-      <mesh position={[radius, 0, 0]}>
-        <boxGeometry args={[0.15, 0.15, 0.15]} />
-        <meshStandardMaterial color="silver" />
-      </mesh>
+    <group ref={groupRef} position={[0, 0, 0]}>
+      {geometries.map((geo, i) => (
+        <lineSegments key={i} geometry={geo} material={material} />
+      ))}
     </group>
   );
 }
 
-export const Earth = ({
-  position,
-  texture,
-}: {
-  position: THREE.Vector3;
-  texture: THREE.Texture;
-}) => {
-  const earthRef = useRef<THREE.Mesh>(null!);
-
-  useFrame((_, delta) => {
-    if (earthRef.current) {
-      earthRef.current.rotation.y += delta * 0.5;
-    }
-  });
-
+export default function EarthWireframe() {
   return (
-    <group position={position}>
-      <mesh ref={earthRef}>
-        <sphereGeometry args={[2, 64, 64]} />
-        <meshStandardMaterial map={texture} />
-      </mesh>
-
-      <Satellite radius={3} speed={0.01} />
-      <Satellite radius={3.5} speed={0.008} />
-      <Satellite radius={4} speed={0.006} />
-    </group>
+    <Canvas
+      camera={{ position: [0, 0, 10], fov: 50 }}
+      style={{ width: "100%", height: "100%" }}
+    >
+      <ambientLight intensity={0.6} />
+      <WireEarth />
+    </Canvas>
   );
-};
+}

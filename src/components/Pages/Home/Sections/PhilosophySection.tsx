@@ -20,7 +20,7 @@ export const PhilosophySection = () => {
           variants={fadeUp}
           className="text-center mb-10"
         >
-          <span className="text-[10px] tracking-[0.45em] text-[var(--color-sky-mint)]">
+          <span className="text-[10px] tracking-[0.45em] text-[var(--color-berry-blast)]">
             OUR GOAL
           </span>
 
@@ -34,7 +34,7 @@ export const PhilosophySection = () => {
             direction="vertical"
             length={80}
             thickness={3}
-            color="var(--color-sky-mint)"
+            color="var(--color-charcoal-light)"
           />
         </div>
 

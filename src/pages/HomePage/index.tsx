@@ -1,5 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
+import { useFormStore } from "@/stores/useFormStore";
+
 import { GallerySection } from "@/components/Pages/Home/Sections/GallerySection";
 import { HeroSection } from "@/components/Pages/Home/Sections/MainSection";
 import { OrbitVideoSection } from "@/components/Pages/Home/Sections/VideoSection";
@@ -9,11 +12,17 @@ import Navbar from "@/components/Shared/Navbar";
 import { useRouter } from "next/navigation";
 
 export default function HomePage() {
+  const { fetchTeams } = useFormStore();
   const router = useRouter();
 
   const handleRouteToForm = () => {
     router.push("/Form");
   };
+
+
+  useEffect(() => {
+    fetchTeams();
+  }, [fetchTeams]);
 
   return (
     <div className="relative min-h-screen flex flex-col bg-[var(--color-charcoal)]">

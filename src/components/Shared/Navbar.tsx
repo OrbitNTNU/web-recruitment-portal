@@ -1,22 +1,15 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { useFunFactStore } from "@/stores/useFunFactStore";
 import { useRouter } from "next/navigation";
 import { routeTo } from "@/utils/routes";
 import { Routes } from "@/constants/routes";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
-  const { currentFact, setRandomFact } = useFunFactStore();
   const [hidden, setHidden] = useState(false);
   const router = useRouter();
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRandomFact();
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [setRandomFact]);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -44,27 +37,18 @@ const Navbar = () => {
       transition={{ duration: 0.35, ease: "easeInOut" }}
       className="sticky top-0 z-50 w-full bg-transparent"
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-
-        <div className="flex items-center">
-          <div
-            onClick={() => routeTo(router, Routes.HOME)}
-            className="cursor-pointer transition-transform duration-300 hover:scale-105"
-          >
-            <Image
-              src="/logos/orbit/orbitTextLogo.png"
-              alt="Orbit Logo"
-              width={80}
-              height={30}
-              priority
-            />
-          </div>
-        </div>
-
-        <div className="flex items-center">
-          <span className="hidden max-w-xs truncate font-bold text-[var(--color-orange-sherbert)] md:block">
-            {currentFact || "Build cubesats with us!"}
-          </span>
+      <div className="relative mx-auto flex items-center justify-center px-6 py-4">
+        <div
+          onClick={() => routeTo(router, Routes.HOME)}
+          className="cursor-pointer transition-transform duration-300 hover:scale-105"
+        >
+          <Image
+            src="/logos/orbit/orbitTextLogo.png"
+            alt="Orbit Logo"
+            width={90}
+            height={32}
+            priority
+          />
         </div>
 
       </div>
