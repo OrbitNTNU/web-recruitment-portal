@@ -66,76 +66,8 @@ export default function StepSlider() {
 
   return (
     <div className="w-full py-12">
-      <div className="mx-auto max-w-xl px-6">
-        <div className="relative flex items-start justify-between">
-          <div className="absolute left-0 right-0 top-[20px] h-[1px] bg-[var(--color-dark-gray)]" />
-          <motion.div
-            className="absolute left-0 top-[20px] h-[1px] bg-[var(--color-cloud-white)]"
-            animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.35, ease: "easeInOut" }}
-          />
-
-          {STEPS.map((item, index) => {
-            const stepNumber = index + 1;
-
-            const isActive = step === stepNumber;
-            const isCompleted = completed[index];
-            const isLocked = !canAccessStep(stepNumber);
-
-            const Icon = item.icon;
-
-            const baseStyle =
-              "flex h-10 w-10 items-center justify-center rounded-full text-sm transition-all duration-300";
-
-            const style =
-              isActive
-                ? "bg-[var(--color-cloud-white)] text-[var(--color-charcoal)]"
-                : isCompleted
-                ? "bg-[var(--color-dark-gray)] text-[var(--color-cloud-white)]"
-                : "border border-[var(--color-dark-gray)] text-[var(--color-charcoal-light)] bg-[var(--color-charcoal)]";
-
-            return (
-              <div
-                key={item.label}
-                className="relative z-10 flex flex-col items-center gap-2"
-              >
-                <motion.button
-                  type="button"
-                  disabled={isLocked}
-                  onMouseDown={(e) => e.preventDefault()}
-                  onClick={() => {
-                    if (!isLocked) {
-                      handleStepChange("goto", stepNumber, 2000);
-                    }
-                  }}
-                  whileHover={!isLocked ? { scale: 1.05 } : {}}
-                  whileTap={!isLocked ? { scale: 0.95 } : {}}
-                  className={`${baseStyle} ${style}`}
-                >
-                  {isLocked ? (
-                    <FaLock size={11} />
-                  ) : isCompleted && !isActive ? (
-                    <FaStar size={12} />
-                  ) : (
-                    <Icon size={12} />
-                  )}
-                </motion.button>
-
-                <span
-                  className={`text-[11px] ${
-                    isActive || isCompleted
-                      ? "text-[var(--color-cloud-white)]"
-                      : "text-[var(--color-charcoal-light)]"
-                  }`}
-                >
-                  {item.label}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="mt-10 flex items-center justify-between">
+      <div className="mx-auto max-w-2xl px-6">
+        <div className="relative flex items-center justify-between">
 
           <button
             type="button"
@@ -145,8 +77,74 @@ export default function StepSlider() {
             className="flex items-center gap-2 text-sm text-[var(--color-charcoal-light)] hover:text-[var(--color-cloud-white)] disabled:opacity-30"
           >
             <FaChevronLeft size={12} />
-            Back
           </button>
+
+          <div className="relative flex flex-1 items-start justify-between mx-6">
+            <div className="absolute left-0 right-0 top-[20px] h-[1px] bg-[var(--color-dark-gray)]" />
+            <motion.div
+              className="absolute left-0 top-[20px] h-[1px] bg-[var(--color-cloud-white)]"
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+            />
+
+            {STEPS.map((item, index) => {
+              const stepNumber = index + 1;
+
+              const isActive = step === stepNumber;
+              const isCompleted = completed[index];
+              const isLocked = !canAccessStep(stepNumber);
+
+              const Icon = item.icon;
+
+              const baseStyle =
+                "flex h-10 w-10 items-center justify-center rounded-full text-sm transition-all duration-300";
+
+              const style =
+                isActive
+                  ? "bg-[var(--color-cloud-white)] text-[var(--color-charcoal)]"
+                  : isCompleted
+                    ? "bg-[var(--color-dark-gray)] text-[var(--color-cloud-white)]"
+                    : "border border-[var(--color-dark-gray)] text-[var(--color-charcoal-light)] bg-[var(--color-charcoal)]";
+
+              return (
+                <div
+                  key={item.label}
+                  className="relative z-10 flex flex-col items-center gap-2"
+                >
+                  <motion.button
+                    type="button"
+                    disabled={isLocked}
+                    onMouseDown={(e) => e.preventDefault()}
+                    onClick={() => {
+                      if (!isLocked) {
+                        handleStepChange("goto", stepNumber, 2000);
+                      }
+                    }}
+                    whileHover={!isLocked ? { scale: 1.05 } : {}}
+                    whileTap={!isLocked ? { scale: 0.95 } : {}}
+                    className={`${baseStyle} ${style}`}
+                  >
+                    {isLocked ? (
+                      <FaLock size={11} />
+                    ) : isCompleted && !isActive ? (
+                      <FaStar size={12} />
+                    ) : (
+                      <Icon size={12} />
+                    )}
+                  </motion.button>
+
+                  <span
+                    className={`text-[11px] ${isActive || isCompleted
+                        ? "text-[var(--color-cloud-white)]"
+                        : "text-[var(--color-charcoal-light)]"
+                      }`}
+                  >
+                    {item.label}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
 
           <button
             type="button"
@@ -155,12 +153,10 @@ export default function StepSlider() {
             disabled={!completed[step - 1] || step === STEPS.length}
             className="flex items-center gap-2 text-sm text-[var(--color-charcoal-light)] hover:text-[var(--color-cloud-white)] disabled:opacity-30"
           >
-            Next
             <FaChevronRight size={12} />
           </button>
 
         </div>
-
       </div>
     </div>
   );

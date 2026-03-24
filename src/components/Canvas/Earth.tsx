@@ -1,17 +1,17 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
+import { Satellite } from "./Satellite";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
-import { Satellite } from "./Satellite";
 
-function WireEarth() {
+const WireEarth = () => {
   const groupRef = useRef<THREE.Group>(null!);
-  const radius = 4;
+  const radius = 3;
 
   useFrame((_, delta) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.15;
+      groupRef.current.rotation.y += delta * 0.05;
     }
   });
 
@@ -67,6 +67,17 @@ function WireEarth() {
     []
   );
 
+  const occluder = useMemo(() => {
+  return new THREE.Mesh(
+    new THREE.SphereGeometry(radius, 64, 64),
+    new THREE.MeshBasicMaterial({
+      color: "black",
+      transparent: false,
+      depthWrite: true,
+    })
+  );
+}, []);
+
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
       {geometries.map((geo, i) => (
@@ -76,14 +87,17 @@ function WireEarth() {
   );
 }
 
-export default function EarthWireframe() {
+const EarthWireframe = () => {
   return (
     <Canvas
-      camera={{ position: [0, 0, 10], fov: 50 }}
+      camera={{ position: [0, 0, 10], fov: 40 }}
       style={{ width: "100%", height: "100%" }}
     >
       <ambientLight intensity={0.6} />
+      <Satellite />
       <WireEarth />
     </Canvas>
   );
 }
+
+export default EarthWireframe;

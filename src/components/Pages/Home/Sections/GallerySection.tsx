@@ -97,11 +97,9 @@ export const GallerySection = () => {
               end={1}
             />
           </div>
-
         </motion.div>
 
         <div className="relative">
-
           {canScrollLeft && (
             <button
               onClick={() => scroll("left")}
@@ -140,6 +138,7 @@ export const GallerySection = () => {
                     snap-center
                     min-w-full
                     sm:min-w-[320px]
+                    overflow-visible
                   "
                 >
                   <GalleryCard

@@ -22,7 +22,7 @@ export function DividedLine({
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 80%", "end 40%"],
+    offset: ["start 95%", "start 50%"]
   });
 
   const progress = useTransform(scrollYProgress, [start, end], [0, 1]);

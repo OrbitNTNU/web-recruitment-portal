@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { DividedLine } from "@/components/Shared/DividedLine";
+import Image from "next/image";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -20,7 +21,7 @@ export const PhilosophySection = () => {
           variants={fadeUp}
           className="text-center mb-10"
         >
-          <span className="text-[10px] tracking-[0.45em] text-[var(--color-berry-blast)]">
+          <span className="text-[10px] tracking-[0.45em] text-[var(--color-charcoal-light)]">
             OUR GOAL
           </span>
 
@@ -32,7 +33,7 @@ export const PhilosophySection = () => {
         <div className="flex justify-center mb-10">
           <DividedLine
             direction="vertical"
-            length={80}
+            length={100}
             thickness={3}
             color="var(--color-charcoal-light)"
           />
@@ -56,23 +57,6 @@ export const PhilosophySection = () => {
           </p>
         </motion.div>
 
-        <div className="flex justify-center mb-6">
-          <DividedLine
-            direction="vertical"
-            length={50}
-            thickness={3}
-            color="var(--color-laser-lemon)"
-          />
-        </div>
-
-        <div className="flex justify-center mb-12">
-          <DividedLine
-            direction="horizontal"
-            length={420}
-            thickness={3}
-            color="var(--color-berry-blast)"
-          />
-        </div>
 
         <motion.div
           initial="hidden"
@@ -82,37 +66,121 @@ export const PhilosophySection = () => {
           className="grid md:grid-cols-3 gap-10 text-center"
         >
 
-          <motion.div variants={fadeUp} transition={{ duration: 0.5 }}>
-            <h3 className="mb-2 text-lg font-light text-[var(--color-cloud-white)]">
-              Learning
-            </h3>
+          <motion.div
+            variants={fadeUp}
+            transition={{ duration: 0.5 }}
+            className="relative overflow-hidden"
+          >
+            <div className="absolute inset-0 z-0 pointer-events-none">
+              <Image
+                src="/shared/social/Workshop.jpg"
+                alt=""
+                fill
+                className="
+                  object-cover
+                  opacity-40
+                  [mask-image:radial-gradient(circle_at_center,white,transparent_70%)]
+                "
+              />
+            </div>
 
-            <p className="text-[var(--color-charcoal-light)] text-sm leading-relaxed">
-              We believe in learning by doing through responsibility
-              and real engineering projects.
-            </p>
+            <div className="relative z-10">
+              <div className="flex justify-center mb-6">
+                <DividedLine
+                  direction="vertical"
+                  length={240}
+                  thickness={3}
+                  color="var(--color-laser-lemon)"
+                />
+              </div>
+
+              <h3 className="mb-2 text-lg font-light text-[var(--color-cloud-white)]">
+                Learning
+              </h3>
+
+              <p className="text-[var(--color-charcoal-light)] text-sm leading-relaxed">
+                We believe in learning by doing through responsibility
+                and real engineering projects.
+              </p>
+            </div>
           </motion.div>
 
-          <motion.div variants={fadeUp} transition={{ duration: 0.5 }}>
-            <h3 className="mb-2 text-lg font-light text-[var(--color-cloud-white)]">
-              Curiosity
-            </h3>
+          <motion.div
+            variants={fadeUp}
+            transition={{ duration: 0.5 }}
+            className="relative overflow-hidden"
+          >
+            <div className="absolute inset-0 z-0 pointer-events-none">
+              <Image
+                src="/shared/social/Excursion.jpg"
+                alt=""
+                fill
+                className="
+                  object-cover
+                  opacity-40
+                  [mask-image:radial-gradient(circle_at_center,white,transparent_70%)]
+                "
+              />
+            </div>
 
-            <p className="text-[var(--color-charcoal-light)] text-sm leading-relaxed">
-              We question how things work and explore new ideas to
-              discover better solutions.
-            </p>
+            <div className="relative z-10">
+              <div className="flex justify-center mb-6">
+                <DividedLine
+                  direction="vertical"
+                  length={240}
+                  thickness={3}
+                  color="var(--color-laser-lemon)"
+                />
+              </div>
+
+              <h3 className="mb-2 text-lg font-light text-[var(--color-cloud-white)]">
+                Curiosity
+              </h3>
+
+              <p className="text-[var(--color-charcoal-light)] text-sm leading-relaxed">
+                We question how things work and explore new ideas to
+                discover better solutions.
+              </p>
+            </div>
           </motion.div>
 
-          <motion.div variants={fadeUp} transition={{ duration: 0.5 }}>
-            <h3 className="mb-2 text-lg font-light text-[var(--color-cloud-white)]">
-              Ambition
-            </h3>
+          <motion.div
+            variants={fadeUp}
+            transition={{ duration: 0.5 }}
+            className="relative overflow-hidden"
+          >
+            <div className="absolute inset-0 z-0 pointer-events-none">
+              <Image
+                src="/shared/social/GroupShotOrbit.jpg"
+                alt=""
+                fill
+                className="
+                  object-cover
+                  opacity-40
+                  [mask-image:radial-gradient(circle_at_center,white,transparent_70%)]
+                "
+              />
+            </div>
 
-            <p className="text-[var(--color-charcoal-light)] text-sm leading-relaxed">
-              We set high standards and take responsibility to deliver
-              high-quality work.
-            </p>
+            <div className="relative z-10">
+              <div className="flex justify-center mb-6">
+                <DividedLine
+                  direction="vertical"
+                  length={240}
+                  thickness={3}
+                  color="var(--color-laser-lemon)"
+                />
+              </div>
+
+              <h3 className="mb-2 text-lg font-light text-[var(--color-cloud-white)]">
+                Ambition
+              </h3>
+
+              <p className="text-[var(--color-charcoal-light)] text-sm leading-relaxed">
+                We set high standards and take responsibility to deliver
+                high-quality work.
+              </p>
+            </div>
           </motion.div>
         </motion.div>
       </div>
