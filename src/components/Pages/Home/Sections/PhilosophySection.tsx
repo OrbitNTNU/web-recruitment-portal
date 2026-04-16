@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { DividedLine } from "@/components/Shared/DividedLine";
-import Image from "next/image";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },

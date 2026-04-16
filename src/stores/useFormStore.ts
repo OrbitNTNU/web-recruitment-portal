@@ -38,7 +38,7 @@ const loadState = (): Partial<FormValues> => {
   if (typeof window === "undefined") return {};
 
   const savedState = sessionStorage.getItem("formState");
-  return savedState ? JSON.parse(savedState) : {};
+  return savedState ? (JSON.parse(savedState) as Partial<FormValues>) : {};
 };
 
 export const useFormStore = create<FormValues>((set, get) => ({
@@ -77,7 +77,7 @@ export const useFormStore = create<FormValues>((set, get) => ({
       const res = await fetch("/api/teams");
       if (!res.ok) throw new Error("Failed to fetch teams");
 
-      const teams = await res.json();
+      const teams = (await res.json()) as Team[];
 
       set({
         allTeams: teams,

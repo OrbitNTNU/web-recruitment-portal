@@ -13,7 +13,7 @@ export default function HomePage() {
   const router = useRouter();
 
   useEffect(() => {
-    fetchTeams();
+    void fetchTeams();
   }, [fetchTeams]);
 
   return (

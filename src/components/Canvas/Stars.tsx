@@ -1,6 +1,6 @@
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
-import * as THREE from "three";
+import type * as THREE from "three";
 
 export const Stars = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
   const groupRef = useRef<THREE.Group>(null!);

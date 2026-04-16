@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import type { Team } from "@/types/team";
-import { groupByField, getAccentColor, sortedGroupKeys } from "@/utils/teams";
+import { groupByField, sortedGroupKeys } from "@/utils/teams";
 
 export function useSidebar(teams: Team[]) {
   const grouped = useMemo(() => groupByField(teams), [teams]);

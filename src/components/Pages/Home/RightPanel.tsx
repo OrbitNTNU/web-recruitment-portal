@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import type { Team } from "@/types/team";
 import { TeamBgImage } from "@/components/Pages/Home/TeamBgImage";
 
@@ -17,10 +18,11 @@ export function RightPanel({ team, accentColor }: RightPanelProps) {
         {team ? (
           <TeamBgImage key={team.teamName} teamName={team.teamName} />
         ) : (
-          <img
+          <Image
             src="/shared/social/GroupShotOrbit.jpg"
             alt="Orbit NTNU"
-            className="absolute inset-0 w-full h-full object-cover object-top opacity-30"
+            fill
+            className="object-cover object-top opacity-30"
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-charcoal)] via-transparent to-[var(--color-charcoal)]" />
