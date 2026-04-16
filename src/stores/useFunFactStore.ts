@@ -1,24 +1,26 @@
 import { create } from "zustand";
+import { useFormStore } from "@/stores/useFormStore";
 
 interface FunFactState {
-  facts: string[];
   currentFact: string;
   setRandomFact: () => void;
 }
 
-export const useFunFactStore = create<FunFactState>((set, get) => ({
-  facts: [
-    "Orbit is the best technical organisation",
-    "Orbit makes cube-satellites",
-    "Orbit is the biggest student organisation at NTNU.",
-    "Orbit is cool.",
-    "Orbit has a member names August, isn't that cool?."
-  ],
-  currentFact: "The Earth orbits the Sun at 30 km/s.",
+export const useFunFactStore = create<FunFactState>((set) => ({
+  currentFact: "Join any of these teams!",
 
   setRandomFact: () => {
-    const { facts } = get();
-    const randomFact = facts[Math.floor(Math.random() * facts.length)];
-    set({ currentFact: randomFact });
+    const { allTeams } = useFormStore.getState();
+
+    if (!allTeams.length) return;
+
+    const randomTeam =
+      allTeams[Math.floor(Math.random() * allTeams.length)];
+
+    if (!randomTeam) return;
+
+    set({
+      currentFact: `${randomTeam.teamName}`,
+    });
   },
 }));

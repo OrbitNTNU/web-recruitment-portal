@@ -4,168 +4,75 @@ import { SOCIAL_IMAGES } from "@/components/Data/SocialImages";
 import { GalleryCard } from "@/components/Pages/Home/GalleryCard";
 import { motion } from "framer-motion";
 import { SocialImages } from "@/constants/socialImages";
-import { useRef, useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { DividedLine } from "@/components/Shared/DividedLine";
+import { useGalleryScroll } from "@/hooks/useGalleryScroll";
 
 export const GallerySection = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-
-  const updateScrollState = () => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    const maxScroll = el.scrollWidth - el.clientWidth;
-
-    setCanScrollLeft(el.scrollLeft > 10);
-    setCanScrollRight(el.scrollLeft < maxScroll - 10);
-  };
-
-  const scroll = (direction: "left" | "right") => {
-    if (!scrollRef.current) return;
-
-    const container = scrollRef.current;
-    const cardWidth = container.firstElementChild?.clientWidth ?? 320;
-    const gap = 32;
-
-    const amount = cardWidth + gap;
-
-    container.scrollBy({
-      left: direction === "left" ? -amount : amount,
-      behavior: "smooth",
-    });
-
-    setTimeout(updateScrollState, 400);
-  };
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    updateScrollState();
-    el.addEventListener("scroll", updateScrollState);
-
-    return () => el.removeEventListener("scroll", updateScrollState);
-  }, []);
+  const { scrollRef, canScrollLeft, canScrollRight, scroll } = useGalleryScroll();
 
   return (
     <section className="relative py-28 bg-[var(--color-charcoal)]">
-      <div className="mx-auto max-w-[1400px] px-6 md:px-8">
+      <div className="mx-auto max-w-[1400px] px-6 md:px-8 mb-16">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65 }}
           viewport={{ once: true }}
-          className="flex items-center justify-center gap-8 mb-16"
+          className="flex items-start justify-left gap-8"
         >
-          <div className="hidden md:block">
-            <DividedLine
-              direction="vertical"
-              length={90}
-              thickness={2}
-              color="var(--color-sky-mint)"
-              start={0}
-              end={0.8}
-            />
-          </div>
-
-          <div className="text-center max-w-xl">
-            <span className="text-[10px] tracking-[0.45em] text-[var(--color-sky-mint)]">
-              LIFE AT ORBIT
-            </span>
-
-            <h2 className="mt-6 text-3xl md:text-4xl font-light tracking-wide text-[var(--color-cloud-white)]">
+          <div className="text-left">
+            <h2 className="mt-5 text-3xl font-light tracking-wide text-[var(--color-cloud-white)] md:text-4xl">
               More Than Just Satellites
             </h2>
 
-            <p className="mt-4 text-sm text-[var(--color-charcoal-light)] max-w-xl mx-auto">
+            <p className="mt-3 max-w-xs text-xs leading-relaxed text-[var(--color-charcoal-light)]/45">
               Orbit is not just about building satellites. It is about community,
               collaboration, and shared experiences.
             </p>
           </div>
-
-          <div className="hidden md:block">
-            <DividedLine
-              direction="vertical"
-              length={90}
-              thickness={2}
-              color="var(--color-berry-blast)"
-              start={0.2}
-              end={1}
-            />
-          </div>
-
         </motion.div>
+      </div>
 
-        <div className="relative">
+      <div className="relative">
+        {/* Left and right edge fades */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-[var(--color-charcoal)] to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-[var(--color-charcoal)] to-transparent z-10" />
 
-          {canScrollLeft && (
-            <button
-              onClick={() => scroll("left")}
-              className="
-                absolute left-2 top-1/2 -translate-y-1/2 z-10
-                text-[var(--color-cloud-white)]
-                hover:text-[var(--color-sky-mint)]
-                transition
-              "
-            >
-              <FaChevronLeft size={22} />
-            </button>
-          )}
-
-          <div
-            ref={scrollRef}
-            className="
-              flex gap-8
-              overflow-x-auto
-              overflow-y-hidden
-              touch-pan-x
-              no-scrollbar
-              scroll-smooth
-              snap-x snap-mandatory
-              pb-2
-            "
+        {canScrollLeft && (
+          <button
+            onClick={() => scroll("left")}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 text-[var(--color-cloud-white)] hover:text-[var(--color-sky-mint)] transition"
           >
-            {Object.entries(SocialImages).map(([key, value]) => {
-              const img =
-                SOCIAL_IMAGES[value as keyof typeof SOCIAL_IMAGES];
+            <FaChevronLeft size={22} />
+          </button>
+        )}
 
-              return (
-                <div
-                  key={key}
-                  className="
-                    snap-center
-                    min-w-full
-                    sm:min-w-[320px]
-                  "
-                >
-                  <GalleryCard
-                    src={img.src}
-                    title={img.title}
-                    description={img.description}
-                  />
-                </div>
-              );
-            })}
-          </div>
-
-          {canScrollRight && (
-            <button
-              onClick={() => scroll("right")}
-              className="
-                absolute right-2 top-1/2 -translate-y-1/2 z-10
-                text-[var(--color-cloud-white)]
-                hover:text-[var(--color-sky-mint)]
-                transition
-              "
-            >
-              <FaChevronRight size={22} />
-            </button>
-          )}
+        <div
+          ref={scrollRef}
+          className="flex overflow-x-auto overflow-y-hidden touch-pan-x no-scrollbar scroll-smooth snap-x snap-mandatory pb-2"
+        >
+          {Object.entries(SocialImages).map(([key, value]) => {
+            const img = SOCIAL_IMAGES[value as keyof typeof SOCIAL_IMAGES];
+            return (
+              <div key={key} className="snap-center min-w-full overflow-visible">
+                <GalleryCard
+                  src={img.src}
+                  title={img.title}
+                  description={img.description}
+                />
+              </div>
+            );
+          })}
         </div>
+
+        {canScrollRight && (
+          <button
+            onClick={() => scroll("right")}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 text-[var(--color-cloud-white)] hover:text-[var(--color-sky-mint)] transition"
+          >
+            <FaChevronRight size={22} />
+          </button>
+        )}
       </div>
     </section>
   );

@@ -1,19 +1,10 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import { useVideoSection } from "@/hooks/useVideoSection";
 
 export const OrbitVideoSection = () => {
-  const ref = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 90%", "start 30%"],
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
-  const y = useTransform(scrollYProgress, [0, 1], [80, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1.15, 1]);
+  const { ref, videoRef, opacity, y, scale } = useVideoSection();
 
   return (
     <section
@@ -24,11 +15,12 @@ export const OrbitVideoSection = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-[60%] bg-gradient-to-r from-transparent via-[var(--color-charcoal-light)] to-transparent" />
 
       <motion.video
+        ref={videoRef}
         src="/shared/video/Galla.mp4"
-        autoPlay
         muted
         loop
         playsInline
+        preload="none"
         style={{ scale }}
         className="absolute inset-0 h-full w-full object-cover opacity-50"
       />

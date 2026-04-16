@@ -1,27 +1,22 @@
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
-import * as THREE from "three";
-import { useEarthTexture } from "../../hooks/useEarthTexture";
-import { Earth } from "./Earth";
+import type * as THREE from "three";
 
 export const Stars = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
   const groupRef = useRef<THREE.Group>(null!);
-  const texture = useEarthTexture();
 
   const starCount = 200;
   const targetSpeed = 0.05;
-  const introDuration = 2;
+  const introDuration = 1;
 
   const speedRef = useRef(1.5);
   const hasCompleted = useRef(false);
-
-  const earthPosition = useMemo(() => new THREE.Vector3(25, 8, -10), []);
 
   const positions = useMemo(() => {
     const arr = new Float32Array(starCount * 3);
 
     for (let i = 0; i < starCount; i++) {
-      const r = 80;
+      const r = 100;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
 
@@ -73,8 +68,6 @@ export const Stars = ({ onIntroComplete }: { onIntroComplete?: () => void }) => 
           depthWrite={false}
         />
       </points>
-
-      <Earth position={earthPosition} texture={texture} />
     </group>
   );
 };

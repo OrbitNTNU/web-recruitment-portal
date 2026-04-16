@@ -7,7 +7,7 @@ import "./src/env.js";
 const nextConfig = {
 
   images: {
-    qualities: [60, 70, 80],
+    qualities: [50, 60, 70, 80],
   },
 
   async rewrites() {

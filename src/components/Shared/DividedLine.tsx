@@ -10,6 +10,7 @@ export function DividedLine({
   thickness = 2,
   start = 0,
   end = 1,
+  scrollOffset = ["start 95%", "start 50%"],
 }: {
   direction?: "vertical" | "horizontal";
   length?: number;
@@ -17,16 +18,16 @@ export function DividedLine({
   thickness?: number;
   start?: number;
   end?: number;
+  scrollOffset?: NonNullable<Parameters<typeof useScroll>[0]>["offset"];
 }) {
   const ref = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 80%", "end 40%"],
+    offset: scrollOffset,
   });
 
   const progress = useTransform(scrollYProgress, [start, end], [0, 1]);
-
   const scale = useTransform(progress, [0, 1], [0, 1]);
 
   return (

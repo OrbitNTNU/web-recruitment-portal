@@ -27,7 +27,7 @@ export default function PersonalInformationModal() {
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45 }}
-        className="w-full max-w-xl space-y-10"
+        className="w-full max-w-4xl space-y-10"
       >
         <div className="space-y-4 text-center">
           <div className="flex items-center justify-center gap-2 flex-wrap">
@@ -49,7 +49,7 @@ export default function PersonalInformationModal() {
           </div>
         </div>
 
-        <div className="space-y-7">
+        <div className="grid md:grid-cols-2 gap-8">
 
           <FormInput
             label="Full Name"
@@ -69,9 +69,10 @@ export default function PersonalInformationModal() {
             info="Your current study program at NTNU. This helps us understand your academic background."
           />
 
-
-          <motion.div whileHover={{ scale: 1.01 }} className="space-y-2">
-
+          <motion.div
+            whileHover={{ scale: 1.01 }}
+            className="space-y-2 md:col-span-2 max-w-md mx-auto w-full"
+          >
             <div className="flex items-center gap-2">
               <label className="text-sm font-medium text-[var(--color-cloud-white)]">
                 Year of Study
@@ -81,7 +82,6 @@ export default function PersonalInformationModal() {
             </div>
 
             <div className="relative">
-
               <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-charcoal-light)]">
                 <FaGraduationCap />
               </div>
@@ -89,10 +89,7 @@ export default function PersonalInformationModal() {
               <select
                 value={yearOfStudy}
                 onChange={(e) => setYearOfStudy(Number(e.target.value))}
-                className={`
-                  ${INPUT_CLASSES}
-                  pl-11
-                `}
+                className={`${INPUT_CLASSES} pl-11`}
                 required
               >
                 {YEAR_OPTIONS.map((year) => (
@@ -105,9 +102,7 @@ export default function PersonalInformationModal() {
                   </option>
                 ))}
               </select>
-
             </div>
-
           </motion.div>
 
         </div>

@@ -36,7 +36,7 @@ const proto = grpc.loadPackageDefinition(packageDefinition) as unknown as {
 };
 
 const client = new proto.application.ApplicationSubmissionService(
-  'localhost:15001',
+  'localhost:15001', // Må endres til riktig adresse og port for gRPC-serveren
   grpc.credentials.createInsecure()
 );
 
