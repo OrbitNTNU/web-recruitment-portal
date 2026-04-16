@@ -29,7 +29,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
   };
 
   const appQueryClient = new appProto.application.ApplicationQueryService(
-    "localhost:15001",
+    "localhost:15001", // Må endres til riktig adresse og port for gRPC-serveren
     grpc.credentials.createInsecure(),
   );
 

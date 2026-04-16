@@ -10,7 +10,7 @@ export default function StarsBackground() {
     <div className="absolute inset-0 -z-10">
       <Canvas
         camera={{ position: [0, 0, 4], fov: 85 }}
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
         gl={{ antialias: false, powerPreference: "high-performance" }}
       >
         <color attach="background" args={[theme.colors.charcoal]} />

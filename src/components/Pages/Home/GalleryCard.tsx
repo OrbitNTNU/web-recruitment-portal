@@ -18,34 +18,33 @@ export function GalleryCard({ src, title, description }: GalleryCardProps) {
       transition={{ duration: 0.55 }}
       className="
         relative
-        min-w-[320px] h-[460px]
+        w-full h-[460px]
         overflow-hidden
         bg-[var(--color-charcoal)]
-        rounded-xl
+        rounded-sm
       "
     >
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        className="absolute inset-0"
-      >
+      <div className="absolute inset-0">
         <Image
           src={src}
           alt={title}
           width={1200}
           height={800}
-          quality={70}
+          quality={50}
+          loading="lazy"
           className="absolute inset-0 h-full w-full object-cover"
         />
 
         <div
           className="
+           mr-1
             absolute inset-0
             bg-gradient-to-t
             from-[var(--color-charcoal)]
           "
         />
 
-        <div className="absolute bottom-6 left-6 right-6">
+        <div className="absolute bottom-6 left-16 right-6">
           <h3 className="text-lg font-light text-[var(--color-cloud-white)]">
             {title}
           </h3>
@@ -54,7 +53,7 @@ export function GalleryCard({ src, title, description }: GalleryCardProps) {
             {description}
           </p>
         </div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 }

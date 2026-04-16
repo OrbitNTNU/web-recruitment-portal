@@ -8,7 +8,6 @@ import TeamsAndWishesModal from "@/components/Pages/Form/Modals/TeamsAndWishesMo
 import SummaryModal from "@/components/Pages/Form/Modals/SummaryModal";
 import LoadingModal from "@/components/Pages/Form/Modals/LoadingScreenModal";
 import StepSlider from "@/components/Pages/Form/StepSlider";
-import AltBackground from "@/components/Shared/AltBackground";
 
 type SubmitResponse = {
   error?: string;
@@ -76,7 +75,6 @@ export default function FormPage() {
 
   return (
     <main className="relative flex min-h-screen flex-col overflow-hidden">
-      <AltBackground />
       <LoadingModal logoSrc="/logos/orbit/orbitLogo.png" />
 
       <form

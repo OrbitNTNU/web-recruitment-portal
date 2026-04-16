@@ -1,7 +1,6 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Satellite } from "./Satellite";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
@@ -67,17 +66,6 @@ const WireEarth = () => {
     []
   );
 
-  const occluder = useMemo(() => {
-  return new THREE.Mesh(
-    new THREE.SphereGeometry(radius, 64, 64),
-    new THREE.MeshBasicMaterial({
-      color: "black",
-      transparent: false,
-      depthWrite: true,
-    })
-  );
-}, []);
-
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
       {geometries.map((geo, i) => (
@@ -94,7 +82,6 @@ const EarthWireframe = () => {
       style={{ width: "100%", height: "100%" }}
     >
       <ambientLight intensity={0.6} />
-      <Satellite />
       <WireEarth />
     </Canvas>
   );

@@ -6,6 +6,7 @@ import { HeroSection } from "@/components/Pages/Home/Sections/MainSection";
 import { PhilosophySection } from "@/components/Pages/Home/Sections/PhilosophySection";
 import { OrbitVideoSection } from "@/components/Pages/Home/Sections/VideoSection";
 import { GallerySection } from "@/components/Pages/Home/Sections/GallerySection";
+import { TeamsSection } from "@/components/Pages/Home/Sections/TeamsSection";
 
 export default function HomePage() {
   const { fetchTeams } = useFormStore();
@@ -18,6 +19,7 @@ export default function HomePage() {
   return (
     <main className="relative flex flex-col">
       <HeroSection onApply={() => router.push("/Form")} />
+      <TeamsSection />
       <PhilosophySection />
       <OrbitVideoSection />
       <GallerySection />

@@ -1,10 +1,11 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export const OrbitVideoSection = () => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -15,6 +16,25 @@ export const OrbitVideoSection = () => {
   const y = useTransform(scrollYProgress, [0, 1], [80, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1.15, 1]);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       ref={ref}
@@ -24,11 +44,12 @@ export const OrbitVideoSection = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-[60%] bg-gradient-to-r from-transparent via-[var(--color-charcoal-light)] to-transparent" />
 
       <motion.video
+        ref={videoRef}
         src="/shared/video/Galla.mp4"
-        autoPlay
         muted
         loop
         playsInline
+        preload="none"
         style={{ scale }}
         className="absolute inset-0 h-full w-full object-cover opacity-50"
       />
