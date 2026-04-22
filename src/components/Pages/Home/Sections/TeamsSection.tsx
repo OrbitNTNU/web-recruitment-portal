@@ -36,10 +36,8 @@ export function TeamsSection() {
           </div>
         </div>
 
-        {/* Mobile: nested dropdown accordion */}
         <div className="lg:hidden mb-6">
 
-          {/* ALL TEAMS trigger row */}
           <button
             onClick={toggleDropdown}
             className="w-full flex items-center justify-between py-3 border-t border-white/10"
@@ -62,7 +60,6 @@ export function TeamsSection() {
           </button>
           <div className="h-px bg-white/10" />
 
-          {/* Groups + teams nested inside */}
           <AnimatePresence initial={false}>
             {dropdownOpen && (
               <motion.div
@@ -79,7 +76,6 @@ export function TeamsSection() {
 
                   return (
                     <div key={group}>
-                      {/* Group row */}
                       <button
                         onClick={() => toggleGroup(group)}
                         className="w-full flex items-center justify-between py-3 pl-3 transition-opacity"
@@ -106,8 +102,7 @@ export function TeamsSection() {
                           opacity: isOpen ? 0.65 : 0.12,
                         }}
                       />
-
-                      {/* Teams inside group */}
+                      
                       <AnimatePresence initial={false}>
                         {isOpen && (
                           <motion.div

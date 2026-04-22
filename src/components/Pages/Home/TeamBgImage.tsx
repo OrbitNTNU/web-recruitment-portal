@@ -14,7 +14,7 @@ export function TeamBgImage({ teamName }: Props) {
 
   return (
     <Image
-      src={`/general/${toImageSlug(teamName)}.jpg`}
+      src={`/general/teams/${toImageSlug(teamName)}.jpg`}
       alt={teamName}
       fill
       className="object-cover object-center opacity-40"

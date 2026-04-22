@@ -6,12 +6,16 @@ import { motion } from "framer-motion";
 import { SocialImages } from "@/constants/socialImages";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useGalleryScroll } from "@/hooks/useGalleryScroll";
+import StarsBackground from "@/components/Canvas/StarsBackground";
 
 export const GallerySection = () => {
   const { scrollRef, canScrollLeft, canScrollRight, scroll } = useGalleryScroll();
 
   return (
-    <section className="relative py-28 bg-[var(--color-charcoal)]">
+    <section className="relative py-28">
+      <div className="absolute inset-0">
+        <StarsBackground />
+      </div>
       <div className="mx-auto max-w-[1400px] px-6 md:px-8 mb-16">
         <motion.div
           initial={{ opacity: 0, y: 28 }}

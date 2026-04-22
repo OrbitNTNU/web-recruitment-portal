@@ -10,7 +10,7 @@ const EarthWireframe = dynamic(
   { ssr: false }
 );
 
-export const HeroSection = ({ onApply }: { onApply: () => void }) => {
+export const MainSection = ({ onApply }: { onApply: () => void }) => {
   const { scrollY } = useScroll();
 
   const fade = useTransform(scrollY, [0, 300], [1, 0]);

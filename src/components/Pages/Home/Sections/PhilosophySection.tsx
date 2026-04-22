@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { DividedLine } from "@/components/Shared/DividedLine";
+import StarsBackground from "@/components/Canvas/StarsBackground";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -10,7 +11,10 @@ const fadeUp = {
 
 export const PhilosophySection = () => {
   return (
-    <section className="relative pt-12 md:pt-20 pb-16 md:pb-36 bg-[var(--color-charcoal)]">
+    <section className="relative pt-12 md:pt-20 pb-16 md:pb-36">
+      <div className="absolute inset-0">
+        <StarsBackground />
+      </div>
       <div className="mx-auto max-w-[1200px] px-6 md:px-8">
         <motion.div
           initial="hidden"

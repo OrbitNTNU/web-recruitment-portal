@@ -57,9 +57,16 @@ export function RightPanel({ team, accentColor }: RightPanelProps) {
                 className="block text-[9px] tracking-[0.45em] mb-3"
                 style={{ color: accentColor }}
               >
-                {team.group.toUpperCase()}
+                {team.group.replace(/_/g, " ").toUpperCase()}
               </span>
-              <div className="mb-4 h-px w-6" style={{ backgroundColor: accentColor }} />
+              <motion.div
+                key={team.teamID}
+                initial={{ width: 0 }}
+                animate={{ width: "5rem" }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
+                className="mb-4 h-px"
+                style={{ backgroundColor: accentColor }}
+              />
               {team.description && (
                 <p className="text-sm leading-relaxed text-[var(--color-charcoal-light)]/80">
                   {team.description}
